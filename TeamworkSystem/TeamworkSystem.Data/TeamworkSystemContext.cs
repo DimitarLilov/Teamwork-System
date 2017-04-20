@@ -2,6 +2,7 @@ using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TeamworkSystem.Data.Interfaces;
 using TeamworkSystem.Models.EnitityModels;
+using TeamworkSystem.Models.EnitityModels.Users;
 
 namespace TeamworkSystem.Data
 {
@@ -18,10 +19,35 @@ namespace TeamworkSystem.Data
         }
 
         public IDbSet<Project> Projects { get; set; }
+
+        public IDbSet<Assistent> Assistents { get; set; }
+
+        public IDbSet<Student> Students { get; set; }
+
+        public IDbSet<Trainer> Trainers { get; set; }
+
+        public IDbSet<Course> Courses { get; set; }
+
+        public IDbSet<Criteria> Criteria { get; set; }
+
+        public IDbSet<Message> Messages { get; set; }
+
+        public IDbSet<Photo> Photos { get; set; }
+
+        public IDbSet<ProjectCriteria> ProjectCriteria { get; set; }
+
+        public IDbSet<Skill> Skills { get; set; }
+
+        public IDbSet<Team> Teams { get; set; }
+
+        public IDbSet<TeamTask> TeamTasks { get; set; }
+
         public IdentityDbContext DbContext { get; set; }
+
         public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();
         }
+
     }
 }

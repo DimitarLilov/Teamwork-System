@@ -80,8 +80,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnitityModels\ApplicationUser.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="EnitityModels\ProjectCriteria.cs" />
+    <Compile Include="EnitityModels\Skill.cs" />
+    <Compile Include="EnitityModels\Users\ApplicationUser.cs" />
+    <Compile Include="EnitityModels\Users\Assistent.cs" />
+    <Compile Include="EnitityModels\Course.cs" />
+    <Compile Include="EnitityModels\Criteria.cs" />
+    <Compile Include="EnitityModels\Message.cs" />
+    <Compile Include="EnitityModels\Photo.cs" />
     <Compile Include="EnitityModels\Project.cs" />
+    <Compile Include="EnitityModels\Users\Student.cs" />
+    <Compile Include="EnitityModels\TeamTask.cs" />
+    <Compile Include="EnitityModels\Team.cs" />
+    <Compile Include="EnitityModels\Users\Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />

@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using TeamworkSystem.Data;
 using TeamworkSystem.Models.EnitityModels;
+using TeamworkSystem.Models.EnitityModels.Users;
 
 namespace TeamworkSystem
 {

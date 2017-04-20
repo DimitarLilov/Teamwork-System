@@ -7,7 +7,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using TeamworkSystem.Data;
-using TeamworkSystem.Models.EnitityModels;
+using TeamworkSystem.Models.EnitityModels.Users;
+
 
 namespace TeamworkSystem
 {
