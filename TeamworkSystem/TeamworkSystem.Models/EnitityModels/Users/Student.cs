@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TeamworkSystem.Models.EnitityModels.Users
 {
@@ -9,8 +10,10 @@ namespace TeamworkSystem.Models.EnitityModels.Users
             this.Teams = new HashSet<Team>();
         }
         public int Id { get; set; }
+        public string IdenityUserId { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        [ForeignKey("IdenityUserId")]
+        public virtual ApplicationUser IdentityUser { get; set; }
 
         public virtual ICollection<Team> Teams { get; set; }
     }

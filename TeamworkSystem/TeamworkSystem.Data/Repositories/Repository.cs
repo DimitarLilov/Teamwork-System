@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using TeamworkSystem.Data.Interfaces;
+using TeamworkSystem.Data.Contracts;
 
 namespace TeamworkSystem.Data.Repositories
 {

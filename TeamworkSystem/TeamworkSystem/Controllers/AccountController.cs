@@ -5,9 +5,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using TeamworkSystem.Models.EnitityModels;
+using TeamworkSystem.Data;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.ViewModels.Account;
+using TeamworkSystem.Services;
 
 namespace TeamworkSystem.Controllers
 {
@@ -16,15 +17,19 @@ namespace TeamworkSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
-        public AccountController()
+        private AccountService service;
+        public AccountController(): this(new TeamworkSystemData(new TeamworkSystemContext()))
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, TeamworkSystemData data) : this(new TeamworkSystemData(new TeamworkSystemContext()))
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+        public AccountController(TeamworkSystemData data)
+        {
+            this.service = new AccountService(data);
         }
 
         public ApplicationSignInManager SignInManager
@@ -153,9 +158,12 @@ namespace TeamworkSystem.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 // Create student
-                this.UserManager.AddToRole(user.Id, "Student");
+                
                 if (result.Succeeded)
                 {
+                    this.UserManager.AddToRole(user.Id, "Student");
+                    this.service.CreateStudent(user.Id);
+                
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

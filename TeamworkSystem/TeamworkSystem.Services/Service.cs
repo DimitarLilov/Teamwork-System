@@ -1,12 +1,12 @@
-﻿using TeamworkSystem.Data;
+﻿using TeamworkSystem.Data.Contracts;
 
 namespace TeamworkSystem.Services
 {
     public abstract class Service
     {
-        protected TeamworkSystemData data;
+        protected ITeamworkSystemData data;
 
-        protected Service(TeamworkSystemData data)
+        protected Service(ITeamworkSystemData data)
         {
             this.data = data;
         }

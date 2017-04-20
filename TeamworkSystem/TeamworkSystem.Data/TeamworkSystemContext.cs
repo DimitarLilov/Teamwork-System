@@ -1,6 +1,6 @@
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using TeamworkSystem.Data.Interfaces;
+using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 
@@ -42,7 +42,7 @@ namespace TeamworkSystem.Data
 
         public IDbSet<TeamTask> TeamTasks { get; set; }
 
-        public IdentityDbContext DbContext { get; set; }
+        public DbContext DbContext => this;
 
         public new IDbSet<T> Set<T>() where T : class
         {
