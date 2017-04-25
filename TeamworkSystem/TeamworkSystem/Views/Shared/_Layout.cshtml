@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/fontawesome")
 
 </head>
 <body>
@@ -14,27 +15,29 @@
             <div class="navbar-header">
                 @Html.ActionLink("Project*", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 <div class="navbar-toggle collapsed" aria-expanded="false" data-target="#MainMenu" data-toggle="collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="fa fa-bars"></span>
                 </div>
                 @Html.Partial("_LoginMenu")
             </div>
             <div class="navbar-collapse collapse" id="MainMenu" aria-expanded="false">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
             <div class="navbar-collapse uncollapse-hidden collapse" id="UserMenu" aria-expanded="false">
                 <ul class="nav navbar-nav">
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="projects.html">Setings</a></li>
-                    <li><a href="teams.html">Teams</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="signout.html">Sign Out</a></li>
+                    <li>@Html.ActionLink("Profile", "MyProfile", "Users")</li>
+                    <li>@Html.ActionLink("Edit Profile", "Edit", "Users")</li>
+                    <li>
+                        @Html.ActionLink("My Teams", "Teams", "Users", new { username = this.User.Identity.Name }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("My Projects", "Projects", "Users", new { username = this.User.Identity.Name }, null)
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                 </ul>
             </div>
             <div class="navbar-collapse uncollapse-hidden collapse" id="NotificationMenu" aria-expanded="false">
@@ -44,7 +47,7 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
         <footer>

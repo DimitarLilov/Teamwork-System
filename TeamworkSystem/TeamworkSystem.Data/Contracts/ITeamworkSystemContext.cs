@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 
@@ -23,7 +22,7 @@ namespace TeamworkSystem.Data.Contracts
 
         IDbSet<Photo> Photos { get; }
 
-        IDbSet<ProjectCriteria> ProjectCriteria { get; }
+        IDbSet<ProjectPoint> ProjectCriteria { get; }
 
         IDbSet<Skill> Skills { get; }
 

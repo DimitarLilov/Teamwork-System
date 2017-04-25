@@ -11,6 +11,7 @@ namespace TeamworkSystem.Data
         public TeamworkSystemContext()
             : base("TeamworkSystemContext", throwIfV1Schema: false)
         {
+            
         }
 
         public static TeamworkSystemContext Create()
@@ -34,7 +35,7 @@ namespace TeamworkSystem.Data
 
         public IDbSet<Photo> Photos { get; set; }
 
-        public IDbSet<ProjectCriteria> ProjectCriteria { get; set; }
+        public IDbSet<ProjectPoint> ProjectCriteria { get; set; }
 
         public IDbSet<Skill> Skills { get; set; }
 

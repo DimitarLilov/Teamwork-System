@@ -1,0 +1,21 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Teams
+@model TeamInfoViewModel
+
+<div>
+    <div class="cbp-l-member-name text-center">@Html.ActionLink(@Model.Name, "ShowTeam", "Teams", new { id = Model.Id }, null)</div>
+    <br />
+    <ul class="list-inline text-center">
+        @foreach (var user in Model.Members)
+        {
+            <li>
+                <a href="@Url.Action("Profile", "Users", new {username = user.Username})"> @Html.Image(Url.Content(user.ProfilePhoto), "avatar img-circle", "Profile Picture")</a>
+            </li>
+        }
+    </ul>
+
+    <div class="cbp-l-member-desc text-center">
+        @Model.Description
+    </div>
+</div>
+

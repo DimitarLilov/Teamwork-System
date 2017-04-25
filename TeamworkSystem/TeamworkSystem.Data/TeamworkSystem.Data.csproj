@@ -58,29 +58,13 @@
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\ITeamworkSystemContext.cs" />
     <Compile Include="Contracts\ITeamworkSystemData.cs" />
-    <Compile Include="Migrations\201704191533491_init.cs" />
-    <Compile Include="Migrations\201704191533491_init.Designer.cs">
-      <DependentUpon>201704191533491_init.cs</DependentUpon>
+    <Compile Include="Migrations\201704231111187_points.cs" />
+    <Compile Include="Migrations\201704231111187_points.Designer.cs">
+      <DependentUpon>201704231111187_points.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704192148519_added_roles.cs" />
-    <Compile Include="Migrations\201704192148519_added_roles.Designer.cs">
-      <DependentUpon>201704192148519_added_roles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704201426180_Models.cs" />
-    <Compile Include="Migrations\201704201426180_Models.Designer.cs">
-      <DependentUpon>201704201426180_Models.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704201630172_BirthDay.cs" />
-    <Compile Include="Migrations\201704201630172_BirthDay.Designer.cs">
-      <DependentUpon>201704201630172_BirthDay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704202034243_Student.cs" />
-    <Compile Include="Migrations\201704202034243_Student.Designer.cs">
-      <DependentUpon>201704202034243_Student.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704202041247_Users.cs" />
-    <Compile Include="Migrations\201704202041247_Users.Designer.cs">
-      <DependentUpon>201704202041247_Users.cs</DependentUpon>
+    <Compile Include="Migrations\201704231121545_photo.cs" />
+    <Compile Include="Migrations\201704231121545_photo.Designer.cs">
+      <DependentUpon>201704231121545_photo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,23 +83,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704191533491_init.resx">
-      <DependentUpon>201704191533491_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704231111187_points.resx">
+      <DependentUpon>201704231111187_points.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704192148519_added_roles.resx">
-      <DependentUpon>201704192148519_added_roles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704201426180_Models.resx">
-      <DependentUpon>201704201426180_Models.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704201630172_BirthDay.resx">
-      <DependentUpon>201704201630172_BirthDay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704202034243_Student.resx">
-      <DependentUpon>201704202034243_Student.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704202041247_Users.resx">
-      <DependentUpon>201704202041247_Users.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704231121545_photo.resx">
+      <DependentUpon>201704231121545_photo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

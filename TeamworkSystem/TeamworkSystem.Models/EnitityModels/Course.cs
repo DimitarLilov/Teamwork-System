@@ -18,6 +18,8 @@ namespace TeamworkSystem.Models.EnitityModels
 
         public string Description { get; set; }
 
+        public virtual Photo CoursePhoto { get; set; }
+
         public decimal MaxGrade { get; set; }
 
         public DateTime StartDate { get; set; }

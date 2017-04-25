@@ -8,7 +8,7 @@ namespace TeamworkSystem.Models.EnitityModels.Users
         public Trainer()
         {
             this.LeadingCourses = new HashSet<Course>();
-            this.GradeProject = new HashSet<ProjectCriteria>();
+            this.ProjectPoints = new HashSet<ProjectPoint>();
         }
 
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace TeamworkSystem.Models.EnitityModels.Users
 
         public virtual ICollection<Course> LeadingCourses { get; set; }
 
-        public virtual ICollection<ProjectCriteria> GradeProject { get; set; }
+        public virtual ICollection<ProjectPoint> ProjectPoints { get; set; }
     }
 }

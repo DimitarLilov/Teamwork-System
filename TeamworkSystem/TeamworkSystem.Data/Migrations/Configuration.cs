@@ -13,12 +13,12 @@ namespace TeamworkSystem.Data.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TeamworkSystemContext context)
+        protected override void Seed(TeamworkSystem.Data.TeamworkSystemContext context)
         {
             if (!context.Roles.Any(role => role.Name == "Student"))
             {
                 var store = new RoleStore<IdentityRole>(context);
-                var manager =new RoleManager<IdentityRole>(store);
+                var manager = new RoleManager<IdentityRole>(store);
                 var role = new IdentityRole("Student");
                 manager.Create(role);
             }

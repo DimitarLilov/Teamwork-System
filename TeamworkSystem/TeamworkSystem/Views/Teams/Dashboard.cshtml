@@ -1,0 +1,117 @@
+﻿@using TeamworkSystem.Models.ViewModels.Teams
+@model TeamViewModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="row container-fluid">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <h1>@Model.Name</h1>
+        </div>
+        <div class="pull-right">
+            <ul class="list-inline">
+                @foreach (var user in Model.Members)
+                {
+                    <li>
+                        <a href="@Url.Action("Profile","Users",new { username = user.Username })"><img src="@user.ProfilePhoto" alt="Profile Picture" class="avatar img-circle"></a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row container-fluid">
+    <div class="row container-fluid">
+        <div class="col-md-2 col-xs-6">
+            <a href="#" class="tile tile-danger"><span class="fa fa-tasks"></span></a>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <a href="#" class="tile tile-success"><span class="fa fa-envelope"></span></a>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <a href="#" class="tile tile-info">
+                15<p>September</p>
+                <div class="informer dir-tr">
+                    <span class="fa fa-calendar"></span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <a href="#" class="tile tile-success"><span class="fa fa-group"></span></a>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <a href="#" class="tile tile-info">0<p>Project</p></a>
+        </div>
+        <div class="col-md-2 col-xs-6">
+            <a href="#" class="tile tile-success"><span class="fa fa-cog"></span></a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h3 class="panel-title">Team Board</h3>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-warning"><i class="fa fa-plus"></i></button>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-4">
+                    <div class="team-board-list panel primary">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <h3 class="panel-title text-uppercase"><i class="fa fa-calendar"></i> 01/01/2017</h3>
+                            </div>
+                            <div class="pull-right">
+                                <span class="label label-danger text-capitalize" data-toggle="tooltip" data-placement="right">new</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <p class="team-board-message text-capitalize">messagen</p>
+                            <p class="team-board-author text-muted text-capitalize">Autor Name</p>
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <img src="img/me-flat.png" alt="..." class="img-circle">
+                            <img src="img/me-flat.png" alt="..." class="img-circle">
+                            <img src="img/me-flat.png" alt="..." class="img-circle">
+                            <img src="img/me-flat.png" alt="..." class="img-circle">
+
+                        </div>
+                        <!-- /.panel-footer -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h3 class="panel-title">To Do: </h3>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-warning"><i class="fa fa-plus"></i></button>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Lorem ipsum dolor sit amet</li>
+                </ul>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+</div>

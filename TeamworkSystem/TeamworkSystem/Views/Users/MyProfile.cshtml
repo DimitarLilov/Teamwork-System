@@ -1,0 +1,203 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Users
+@model ProfileViewModel
+@{
+    ViewBag.Title = this.Model.Username + " - Profile";
+}
+
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="ribbon-wrapper">
+                <a class="ribbon ribbon-success" target="_blank" href="@Model.SoftuniProfile"><i class="fa fa-graduation-cap"></i> SoftUni</a>
+            </div>
+            <ul class="list-unstyled">
+                <li class="text-center">
+                    @Html.Image(Model.ProfilePhoto, "profile-avatar img-circle img-bordered-success", "ProfilePicture")
+                </li>
+                <li class="text-center">
+                    <h4 class="text-capitalize">@Html.DisplayFor(modelItem => Model.FullName)</h4>
+                    <p class="text-muted text-capitalize">@@@Html.DisplayFor(modelItem => Model.Username)</p>
+                </li>
+                <li class="text-center">
+                    @Html.SocialMediaButton(Model.Facebook, "fa fa-facebook")
+                    @Html.SocialMediaButton(Model.Twitter, "fa fa-twitter")
+                    @Html.SocialMediaButton(Model.GooglePlus, "fa fa-google-plus")
+                    @Html.SocialMediaButton(Model.LinkedIn, "fa fa-linkedin")
+                    @Html.SocialMediaButton(Model.GitHub, "fa fa-github")
+                    @Html.SocialMediaButton(Model.StackOverflow, "fa fa-stack-overflow")
+                    @Html.SocialMediaButton(Model.Skype, "fa fa-skype")
+                </li>
+                <li><br></li>
+                <li>
+                    <div class="btn-group-vertical btn-block">
+                        @Html.ActionLink("Edit Account", "Edit", null, new { @class = "btn btn-default" })
+                    </div>
+                </li>
+                <li>
+                    <div class="btn-group-vertical btn-block">
+                        @Html.ActionLink("Add Team", "Edit", null, new { @class = "btn btn-default" })
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3 class="panel-title">Contact</h3>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p><i class="profile-icon fa fa-envelope"></i>@Html.DisplayFor(modelItem => Model.Email)</p>
+                </li>
+                <li class="list-group-item">
+                    <p><i class="profile-icon fa fa-globe"></i>@Html.DisplayFor(modelItem => Model.WebSite)</p>
+                </li>
+                <li class="list-group-item">
+                    <p><i class="profile-icon fa fa-phone"></i>@Html.DisplayFor(modelItem => Model.PhoneNumber)</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3 class="panel-title">User Info</h3>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li class="text-left">
+                        <p>
+                            <i class="profile-icon fa fa-info-circle"></i>@Html.DisplayFor(modelItem => Model.AboutMe)
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li>
+                        <p><i class="profile-icon fa fa-map-marker"></i>@Html.DisplayFor(modelItem => Model.Country)</p>
+                    </li>
+                    <li>
+                        <p><i class="profile-icon fa fa-home"></i>@Html.DisplayFor(modelItem => Model.Town)</p>
+                    </li>
+                    <li>
+                        <p><i class="profile-icon fa fa-genderless"></i>@Html.DisplayFor(modelItem => Model.Gender)</p>
+                    </li>
+                    <li>
+                        <p><i class="profile-icon fa fa-birthday-cake"></i>@Html.DisplayFor(modelItem => Model.BirthDay)</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <p><i class="profile-icon fa fa-cogs"></i>Skills</p>
+                <ul class="list-inline">
+                    @foreach (var skill in Model.Skills)
+                    {
+                        <li class="tag tag-sm">@skill</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3 class="panel-title">Projects</h3>
+            </div>
+            <div class="pull-right">
+                @Html.ActionLink("My Projects", "Projects", new { username = Model.Username }, new { @class = "panel-title" })
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            @foreach (var project in Model.Projects)
+            {
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="project-item">
+                        <img src="@Url.Content(project.PhotoPath)" class="project-img img-responsive" alt="project">
+                        <div class="project-details">
+                            <div class="ribbon-wrapper">
+                                <div class="ribbon ribbon-danger">@project.Grade</div>
+                            </div>
+                            <h4 class="project-title"><a href=""><p>@project.Name</p></a></h4>
+                            <ul class="project-meta">
+                                <li>By: @Html.ActionLink(project.TeamName, "ShowTeam", "Teams", new { id = project.TeamId }, null)</li>
+                            </ul>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3 class="panel-title">Teams</h3>
+            </div>
+            <div class="pull-right">
+                @Html.ActionLink("My Teams", "Teams", new { username = Model.Username }, new { @class = "panel-title" })
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            @foreach (var team in Model.Teams)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="mini-stat-type-6 bg-success">
+                        <div class="inner">
+                            <p>
+                                <strong>@Html.DisplayFor(modelItem => team.Name)</strong>
+                            </p>
+                            <p>@Html.DisplayFor(modelItem => team.CountMembers) Members</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <br>
+                        <div>
+                            @Html.ActionLink("Team", "ShowTeam", "Teams", new { id = team.Id }, new { @class = "small-box-footer" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3 class="panel-title">Collaborators</h3>
+            </div>
+            <div class="pull-right">
+                @Html.ActionLink("My Collaborators", "Collaborators", new { username = Model.Username }, new { @class = "panel-title" })
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            @foreach (var user in Model.Collaborators)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="mini-stat-type-6 bg-success">
+                        @Html.Image(@Url.Content(user.ProfilePhoto), "profile-avatar img-circle img-bordered-success  center-block", "Profile Picture")
+                        @Html.ActionLink(user.FullName, "Profile", "Users", new { username = user.Username }, new { @class = "small-box-footer" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

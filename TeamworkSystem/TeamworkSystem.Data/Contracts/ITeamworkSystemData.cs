@@ -1,5 +1,4 @@
-﻿using TeamworkSystem.Data.Repositories;
-using TeamworkSystem.Models.EnitityModels;
+﻿using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 
 namespace TeamworkSystem.Data.Contracts
@@ -22,7 +21,7 @@ namespace TeamworkSystem.Data.Contracts
 
         IRepository<Photo> Photos { get; }
 
-        IRepository<ProjectCriteria> ProjectCriteria { get; }
+        IRepository<ProjectPoint> ProjectCriteria { get; }
 
         IRepository<Skill> Skills { get; }
 
@@ -30,6 +29,7 @@ namespace TeamworkSystem.Data.Contracts
 
         IRepository<TeamTask> TeamTasks { get; }
 
+        IRepository<ApplicationUser> User { get; }
 
         ITeamworkSystemContext Context { get; }
 

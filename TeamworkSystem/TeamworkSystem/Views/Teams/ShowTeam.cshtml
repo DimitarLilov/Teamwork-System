@@ -1,0 +1,69 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Teams
+@model TeamViewModel
+@{
+            ViewBag.Title = "Team - " + Model.Team.Name;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            
+            @Html.Partial("_TeamInfo", Model.Team)
+
+            <div class="clearfix"></div>
+            <div class="cbp-l-member-biodata">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">Projects</h3>
+                                </div>
+                                <div class="pull-right">
+                                    @Html.ActionLink("All Projects", "Projects", "Teams", new { id = Model.Team.Id },new {@class= "panel-title" })
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var project in Model.Projects)
+                                {
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="project-item">
+                                            @Html.Image(Url.Content(project.ProjectPhoto), "project-img img-responsive", "Project")
+                                            <div class="project-details">
+                                                <h4 class="project-title">@Html.ActionLink(@project.Name, "Index", "Projects", new { id = project.Id }, null)</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">Courses</h3>
+                                </div>
+                                <div class="pull-right">
+                                    @Html.ActionLink("All Projects", "Courses", "Teams", new { id = Model.Team.Id }, new { @class = "panel-title" })
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var cours in Model.Courses)
+                                {
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                        <div class="mini-stat-type-6 bg-success">
+                                            @Html.Image(@Url.Content(cours.PhotoPath), "profile-avatar img-circle img-bordered-success  center-block", "Course")
+                                            @Html.ActionLink(@cours.Name, "Index", "Courses", new { id = cours.Id }, new { @class = "small-box-footer" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

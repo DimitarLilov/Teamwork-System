@@ -4,10 +4,6 @@ namespace TeamworkSystem.Models.EnitityModels
 {
     public class Project
     {
-        public Project()
-        {
-            this.Photos = new HashSet<Photo>();
-        }
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -32,6 +28,9 @@ namespace TeamworkSystem.Models.EnitityModels
 
         public virtual Photo ProjectPicture { get; set; }
 
-        public virtual ICollection<Photo> Photos { get; set; }
+        public virtual Album Photos { get; set; }
+
+        public virtual ICollection<ProjectPoint> Points { get; set; }
+
     }
 }

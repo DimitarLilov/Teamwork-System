@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -18,11 +19,14 @@ namespace TeamworkSystem.Models.EnitityModels.Users
 
         public string LastName { get; set; }
 
+        [NotMapped]
+        public string FullName => this.FirstName + " " + this.LastName;
+
         public virtual Photo ProfilePhoto { get; set; }
 
         public string WebSite { get; set; }
 
-        public string AbautMe { get; set; }
+        public string AboutMe { get; set; }
 
         public string Country { get; set; }
 

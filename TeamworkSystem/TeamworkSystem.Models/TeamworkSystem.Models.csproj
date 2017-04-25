@@ -80,8 +80,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnitityModels\Album.cs" />
+    <Compile Include="EnitityModels\Point.cs" />
     <Compile Include="Enums\Gender.cs" />
-    <Compile Include="EnitityModels\ProjectCriteria.cs" />
+    <Compile Include="EnitityModels\ProjectPoint.cs" />
     <Compile Include="EnitityModels\Skill.cs" />
     <Compile Include="EnitityModels\Users\ApplicationUser.cs" />
     <Compile Include="EnitityModels\Users\Assistent.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="EnitityModels\TeamTask.cs" />
     <Compile Include="EnitityModels\Team.cs" />
     <Compile Include="EnitityModels\Users\Trainer.cs" />
+    <Compile Include="Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
@@ -112,6 +115,22 @@
     <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Teams\AllTeamsCoursesViewModel.cs" />
+    <Compile Include="ViewModels\Teams\AllTeamsProjectsViewModel.cs" />
+    <Compile Include="ViewModels\Teams\CourseTeamViewModel.cs" />
+    <Compile Include="ViewModels\Teams\MemberViewModel.cs" />
+    <Compile Include="ViewModels\Teams\ProjectTeamViewModel.cs" />
+    <Compile Include="ViewModels\Teams\TeamInfoViewModel.cs" />
+    <Compile Include="ViewModels\Teams\TeamViewModel.cs" />
+    <Compile Include="ViewModels\Users\AllUsersCollaboratorsViewModel.cs" />
+    <Compile Include="ViewModels\Users\AllUsersProjectsViewModel.cs" />
+    <Compile Include="ViewModels\Users\AllUsersTeamsViewModel.cs" />
+    <Compile Include="ViewModels\Users\CollaborationUserViewModel.cs" />
+    <Compile Include="ViewModels\Users\EditUserViewModel.cs" />
+    <Compile Include="ViewModels\Users\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\Users\ProjectUsersViewModel.cs" />
+    <Compile Include="ViewModels\Users\TeamUserViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserInfoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

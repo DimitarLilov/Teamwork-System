@@ -1,10 +1,10 @@
-﻿using TeamworkSystem.Data;
-using TeamworkSystem.Data.Contracts;
+﻿using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models.EnitityModels.Users;
+using TeamworkSystem.Services.Contracts;
 
 namespace TeamworkSystem.Services
 {
-    public class AccountService : Service
+    public class AccountService : Service, IAccountService
     {
         public AccountService(ITeamworkSystemData data) : base(data)
         {
