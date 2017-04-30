@@ -1,73 +1,39 @@
 ﻿@using TeamworkSystem.Extensions
 @using TeamworkSystem.Models.ViewModels.Teams
 @model AllTeamsCoursesViewModel
-    @{
-        ViewBag.Title = "Team - " + Model.Team.Name;
-    }
+@{
+    ViewBag.Title = "Team - " + Model.Team.Name;
+}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
 
-                @Html.Partial("_TeamInfo", Model.Team)
+            @Html.Partial("_TeamInfo", Model.Team)
 
-                <div class="clearfix"></div>
-                <div class="cbp-l-member-biodata">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <div class="pull-left">
-                                        <h3 class="panel-title">Courses</h3>
-                                    </div>
-                                    <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div class="cbp-l-member-biodata">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">Courses</h3>
                                 </div>
-                                <div class="panel-body">
-                                    @foreach (var cours in Model.Courses)
-                                    {
-                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                            <div class="mini-stat-type-6 bg-success">
-                                                @Html.Image(@Url.Content(cours.PhotoPath), "profile-avatar img-circle img-bordered-success  center-block", "Course")
-                                                @Html.ActionLink(@cours.Name, "Index", "Courses", new { id = cours.Id }, new { @class = "small-box-footer" })
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                                @if (Model.Pager.EndPage > 1)
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var cours in Model.Courses)
                                 {
-                                    <ul class="pagination">
-                                        @if (Model.Pager.CurrentPage > 1)
-                                        {
-                                            <li>
-                                                @Html.ActionLink("First", "Courses", "Teams")
-                                            </li>
-                                            <li>
-                                                @Html.ActionLink("Previous", "Courses", "Teams", new { page = Model.Pager.CurrentPage - 1 }, null)
-                                            </li>
-                                        }
-
-                                        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
-                                        {
-                                            <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                                                @Html.ActionLink(page.ToString(), "Courses", "Teams", new { page = @page }, null)
-                                            </li>
-                                        }
-
-                                        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
-                                        {
-                                            <li>
-                                                @Html.ActionLink("Next", "Courses", "Teams", new { page = Model.Pager.CurrentPage + 1 }, null)
-                                            </li>
-                                            <li>
-                                                @Html.ActionLink("Last", "Courses", "Teams", new { page = Model.Pager.TotalPages }, null)
-                                            </li>
-                                        }
-                                    </ul>
+                                    @Html.Partial("_Course",cours)
                                 }
                             </div>
+                            <br />
+                           @Html.Pages(Model.Pager, Url.Action("Courses", "Teams"))
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

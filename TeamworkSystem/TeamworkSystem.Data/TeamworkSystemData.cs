@@ -7,9 +7,9 @@ namespace TeamworkSystem.Data
 {
     public class TeamworkSystemData : ITeamworkSystemData
     {
-        private readonly TeamworkSystemContext context;
+        private readonly ITeamworkSystemContext context;
 
-        public TeamworkSystemData(TeamworkSystemContext context)
+        public TeamworkSystemData(ITeamworkSystemContext context)
         {
             this.context = context;
         }
@@ -39,6 +39,8 @@ namespace TeamworkSystem.Data
         public IRepository<TeamTask> TeamTasks => new Repository<TeamTask>(this.context);
 
         public IRepository<ApplicationUser> User => new Repository<ApplicationUser>(this.context);
+
+        public IRepository<Comment> Comments => new Repository<Comment>(this.context);
 
         public ITeamworkSystemContext Context => this.context;
 

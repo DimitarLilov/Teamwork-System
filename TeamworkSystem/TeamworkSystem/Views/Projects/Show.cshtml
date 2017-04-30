@@ -1,0 +1,59 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Projects
+@model ProjectInfoViewModel
+@{
+            ViewBag.Title = "Project - " + @Html.DisplayFor(model => model.Name);
+}
+
+
+<div class="col-md-12">
+    <div class="cbp-l-member-img">
+        @Html.Image(Model.ProjectPicture, "img-responsive", "Project")
+    </div>
+    <div class="cbp-l-member-info">
+        <div class="cbp-l-member-name">@Html.DisplayFor(model => model.Name) <i class="fa fa-check-circle text-success"></i></div>
+        <ul class="project-meta">
+            <li>Team: @Html.ActionLink(Model.TeamName, "Show", "Teams", new { id = Model.TeamId }, null)</li>
+            <li><i class="fa fa-calendar"></i> Jun 15, 2014</li>
+            <li>
+                <i class="fa fa-code"></i><a href="@Model.Repository" target="_blank"> Repository</a>
+            </li>
+            <li>
+                <i class="fa fa-link"></i><a href="@Model.LiveDemo" target="_blank"> Live Demo</a>
+            </li>
+            <li>
+                <i class="fa fa-comment"></i><a href="#comment">@Model.CommentsCount Comments</a>
+            </li>
+        </ul>
+        <br>
+        <div class="cbp-l-member-desc">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="cbp-l-member-biodata">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h3 class="panel-title">Photos</h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="col-sm-6 col-md-3">
+                        <a href="img/project.png" class="thumbnail">
+                            <img src="img/project.png" alt="Generic placeholder thumbnail">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Points","Projects",new { id = Model.Id})
+    @Html.Action("Comment", "Projects", new { id = Model.Id })
+</div>

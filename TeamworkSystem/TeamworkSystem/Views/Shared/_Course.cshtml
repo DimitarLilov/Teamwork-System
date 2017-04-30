@@ -1,0 +1,12 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Courses
+@model CourseViewModel
+
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="mini-stat-type-6 bg-success">
+        @Html.Image(@Url.Content(Model.PhotoPath), "profile-avatar img-circle img-bordered-success  center-block", "Course")
+        @Html.ActionLink(@Model.Name, "Show", "Courses", new { id = Model.Id }, new { @class = "small-box-footer" })
+    </div>
+</div>
+
+

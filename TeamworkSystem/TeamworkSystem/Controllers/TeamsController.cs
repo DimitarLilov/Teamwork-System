@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using TeamworkSystem.Data;
 using TeamworkSystem.Models;
+using TeamworkSystem.Models.BindingModels.Teams;
 using TeamworkSystem.Models.ViewModels.Teams;
 using TeamworkSystem.Services;
 
@@ -13,7 +14,7 @@ namespace TeamworkSystem.Controllers
     {
         private TeamsService service;
         public TeamsController()
-            :this(new TeamworkSystemData(new TeamworkSystemContext()))
+            : this(new TeamworkSystemData(new TeamworkSystemContext()))
         {
 
         }
@@ -24,6 +25,8 @@ namespace TeamworkSystem.Controllers
         }
 
         // GET: Teams
+        [HttpGet]
+        [Route]
         public ActionResult Index()
         {
             return View();
@@ -31,9 +34,9 @@ namespace TeamworkSystem.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public ActionResult ShowTeam(int id)
+        public ActionResult Show(int id)
         {
-            TeamViewModel vm = this.service.GetTeamInfo(id);
+            TeamViewModel vm = this.service.GetTeam(id);
             return this.View(vm);
         }
 
@@ -71,17 +74,134 @@ namespace TeamworkSystem.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("{id:int}/dashboard")]
+        [Route("{id:int}/Dashboard")]
         public ActionResult Dashboard(int id)
         {
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(this.User.Identity.Name))
             {
-                return RedirectToAction("ShowTeam", "Teams",id);
+                return RedirectToAction("Show", "Teams", new { id = id });
             }
 
-            //TeamViewModel vm = this.service.GetTeamInfo(id);
-            return this.View();
+            DashboardInfoViewModel vm = this.service.GetTeamDashboard(id);
+            return this.View(vm);
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route("{id:int}/Tasks")]
+        public ActionResult Tasks(int id)
+        {
+            IEnumerable<string> members = this.service.GetMembersName(id);
+            if (!members.Contains(this.User.Identity.Name))
+            {
+                return this.RedirectToAction("Show", "Teams", new { id = id });
+            }
+
+            TeamTasksViewModel vm = this.service.GetTeamTasks(id);
+            return this.View(vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("{id:int}/Add/Member")]
+        public ActionResult AddMember(int id)
+        {
+            IEnumerable<string> members = this.service.GetMembersName(id);
+            if (!members.Contains(this.User.Identity.Name))
+            {
+                return this.RedirectToAction("Show", "Teams", new { id = id });
+            }
+
+            AddMembersViewModel vm = new AddMembersViewModel { Team = this.service.GetTeamInfo(id) };
+            return this.View(vm);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        [Route("{id:int}/Add/Member")]
+        public ActionResult AddMember(int id,AddMemberBindingModel binding)
+        {
+            var user = this.service.ContainsUser(binding);
+            if (ModelState.IsValid && user)
+            {
+                
+                this.service.AddMember(id, binding);
+            }
+            
+            return this.RedirectToAction("AddMember", "Teams", new { id = id });
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("{id:int}/Add/Task")]
+        public ActionResult AddTask(int id)
+        {
+            IEnumerable<string> members = this.service.GetMembersName(id);
+            if (!members.Contains(this.User.Identity.Name))
+            {
+                return this.RedirectToAction("Show", "Teams", new { id = id });
+            }
+
+            AddTaskViewModel vm = this.service.GetTeamInfoForTask(id);
+
+            return this.View(vm);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("{id:int}/Add/Task")]
+        public ActionResult AddTask(int id, AddTaskBindingModel binding)
+        {
+            var currentUser = this.User.Identity.Name;
+            if (ModelState.IsValid)
+            {
+                this.service.AddTask(id, binding, currentUser);
+                return this.RedirectToAction("Tasks", "Teams", new {id = id});
+            }
+
+            AddTaskViewModel vm = this.service.GetTeamInfoForTask(id);
+
+            return this.View(vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("Create")]
+        public ActionResult Create()
+        {
+            CreateTeamViewModel vm = new CreateTeamViewModel();
+            return this.View(vm);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        [Route("Create")]
+        public ActionResult Create(CreateTeamBindingModel binding)
+        {
+            var username = this.User.Identity.Name;
+            if (ModelState.IsValid)
+            {
+                int id = this.service.CreateTeam(binding, username);
+
+                return this.RedirectToAction("AddMember", "Teams",new {id = id});
+            }
+            CreateTeamViewModel vm = new CreateTeamViewModel();
+            return this.View(vm);
+
+        }
+
+        [HttpPost]
+        public JsonResult AutoCompleteUser(string prefix)
+        {
+            IEnumerable<string> usernames = this.service.GettUsernames();
+
+            var username = usernames.Where(u => u.StartsWith(prefix.ToLower()));
+
+            return Json(username, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

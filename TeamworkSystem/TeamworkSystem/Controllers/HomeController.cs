@@ -9,7 +9,7 @@ namespace TeamworkSystem.Controllers
     {
         private HomeService service;
         public HomeController()
-            :this(new TeamworkSystemData(new TeamworkSystemContext()))
+            : this(new TeamworkSystemData(new TeamworkSystemContext()))
         {
 
         }
@@ -38,10 +38,12 @@ namespace TeamworkSystem.Controllers
         }
 
         [Authorize]
+        [ChildActionOnly]
         public ActionResult GetImage()
         {
-           string path = this.service.GetUserPhoto(this.User.Identity.Name);
-            return Content(path);
+            string path = this.service.GetUserPhoto(this.User.Identity.Name);
+
+            return this.PartialView("_ProfileImage", path);
         }
     }
 }

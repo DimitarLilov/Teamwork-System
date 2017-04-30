@@ -290,7 +290,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LoginMenu.cshtml" />
     <Content Include="Views\Users\Profile.cshtml" />
-    <Content Include="Views\Teams\ShowTeam.cshtml" />
+    <Content Include="Views\Teams\Show.cshtml" />
     <Content Include="Views\Users\MyProfile.cshtml" />
     <Content Include="Views\Teams\Dashboard.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
@@ -303,6 +303,18 @@
     <Content Include="Views\Teams\_TeamInfo.cshtml" />
     <Content Include="Views\Teams\Projects.cshtml" />
     <Content Include="Views\Teams\Courses.cshtml" />
+    <Content Include="Views\Projects\Show.cshtml" />
+    <Content Include="Views\Courses\Show.cshtml" />
+    <Content Include="Views\Shared\_Course.cshtml" />
+    <Content Include="Views\Shared\_Project.cshtml" />
+    <Content Include="Views\Teams\Tasks.cshtml" />
+    <Content Include="Views\Teams\_DashboardInfo.cshtml" />
+    <Content Include="Views\Shared\_ProfileImage.cshtml" />
+    <Content Include="Views\Projects\_Points.cshtml" />
+    <Content Include="Views\Projects\_Comment.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
+    <Content Include="Views\Teams\AddMember.cshtml" />
+    <Content Include="Views\Teams\AddTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />

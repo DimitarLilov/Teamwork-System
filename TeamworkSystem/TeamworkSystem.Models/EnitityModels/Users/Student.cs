@@ -9,6 +9,7 @@ namespace TeamworkSystem.Models.EnitityModels.Users
         {
             this.Teams = new HashSet<Team>();
             this.Tasks = new HashSet<TeamTask>();
+            this.TaskAuthor = new HashSet<TeamTask>();
         }
         public int Id { get; set; }
         public string IdenityUserId { get; set; }
@@ -19,5 +20,7 @@ namespace TeamworkSystem.Models.EnitityModels.Users
         public virtual ICollection<Team> Teams { get; set; }
 
         public virtual ICollection<TeamTask> Tasks { get; set; }
+
+        public virtual ICollection<TeamTask> TaskAuthor { get; set; }
     }
 }

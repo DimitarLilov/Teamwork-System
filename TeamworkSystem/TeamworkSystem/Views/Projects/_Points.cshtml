@@ -1,0 +1,52 @@
+﻿@using TeamworkSystem.Models.ViewModels.Courses
+@model IEnumerable<CriteriaViewModel>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="pull-left">
+            <h3 class="panel-title">Points</h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        
+        @using (Html.BeginForm("Points", "Projects", FormMethod.Post))
+        {
+                <table class="col-xs-3 col-sm-6 col-md-3 table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        @foreach (var criteria in Model)
+                        {
+                            <th class="text-center">
+                                @criteria.Name
+                            </th>
+                        }
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id='addr0'>
+                        @{
+                            int cout = 0;
+                        }
+                        @foreach (var criteria in Model)
+                        {
+                            <td>
+                                <input type="number" step="0.01" name='[@cout].Point' placeholder='0' class="form-control"/>
+                                <input type="hidden" name="[@cout].CriteriaId" value="@criteria.Id">
+                            </td>
+                            
+                            {
+                                cout++;
+                            }
+                        }
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <input class="btn btn-primary" type="submit" name="point" value="Submit">
+                </p>
+
+        }
+
+    </div>
+</div>
+

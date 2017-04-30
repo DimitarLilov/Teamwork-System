@@ -31,6 +31,8 @@ namespace TeamworkSystem.Data.Contracts
 
         IRepository<ApplicationUser> User { get; }
 
+        IRepository<Comment> Comments { get; }
+
         ITeamworkSystemContext Context { get; }
 
         int SaveChanges();

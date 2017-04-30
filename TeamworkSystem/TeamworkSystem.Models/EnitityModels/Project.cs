@@ -4,6 +4,11 @@ namespace TeamworkSystem.Models.EnitityModels
 {
     public class Project
     {
+        public Project()
+        {
+            this.Points = new HashSet<ProjectPoint>();
+            this.Comments = new HashSet<Comment>();
+        }
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -31,6 +36,8 @@ namespace TeamworkSystem.Models.EnitityModels
         public virtual Album Photos { get; set; }
 
         public virtual ICollection<ProjectPoint> Points { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
     }
 }

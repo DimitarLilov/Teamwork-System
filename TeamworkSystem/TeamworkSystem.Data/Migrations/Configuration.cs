@@ -1,8 +1,11 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using TeamworkSystem.Models.EnitityModels;
 
 namespace TeamworkSystem.Data.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -15,6 +18,12 @@ namespace TeamworkSystem.Data.Migrations
 
         protected override void Seed(TeamworkSystem.Data.TeamworkSystemContext context)
         {
+            Photo pic = new Photo()
+            {
+                UrlPthoto = "http://www.software.iitedu.org.in/img/unknown_user.png"
+            };
+            context.Photos.Add(pic);
+
             if (!context.Roles.Any(role => role.Name == "Student"))
             {
                 var store = new RoleStore<IdentityRole>(context);

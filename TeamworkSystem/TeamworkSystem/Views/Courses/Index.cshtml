@@ -1,7 +1,20 @@
-﻿
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Courses
+@model AllCoursesViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Courses";
 }
+<div class="container-fluid">
+    <h2>Courses</h2>
 
-<h2>Index</h2>
-
+    <div class="col-md-12">
+        <div class="panel-body">
+            @foreach (var course in Model.Courses)
+            {
+                @Html.Partial("_Course", course)
+            }
+        </div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Courses"))
+    </div>
+</div>

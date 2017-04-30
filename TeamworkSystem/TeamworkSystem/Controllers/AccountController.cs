@@ -163,7 +163,7 @@ namespace TeamworkSystem.Controllers
                 {
                     this.UserManager.AddToRole(user.Id, "Student");
                     this.service.CreateStudent(user.Id);
-                
+                    this.service.SetProfileImage(user.Id);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

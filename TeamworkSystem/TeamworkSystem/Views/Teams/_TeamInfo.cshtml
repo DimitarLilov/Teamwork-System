@@ -3,7 +3,7 @@
 @model TeamInfoViewModel
 
 <div>
-    <div class="cbp-l-member-name text-center">@Html.ActionLink(@Model.Name, "ShowTeam", "Teams", new { id = Model.Id }, null)</div>
+    <div class="cbp-l-member-name text-center">@Html.ActionLink(@Model.Name, "Show", "Teams", new { id = Model.Id }, null)</div>
     <br />
     <ul class="list-inline text-center">
         @foreach (var user in Model.Members)

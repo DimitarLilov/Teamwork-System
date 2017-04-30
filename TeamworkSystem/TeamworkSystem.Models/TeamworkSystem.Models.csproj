@@ -80,8 +80,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingModels\Courses\CriteriaBindingModel.cs" />
+    <Compile Include="BindingModels\Projects\CommentBindingModel.cs" />
+    <Compile Include="BindingModels\Teams\AddMemberBindingModel.cs" />
+    <Compile Include="BindingModels\Teams\AddTaskBindingModel.cs" />
+    <Compile Include="BindingModels\Teams\CreateTeamBindingModel.cs" />
     <Compile Include="EnitityModels\Album.cs" />
+    <Compile Include="EnitityModels\Comment .cs" />
     <Compile Include="EnitityModels\Point.cs" />
+    <Compile Include="EnitityModels\Project.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="EnitityModels\ProjectPoint.cs" />
     <Compile Include="EnitityModels\Skill.cs" />
@@ -91,7 +98,6 @@
     <Compile Include="EnitityModels\Criteria.cs" />
     <Compile Include="EnitityModels\Message.cs" />
     <Compile Include="EnitityModels\Photo.cs" />
-    <Compile Include="EnitityModels\Project.cs" />
     <Compile Include="EnitityModels\Users\Student.cs" />
     <Compile Include="EnitityModels\TeamTask.cs" />
     <Compile Include="EnitityModels\Team.cs" />
@@ -107,6 +113,10 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Courses\AllCoursesViewModel.cs" />
+    <Compile Include="ViewModels\Courses\CourseViewModel.cs" />
+    <Compile Include="ViewModels\Courses\CourseInfoViewModel.cs" />
+    <Compile Include="ViewModels\Courses\CriteriaViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -115,12 +125,21 @@
     <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Projects\AllProjectsViewModel.cs" />
+    <Compile Include="ViewModels\Projects\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Projects\ProjectInfoViewModel.cs" />
+    <Compile Include="ViewModels\Projects\ProjectViewModel.cs" />
+    <Compile Include="ViewModels\Teams\AddMembersViewModel.cs" />
+    <Compile Include="ViewModels\Teams\AddTaskViewModel.cs" />
+    <Compile Include="ViewModels\Teams\CreateTeamViewModel.cs" />
     <Compile Include="ViewModels\Teams\AllTeamsCoursesViewModel.cs" />
     <Compile Include="ViewModels\Teams\AllTeamsProjectsViewModel.cs" />
-    <Compile Include="ViewModels\Teams\CourseTeamViewModel.cs" />
+    <Compile Include="ViewModels\Teams\DashboardInfoViewModel.cs" />
     <Compile Include="ViewModels\Teams\MemberViewModel.cs" />
-    <Compile Include="ViewModels\Teams\ProjectTeamViewModel.cs" />
+    <Compile Include="ViewModels\Teams\SelectMemberViewModel.cs" />
+    <Compile Include="ViewModels\Teams\TaskViewModel.cs" />
     <Compile Include="ViewModels\Teams\TeamInfoViewModel.cs" />
+    <Compile Include="ViewModels\Teams\TeamTasksViewModel.cs" />
     <Compile Include="ViewModels\Teams\TeamViewModel.cs" />
     <Compile Include="ViewModels\Users\AllUsersCollaboratorsViewModel.cs" />
     <Compile Include="ViewModels\Users\AllUsersProjectsViewModel.cs" />
@@ -138,7 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />
-    <Folder Include="BindingModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

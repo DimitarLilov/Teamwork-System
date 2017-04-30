@@ -36,7 +36,7 @@
                 </li>
                 <li>
                     <div class="btn-group-vertical btn-block">
-                        @Html.ActionLink("Add Team", "Edit", null, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Add Team", "Create","Teams", null, new { @class = "btn btn-default" })
                     </div>
                 </li>
             </ul>
@@ -132,9 +132,10 @@
                             <div class="ribbon-wrapper">
                                 <div class="ribbon ribbon-danger">@project.Grade</div>
                             </div>
-                            <h4 class="project-title"><a href=""><p>@project.Name</p></a></h4>
+                            
+                            <h4 class="project-title">@Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id }, null)</h4>
                             <ul class="project-meta">
-                                <li>By: @Html.ActionLink(project.TeamName, "ShowTeam", "Teams", new { id = project.TeamId }, null)</li>
+                                <li>Team: @Html.ActionLink(project.TeamName, "Show", "Teams", new { id = project.TeamId }, null)</li>
                             </ul>
                             <br>
                         </div>
@@ -170,7 +171,7 @@
                         </div>
                         <br>
                         <div>
-                            @Html.ActionLink("Team", "ShowTeam", "Teams", new { id = team.Id }, new { @class = "small-box-footer" })
+                            @Html.ActionLink("Team", "Show", "Teams", new { id = team.Id }, new { @class = "small-box-footer" })
                         </div>
                     </div>
                 </div>

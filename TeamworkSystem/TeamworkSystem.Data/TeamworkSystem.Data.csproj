@@ -58,13 +58,21 @@
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\ITeamworkSystemContext.cs" />
     <Compile Include="Contracts\ITeamworkSystemData.cs" />
-    <Compile Include="Migrations\201704231111187_points.cs" />
-    <Compile Include="Migrations\201704231111187_points.Designer.cs">
-      <DependentUpon>201704231111187_points.cs</DependentUpon>
+    <Compile Include="Migrations\201704291553071_projects.cs" />
+    <Compile Include="Migrations\201704291553071_projects.Designer.cs">
+      <DependentUpon>201704291553071_projects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704231121545_photo.cs" />
-    <Compile Include="Migrations\201704231121545_photo.Designer.cs">
-      <DependentUpon>201704231121545_photo.cs</DependentUpon>
+    <Compile Include="Migrations\201704291617272_projects1.cs" />
+    <Compile Include="Migrations\201704291617272_projects1.Designer.cs">
+      <DependentUpon>201704291617272_projects1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704291630103_projects2.cs" />
+    <Compile Include="Migrations\201704291630103_projects2.Designer.cs">
+      <DependentUpon>201704291630103_projects2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704291648278_projects3.cs" />
+    <Compile Include="Migrations\201704291648278_projects3.Designer.cs">
+      <DependentUpon>201704291648278_projects3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,11 +91,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704231111187_points.resx">
-      <DependentUpon>201704231111187_points.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704291553071_projects.resx">
+      <DependentUpon>201704291553071_projects.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704231121545_photo.resx">
-      <DependentUpon>201704231121545_photo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704291617272_projects1.resx">
+      <DependentUpon>201704291617272_projects1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704291630103_projects2.resx">
+      <DependentUpon>201704291630103_projects2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704291648278_projects3.resx">
+      <DependentUpon>201704291648278_projects3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

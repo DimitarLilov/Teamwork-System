@@ -1,7 +1,28 @@
-﻿
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Projects
+@model AllProjectsViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Projects";
 }
-
-<h2>Index</h2>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h4 class="panel-title">Projects</h4>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    @foreach (var project in Model.Projects)
+                    {
+                        @Html.Partial("_Project", project)
+                    }
+                </div>
+                @Html.Pages(Model.Pager, Url.Action("Index", "Projects"))
+            </div>
+        </div>
+    </div>
+</div>

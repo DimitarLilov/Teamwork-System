@@ -2,10 +2,11 @@
 @using TeamworkSystem.Models.ViewModels.Users
 @model AllUsersProjectsViewModel
 @{
-    ViewBag.Title = this.Model.User.Username +" - Projects";
+    ViewBag.Title = this.Model.User.Username + " - Projects";
 }
-
-@Html.Partial("_UserInfo", Model.User)
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    @Html.Partial("_UserInfo", Model.User)
+</div>
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
     <div class="panel panel-primary">
@@ -20,11 +21,11 @@
             {
                 <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="project-item">
-                        @Html.Image(Url.Content(project.PhotoPath), "project-img img-responsive","Project")
+                        @Html.Image(Url.Content(project.PhotoPath), "project-img img-responsive", "Project")
                         <div class="project-details">
-                            <h4 class="project-title">@Html.ActionLink(project.Name, "Index", "Projects", new {id = project.Id}, null)</h4>
+                            <h4 class="project-title">@Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id }, null)</h4>
                             <ul class="project-meta">
-                                <li>By: @Html.ActionLink(project.TeamName, "ShowTeam", "Teams", new {id = project.TeamId}, null)</li>
+                                <li>Team: @Html.ActionLink(project.TeamName, "Show", "Teams", new { id = project.TeamId }, null)</li>
                             </ul>
                             <br>
                         </div>
@@ -32,38 +33,6 @@
                 </div>
             }
         </div>
-
-        @if (Model.Pager.EndPage > 1)
-        {
-            <ul class="pagination">
-                @if (Model.Pager.CurrentPage > 1)
-                {
-                    <li>
-                        @Html.ActionLink("First", "Projects", "Users")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Previous", "Projects", "Users", new { page = Model.Pager.CurrentPage - 1 }, null)
-                    </li>
-                }
-
-                @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
-                {
-                    <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                        @Html.ActionLink(page.ToString(), "Projects", "Users", new { page = @page }, null)
-                    </li>
-                }
-
-                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
-                {
-                    <li>
-                        @Html.ActionLink("Next", "Projects", "Users", new { page = Model.Pager.CurrentPage + 1 }, null)
-                    </li>
-                    <li>
-                        @Html.ActionLink("Last", "Projects", "Users", new { page = Model.Pager.TotalPages }, null)
-                    </li>
-                }
-            </ul>
-        }
-
     </div>
+   @Html.Pages(Model.Pager, Url.Action("Projects", "Users"))
 </div>

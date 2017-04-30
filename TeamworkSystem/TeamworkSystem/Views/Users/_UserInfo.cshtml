@@ -2,32 +2,30 @@
 @using TeamworkSystem.Models.ViewModels.Users
 @model UserInfoViewModel
 
-<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-    <div class="panel">
-        <div class="panel-body">
-            <div class="ribbon-wrapper">
-                <a class="ribbon ribbon-success" target="_blank" href="@Model.SoftuniProfile"><i class="fa fa-graduation-cap"></i> SoftUni</a>
-            </div>
-            <ul class="list-unstyled">
-                <li class="text-center">
-                    @Html.Image(Model.ProfilePhoto, "profile-avatar img-circle img-bordered-success", "ProfilePicture")
-                </li>
-                <li class="text-center">
-                    
-                    <h4 class="text-capitalize">@Html.ActionLink(Model.FullName, "Profile", "Users", new { username = Model.Username }, null)</h4>
-                    <p class="text-muted text-capitalize">@@@Html.DisplayFor(model => model.Username)</p>
-                </li>
-                <li class="text-center">
-                    @Html.SocialMediaButton(Model.Facebook, "fa fa-facebook")
-                    @Html.SocialMediaButton(Model.Twitter, "fa fa-twitter")
-                    @Html.SocialMediaButton(Model.GooglePlus, "fa fa-google-plus")
-                    @Html.SocialMediaButton(Model.LinkedIn, "fa fa-linkedin")
-                    @Html.SocialMediaButton(Model.GitHub, "fa fa-github")
-                    @Html.SocialMediaButton(Model.StackOverflow, "fa fa-stack-overflow")
-                    @Html.SocialMediaButton(Model.Skype, "fa fa-skype")
-                </li>
-                <li><br></li>
-            </ul>
+<div class="panel">
+    <div class="panel-body">
+        <div class="ribbon-wrapper">
+            <a class="ribbon ribbon-success" target="_blank" href="@Model.SoftuniProfile"><i class="fa fa-graduation-cap"></i> SoftUni</a>
         </div>
+        <ul class="list-unstyled">
+            <li class="text-center">
+                @Html.Image(Model.ProfilePhoto, "profile-avatar img-circle img-bordered-success", "ProfilePicture")
+            </li>
+            <li class="text-center">
+
+                <h4 class="text-capitalize">@Html.ActionLink(Model.FullName, "Profile", "Users", new { username = Model.Username }, null)</h4>
+                <p class="text-muted text-capitalize">@@@Html.DisplayFor(model => model.Username)</p>
+            </li>
+            <li class="text-center">
+                @Html.SocialMediaButton(Model.Facebook, "fa fa-facebook")
+                @Html.SocialMediaButton(Model.Twitter, "fa fa-twitter")
+                @Html.SocialMediaButton(Model.GooglePlus, "fa fa-google-plus")
+                @Html.SocialMediaButton(Model.LinkedIn, "fa fa-linkedin")
+                @Html.SocialMediaButton(Model.GitHub, "fa fa-github")
+                @Html.SocialMediaButton(Model.StackOverflow, "fa fa-stack-overflow")
+                @Html.SocialMediaButton(Model.Skype, "fa fa-skype")
+            </li>
+            <li><br></li>
+        </ul>
     </div>
 </div>

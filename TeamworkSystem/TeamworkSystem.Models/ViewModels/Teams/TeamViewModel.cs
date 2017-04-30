@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using TeamworkSystem.Models.ViewModels.Courses;
+using TeamworkSystem.Models.ViewModels.Projects;
 
 namespace TeamworkSystem.Models.ViewModels.Teams
 {
@@ -6,8 +8,8 @@ namespace TeamworkSystem.Models.ViewModels.Teams
     {
         public TeamInfoViewModel Team { get; set; }
 
-        public IEnumerable<ProjectTeamViewModel> Projects { get; set; }
+        public IEnumerable<ProjectViewModel> Projects { get; set; }
 
-        public IEnumerable<CourseTeamViewModel> Courses { get; set; }
+        public IEnumerable<CourseViewModel> Courses { get; set; }
     }
 }

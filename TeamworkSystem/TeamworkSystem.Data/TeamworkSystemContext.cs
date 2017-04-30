@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models.EnitityModels;
@@ -43,6 +44,8 @@ namespace TeamworkSystem.Data
 
         public IDbSet<TeamTask> TeamTasks { get; set; }
 
+        public IDbSet<Comment> Comments { get; set; }
+
         public DbContext DbContext => this;
 
         public new IDbSet<T> Set<T>() where T : class
@@ -50,5 +53,10 @@ namespace TeamworkSystem.Data
             return base.Set<T>();
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Student>().HasMany<TeamTask>(s => s.Tasks).WithMany(t => t.Members).Map(cs => { cs.MapLeftKey("StudentId"); cs.MapRightKey("TaskId"); cs.ToTable("StudentTask"); });
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

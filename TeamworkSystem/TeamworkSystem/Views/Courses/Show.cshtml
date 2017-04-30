@@ -1,0 +1,52 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Courses
+@model CourseInfoViewModel
+@{
+            ViewBag.Title = "Course - " + @Html.DisplayFor(model => model.Name);
+}
+
+
+<div class="col-md-12">
+    <div class="cbp-l-member-img">
+        @Html.Image(Model.CoursePhoto, "img-responsive", "Course")
+    </div>
+    <div class="cbp-l-member-info">
+        <div class="cbp-l-member-name">@Html.DisplayFor(model => model.Name) <i class="fa fa-check-circle text-success"></i></div>
+        <ul class="project-meta">
+            <li>Treiner: @Html.ActionLink(Model.TrainerFullName, "Profile", "Users", new { username = Model.TrainerUsername }, null)</li>
+            <li><i class="fa fa-calendar"> Start Date </i> @Html.DisplayFor(model => model.StartDate)</li>
+            <li><i class="fa fa-calendar"> End Date </i> @Html.DisplayFor(model => model.EndDate)</li>
+            
+            <li>
+                <i class="fa fa-file"> @Html.DisplayFor(model => model.ProjectCount) Projects</i>
+            </li>
+        </ul>
+        <br>
+        <div class="cbp-l-member-desc">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="cbp-l-member-biodata">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h3 class="panel-title">Projects</h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                @foreach (var project in Model.Projects)
+                {
+                   @Html.Partial("_Project",project)
+                }
+            </div>
+
+            
+        </div>
+        @Html.Pages(Model.Pager, Url.Action("Show", "Courses"))
+    </div>
+</div>
