@@ -155,7 +155,7 @@ namespace TeamworkSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email,LastName = model.LastName,FirstName = model.FirstName};
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email,LastName = model.LastName,BirthDate = model.BirthDate,FirstName = model.FirstName};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 // Create student
                 

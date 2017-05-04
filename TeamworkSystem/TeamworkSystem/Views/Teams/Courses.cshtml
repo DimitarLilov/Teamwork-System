@@ -2,14 +2,14 @@
 @using TeamworkSystem.Models.ViewModels.Teams
 @model AllTeamsCoursesViewModel
 @{
-    ViewBag.Title = "Team - " + Model.Team.Name;
+    ViewBag.Title = "Team Courses";
 }
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
 
-            @Html.Partial("_TeamInfo", Model.Team)
+            @Html.Action("TeamInfo", Model.Id)
 
             <div class="clearfix"></div>
             <div class="cbp-l-member-biodata">
@@ -25,11 +25,11 @@
                             <div class="panel-body">
                                 @foreach (var cours in Model.Courses)
                                 {
-                                    @Html.Partial("_Course",cours)
+                                    @Html.Partial("_Course", cours)
                                 }
                             </div>
                             <br />
-                           @Html.Pages(Model.Pager, Url.Action("Courses", "Teams"))
+                            @Html.Pages(Model.Pager, Url.Action("Courses", "Teams"))
                         </div>
                     </div>
                 </div>

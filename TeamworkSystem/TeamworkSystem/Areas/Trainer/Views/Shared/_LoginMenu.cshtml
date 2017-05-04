@@ -1,0 +1,8 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div class="navbar-toggle collapsed" aria-expanded="false" data-target="#UserMenu" data-toggle="collapse">
+        @Html.Action("GetImage", "Home", new { area = "" })
+    </div>
+}
+
+

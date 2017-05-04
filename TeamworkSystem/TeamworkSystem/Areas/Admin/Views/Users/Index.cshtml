@@ -1,0 +1,35 @@
+﻿@using TeamworkSystem.Extensions
+@model TeamworkSystem.Models.ViewModels.Admin.Users.AdminAllUsersViewModel
+
+@{
+    ViewBag.Title = "Users";
+}
+<div class="container-fluid">
+    <h2>Users</h2>
+
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Full Name
+            </th>
+        </tr>
+
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(user.FullName, "Show", "Users", new { username = user.Username, area = "" }, null)
+                </td>
+            </tr>
+
+        }
+
+    </table>
+    <div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Users"))
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Back to Admin Panel", "Index", "Home")
+    </div>
+</div>

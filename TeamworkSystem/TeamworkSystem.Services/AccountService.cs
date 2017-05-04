@@ -2,6 +2,7 @@
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Services.Contracts;
+using TeamworkSystem.Utillities.Constants;
 
 namespace TeamworkSystem.Services
 {
@@ -21,7 +22,7 @@ namespace TeamworkSystem.Services
 
         public void SetProfileImage(string userId)
         {
-            Photo photo = this.data.Photos.FindByPredicate(p => p.Id == 1);
+            Photo photo = this.data.Photos.FindByPredicate(p => p.UrlPthoto == PathConstants.UnknownAvatar);
             this.data.User.FindByPredicate(u => u.Id == userId).ProfilePhoto = photo;
             data.SaveChanges();
         }

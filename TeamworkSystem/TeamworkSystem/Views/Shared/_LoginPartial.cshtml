@@ -15,10 +15,10 @@
                             <li>@Html.ActionLink("Profile", "MyProfile", "Users")</li>
                             <li>@Html.ActionLink("Edit Profile", "Edit", "Users")</li>
                             <li>
-                                @Html.ActionLink("My Teams", "Teams", "Users", new { username = this.User.Identity.Name }, null)
+                                @Html.ActionLink("My Teams", "Teams", "Users", new {username = this.User.Identity.Name}, null)
                             </li>
                             <li>
-                                @Html.ActionLink("My Projects", "Projects", "Users", new { username = this.User.Identity.Name }, null)
+                                @Html.ActionLink("My Projects", "Projects", "Users", new {username = this.User.Identity.Name}, null)
                             </li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                         </ul>

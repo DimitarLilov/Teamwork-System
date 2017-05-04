@@ -4,7 +4,7 @@ namespace TeamworkSystem.Models.ViewModels.Users
 {
     public class AllUsersCollaboratorsViewModel
     {
-        public UserInfoViewModel User { get; set; }
+        public string Username { get; set; }
 
         public IEnumerable<CollaborationUserViewModel> Collaborators { get; set; }
 

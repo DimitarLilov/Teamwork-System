@@ -1,0 +1,123 @@
+﻿@using TeamworkSystem.Models.ViewModels.Admin.Home
+@model AdminPanelViewModel
+@{
+    ViewBag.Title = "Admin Panel";
+}
+
+<div class="container-fluid">
+    <h2>Admin Panel</h2>
+    <div class="row">
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <a href="@Url.Action("Index","Users",new{area = "Admin"})">
+                    <div class="circle-tile-heading dark-blue">
+                        <i class="fa fa-user fa-fw fa-3x"></i>
+                    </div>
+                </a>
+                <div class="circle-tile-content dark-blue">
+                    <div class="circle-tile-description text-faded">
+                        Users
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.UsersCount)
+                        <span id="sparklineA"></span>
+                    </div>
+                    <a href="@Url.Action("Index","Users",new{area = "Admin"})" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <a href="@Url.Action("Index","Teams",new{area = "Admin"})">
+                    <div class="circle-tile-heading green">
+                        <i class="fa fa-users fa-fw fa-3x"></i>
+                    </div>
+                </a>
+                <div class="circle-tile-content green">
+                    <div class="circle-tile-description text-faded">
+                        Teams
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.TeamsCount)
+                    </div>
+                    <a href="@Url.Action("Index","Teams",new{area = "Admin"})" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <a href="@Url.Action("Index","Projects",new{area = "Admin"})">
+                    <div class="circle-tile-heading orange">
+                        <i class="fa fa-file fa-fw fa-3x"></i>
+                    </div>
+                </a>
+                <div class="circle-tile-content orange">
+                    <div class="circle-tile-description text-faded">
+                        Projects
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.ProjectsCount)
+                    </div>
+                    <a href="@Url.Action("Index","Projects",new{area = "Admin"})" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <a href="@Url.Action("Index","Courses",new{area = "Admin"})">
+                    <div class="circle-tile-heading blue">
+                        <i class="fa fa-graduation-cap fa-fw fa-3x"></i>
+                    </div>
+                </a>
+                <div class="circle-tile-content blue">
+                    <div class="circle-tile-description text-faded">
+                        Course
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.CourseCount)
+                        <span id="sparklineB"></span>
+                    </div>
+                    <a href="@Url.Action("Index","Courses",new{area = "Admin"})" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <div>
+                    <div class="circle-tile-heading red">
+                        <i class="fa fa-tasks fa-fw fa-3x"></i>
+                    </div>
+                </div>
+                <div class="circle-tile-content red">
+                    <div class="circle-tile-description text-faded">
+                        Tasks
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.TasksCount)
+                        <span id="sparklineC"></span>
+                    </div>
+                    <div class="circle-tile-footer">Tasks</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <div>
+                    <div class="circle-tile-heading purple">
+                        <i class="fa fa-comments fa-fw fa-3x"></i>
+                    </div>
+                </div>
+                <div class="circle-tile-content purple">
+                    <div class="circle-tile-description text-faded">
+                        Comments
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.CommentsCount)
+                        <span id="sparklineD"></span>
+                    </div>
+                    <div class="circle-tile-footer">Comments</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

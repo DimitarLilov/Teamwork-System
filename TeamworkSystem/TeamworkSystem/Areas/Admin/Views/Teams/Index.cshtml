@@ -1,0 +1,46 @@
+﻿@using TeamworkSystem.Extensions
+@model TeamworkSystem.Models.ViewModels.Admin.Teams.AdminAllTeamsViewModel
+
+@{
+    ViewBag.Title = "Teams";
+}
+<div class="container-fluid">
+    <h2>Teams</h2>
+
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Members
+            </th>
+            <th>
+                Projects
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Teams)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", "Teams",new{area = "Admin",id = item.Id},null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MembersCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectsCount)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Projects"))
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Back to Admin Panel", "Index", "Home")
+    </div>
+</div>

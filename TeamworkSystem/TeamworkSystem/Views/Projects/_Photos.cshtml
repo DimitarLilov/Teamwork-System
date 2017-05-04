@@ -1,0 +1,13 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Projects
+@model IEnumerable<ProjectGalleryViewModel>
+
+
+@foreach (var photo in Model)
+{
+    <div class="col-sm-6 col-md-3">
+        <a href="@photo.Path" class="thumbnail">
+            <img src="@photo.Path" alt="Generic placeholder thumbnail">
+        </a>
+    </div>
+}

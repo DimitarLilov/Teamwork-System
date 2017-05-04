@@ -1,0 +1,94 @@
+﻿@model TeamworkSystem.Models.ViewModels.Assistant.Courses.AssistantCourseDetailsViewModel
+
+@{
+    ViewBag.Title = "Course";
+}
+<div class="container-fluid">
+    <h2>Course</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.MaxGrade)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.MaxGrade)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.StartDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.StartDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.EndDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.EndDate)
+            </dd>
+
+        </dl>
+
+        <table class="table table-striped custab">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Team
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Course
+                </th>
+                <th>
+                    Public
+                </th>
+            </tr>
+
+            @foreach (var project in Model.Projects)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id, area = "" }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => project.TeamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => project.PublishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => project.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => project.IsPublic)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+    </div>
+    <p>
+
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

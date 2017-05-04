@@ -6,7 +6,7 @@ namespace TeamworkSystem.Models.ViewModels.Teams
 {
     public class TeamViewModel
     {
-        public TeamInfoViewModel Team { get; set; }
+        public int Id { get; set; }
 
         public IEnumerable<ProjectViewModel> Projects { get; set; }
 

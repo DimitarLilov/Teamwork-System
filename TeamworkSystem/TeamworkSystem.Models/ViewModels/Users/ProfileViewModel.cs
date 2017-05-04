@@ -34,7 +34,7 @@ namespace TeamworkSystem.Models.ViewModels.Users
         public string Gender { get; set; }
 
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}")]
-        public DateTime BirthDay { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public string Facebook { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TeamworkSystem.Models.EnitityModels
 {
@@ -18,6 +19,8 @@ namespace TeamworkSystem.Models.EnitityModels
         public virtual Course Course { get; set; }
 
         public virtual Team Team { get; set; }
+
+        public DateTime PublishDate { get; set; }
 
         public string Repository { get; set; }
 

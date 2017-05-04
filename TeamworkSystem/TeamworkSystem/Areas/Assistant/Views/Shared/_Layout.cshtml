@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/fontawesome")
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Project*", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div class="navbar-toggle collapsed" aria-expanded="false" data-target="#MainMenu" data-toggle="collapse">
+                    <span class="fa fa-bars"></span>
+                </div>
+                @Html.Partial("_LoginMenu")
+            </div>
+            <div class="navbar-collapse collapse" id="MainMenu" aria-expanded="false">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" },null)</li>
+                    <li>@Html.ActionLink("Projects", "Index", "Projects", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Courses", new { area = "" }, null)</li>
+                    @Html.Action("AdminPanel", "Home", new { area = "" })
+                    @Html.Action("AssistantPanel", "Home", new { area = "" })
+                    @Html.Action("TrainerPanel", "Home", new { area = "" })
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+            <div class="navbar-collapse uncollapse-hidden collapse" id="UserMenu" aria-expanded="false">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Profile", "MyProfile", "Users", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Edit Profile", "Edit", "Users", new { area = "" }, null)</li>
+                    <li>
+                        @Html.ActionLink("My Teams", "Teams", "Users", new { area = "", username = this.User.Identity.Name }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("My Projects", "Projects", "Users", new { area = "", username = this.User.Identity.Name }, null)
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

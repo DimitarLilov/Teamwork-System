@@ -1,17 +1,15 @@
-﻿@using TeamworkSystem.Extensions
-@using TeamworkSystem.Models.ViewModels.Teams
+﻿@using TeamworkSystem.Models.ViewModels.Teams
 @model TeamViewModel
 @{
-            ViewBag.Title = "Team - " + Model.Team.Name;
+            ViewBag.Title = "Team";
 }
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            
-            @Html.Partial("_TeamInfo", Model.Team)
+            @Html.Action("TeamInfo","Teams",new{id = Model.Id})
 
-            <div class="clearfix"></div>
+
             <div class="cbp-l-member-biodata">
                 <div class="row">
                     <div class="col-md-12">
@@ -21,7 +19,7 @@
                                     <h3 class="panel-title">Projects</h3>
                                 </div>
                                 <div class="pull-right">
-                                    @Html.ActionLink("All Projects", "Projects", "Teams", new { id = Model.Team.Id },new {@class= "panel-title" })
+                                    @Html.ActionLink("All Projects", "Projects", "Teams", new { id = Model.Id },new {@class= "panel-title" })
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -38,7 +36,7 @@
                                     <h3 class="panel-title">Courses</h3>
                                 </div>
                                 <div class="pull-right">
-                                    @Html.ActionLink("All Projects", "Courses", "Teams", new { id = Model.Team.Id }, new { @class = "panel-title" })
+                                    @Html.ActionLink("All Projects", "Courses", "Teams", new { id = Model.Id }, new { @class = "panel-title" })
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

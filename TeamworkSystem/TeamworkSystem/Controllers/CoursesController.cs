@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using TeamworkSystem.Data;
 using TeamworkSystem.Models;
@@ -24,6 +22,7 @@ namespace TeamworkSystem.Controllers
             this.service = new CoursesService(data);
         }
         // GET: Course
+        [Route]
         public ActionResult Index(int? page)
         {
             AllCoursesViewModel vm = this.service.GetAllCourse();
@@ -42,6 +41,10 @@ namespace TeamworkSystem.Controllers
         [Route("{id:int}")]
         public ActionResult Show(int id, int? page)
         {
+            if (!this.service.ContainsCourse(id))
+            {
+                return this.HttpNotFound();
+            }
 
             CourseInfoViewModel vm = this.service.GetCourse(id);
 

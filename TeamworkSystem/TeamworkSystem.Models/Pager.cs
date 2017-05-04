@@ -4,7 +4,7 @@ namespace TeamworkSystem.Models
 {
     public class Pager
     {
-        public Pager(int totalItems, int? page, int pageSize = 1)
+        public Pager(int totalItems, int? page, int pageSize = 5)
         {
             var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
             var currentPage = page != null ? (int)page : 1;

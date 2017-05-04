@@ -1,0 +1,62 @@
+﻿@model TeamworkSystem.Models.ViewModels.Teams.EditTeamViewModel
+
+@{
+    ViewBag.Title = "Edit Team";
+}
+@Html.Action("BoardInfo", new { id = Model.Id })
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <h3 class="panel-title">Edit Team</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-body">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="@Url.Action("AddMember", "Teams", new {id = Model.Id})" class="btn btn-primary btn-lg">
+                                            <span class="fa fa-users"></span> Add Member
+                                        </a>
+                                        <a href="@Url.Action("CreateProject", "Teams", new {id = Model.Id})" class="btn btn-primary btn-lg">
+                                            <span class="fa fa-file"></span> Create Project
+                                        </a>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Save" class="btn btn-success" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

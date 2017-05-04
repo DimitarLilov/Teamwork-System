@@ -9,13 +9,17 @@
         @foreach (var user in Model.Members)
         {
             <li>
-                <a href="@Url.Action("Profile", "Users", new {username = user.Username})"> @Html.Image(Url.Content(user.ProfilePhoto), "avatar img-circle", "Profile Picture")</a>
+                <a href="@Url.Action("Show", "Users", new {username = user.Username})"> @Html.Image(Url.Content(user.ProfilePhoto), "avatar img-circle", "Profile Picture")</a>
             </li>
         }
     </ul>
 
     <div class="cbp-l-member-desc text-center">
-        @Model.Description
+        @Html.DisplayFor(model => model.Description)
     </div>
+    <div class="cbp-l-member-desc text-center">
+        @Html.Action("GoToTeamBoard", new { id = Model.Id })
+    </div>
+
 </div>
 

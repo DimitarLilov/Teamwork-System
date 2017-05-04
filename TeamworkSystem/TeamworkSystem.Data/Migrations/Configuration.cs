@@ -1,11 +1,10 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TeamworkSystem.Models.EnitityModels;
+using TeamworkSystem.Utillities.Constants;
 
 namespace TeamworkSystem.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -18,11 +17,26 @@ namespace TeamworkSystem.Data.Migrations
 
         protected override void Seed(TeamworkSystem.Data.TeamworkSystemContext context)
         {
-            Photo pic = new Photo()
+            Photo profilePhoto = new Photo
             {
-                UrlPthoto = "http://www.software.iitedu.org.in/img/unknown_user.png"
+                UrlPthoto = PathConstants.UnknownAvatar
             };
-            context.Photos.Add(pic);
+
+            context.Photos.Add(profilePhoto);
+
+            Photo projectPhoto = new Photo
+            {
+                UrlPthoto = PathConstants.UnknownProject
+            };
+
+            context.Photos.Add(projectPhoto);
+
+            Photo coursePhoto = new Photo
+            {
+                UrlPthoto = PathConstants.UnknownCourse
+            };
+
+            context.Photos.Add(coursePhoto);
 
             if (!context.Roles.Any(role => role.Name == "Student"))
             {

@@ -2,82 +2,81 @@
 @model TeamworkSystem.Models.ViewModels.Teams.AddTaskViewModel
 
 @{
-    ViewBag.Title = "AddTask";
+    ViewBag.Title = "Add Task";
 }
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
+<div>
+    @Html.Action("BoardInfo", new { id = Model.TeamId })
 
-            @Html.Partial("_TeamInfo", Model.Team)
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h3 class="panel-title">Add Task</h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("AddTask", "Teams", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
 
-            <div class="clearfix"></div>
-            <div class="cbp-l-member-biodata">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="pull-left">
-                                    <h3 class="panel-title">Add Task</h3>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="panel-body">
-                                @using (Html.BeginForm("AddTask", "Teams", FormMethod.Post))
-                                {
-                                    @Html.AntiForgeryToken()
-
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", id = "User" } })
-                                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", id = "User" } })
-                                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", id = "User" } })
-                                            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <ul class="list-inline text-center">
-                                            @foreach (var member in Model.Members)
-                                            {
-                                                <li>
-                                                    <div class="thumbnail">
-                                                        @Html.Image(member.ProfilePhoto, "avatar img-circle", "Profile Picture")
-                                                        <div class="caption ">
-                                                            <input type="checkbox" name="username" value="@member.Username">
-                                                            <h4>
-                                                                @Html.ActionLink(member.FullName, "Profile", "Users", new { username = member.Username }, null)
-                                                            </h4>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10 text-center">
-                                            <input type="submit" value="AddTask" class="btn btn-default" />
-                                        </div>
-                                    </div>
-                                }
-                            </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", id = "User" } })
+                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control datepicker", placeholder = "Enter Birth date here..." })
+                            @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control datepicker", placeholder = "Enter Birth date here..." })
+                            @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ul class="list-inline text-center">
+                            @foreach (var member in Model.Members)
+                            {
+                                <li>
+                                    <div class="thumbnail">
+                                        @Html.Image(member.ProfilePhoto, "avatar img-circle", "Profile Picture")
+                                        <div class="caption ">
+                                            <input type="checkbox" name="username" value="@Html.DisplayFor(model => member.Username)">
+                                            <h4>
+                                                @Html.ActionLink(member.FullName, "Show", "Users", new { username = member.Username }, null)
+                                                @Html.ValidationMessageFor(model => model.Members, "", new { @class = "text-danger" })
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10 text-center">
+                            <input type="submit" value="AddTask" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script type="text/javascript">
+        $('.datepicker').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'MM/dd/yy'
+        });
+    </script>
+}

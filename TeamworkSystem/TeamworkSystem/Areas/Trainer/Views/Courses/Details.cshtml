@@ -1,0 +1,129 @@
+﻿@model TeamworkSystem.Models.ViewModels.Trainer.Courses.TrainerCourseDetailsViewModel
+
+@{
+    ViewBag.Title = "Course";
+}
+<div class="container-fluid">
+    <h2>Course</h2>
+    @using (Html.BeginForm("Details", "Courses", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Course.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Course.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Course.MaxGrade)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Course.MaxGrade)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Course.StartDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Course.StartDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Course.EndDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Course.EndDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Course.AssistantsCount)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Course.AssistantsCount)
+                </dd>
+
+            </dl>
+            <table class="table table-striped custab">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Team
+                    </th>
+                    <th>
+                        Course
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Public
+                    </th>
+                    <th>
+                        Vote
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Active
+                    </th>
+                </tr>
+
+                @{
+                    int count = 0;
+                }
+                @foreach (var project in Model.Projects)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id, area = " " }, null)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.TeamName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.CourseName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.PublishDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.IsPublic)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.Vote)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => project.Grade)
+                        </td>
+                        <td>
+                            <input type="checkbox" checked="@project.IsActive" value="true" name="[@count].isactive" />
+                            <input type="hidden" value="@project.Id" name="[@count].projectid" />
+                        </td>
+                        @{
+                            count++;
+                        }
+
+
+                    </tr>
+                            }
+            </table>
+            <span><input type="submit" value="Active" class="btn btn-success" /></span>
+        </div>
+                            }
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Course.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

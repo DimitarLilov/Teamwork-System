@@ -1,0 +1,15 @@
+﻿<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Admin
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("Admin Panel", "Index", "Home", new { area = "Admin" }, null)</li>
+        <li>@Html.ActionLink("Users", "Index", "Users", new { area = "Admin" }, null)</li>
+        <li>@Html.ActionLink("Courses", "Index", "Courses", new { area = "Admin" }, null)</li>
+        <li>@Html.ActionLink("Project", "Index", "Projects", new { area = "Admin" }, null)</li>
+        <li>@Html.ActionLink("Teams", "Index", "Teams", new { area = "Admin" }, null)</li>
+    </ul>
+</li>
+
+

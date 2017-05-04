@@ -1,0 +1,71 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Teams.Board
+@model BoardViewModel
+@{
+    ViewBag.Title = "Team Board";
+}
+<div>
+    @Html.Action("BoardInfo", new { id = Model.TeamId })
+
+    <div class="col-md-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h3 class="panel-title">Team Board</h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                @foreach (var task in Model.ComplateTasks)
+            {
+                    <div class="col-md-4">
+                        <div class="team-board-list panel primary">
+                            <div class="panel-heading">
+                                <div class="pull-left">
+                                    <h3 class="panel-title text-uppercase">
+                                        <i class="fa fa-calendar"></i> @Html.DisplayFor(model => task.EndDate)
+                                    </h3>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body">
+                                <p class="team-board-message text-capitalize">@Html.DisplayFor(model => task.Content)</p>
+                                <br/>
+                                <p class="team-board-author text-muted text-capitalize">@Html.DisplayFor(model => task.Author)</p>
+                            </div>
+                            <br />
+                            <div class="panel-footer">
+                                @foreach (var member in task.Members)
+                                {
+                                    <a href="@Url.Action("Show", "Users", new {username = member.Username})">@Html.Image(member.ProfilePhoto, "user-avatar img-circle", "Profile Picture")</a>
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h3 class="panel-title">My Tasks: </h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    @foreach (var task in Model.MyTasks)
+                    {
+                        <li class="list-group-item">@Html.DisplayFor(m => task.Content)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

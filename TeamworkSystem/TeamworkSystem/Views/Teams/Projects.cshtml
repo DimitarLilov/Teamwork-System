@@ -1,18 +1,17 @@
-﻿@using PagedList.Mvc
-@using TeamworkSystem.Extensions
+﻿@using TeamworkSystem.Extensions
 @using TeamworkSystem.Models.ViewModels.Teams
 @model AllTeamsProjectsViewModel
 @{
-            ViewBag.Title = "Team - " + Model.Team.Name;
+            ViewBag.Title = "Team Projects";
 }
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
 
-            @Html.Partial("_TeamInfo", Model.Team)
+            @Html.Action("TeamInfo", Model.Id)
 
-            <div class="clearfix"></div>
+            
             <div class="cbp-l-member-biodata">
                 <div class="row">
                     <div class="col-md-12">

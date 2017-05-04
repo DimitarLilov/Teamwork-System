@@ -1,0 +1,125 @@
+﻿@model TeamworkSystem.Models.ViewModels.Trainer.Courses.TrainerCourseAssistantsViewModel
+
+@{
+    ViewBag.Title = "Assistants";
+}
+<div class="container-fluid">
+    <h2>Assistants</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.MaxGrade)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.MaxGrade)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.StartDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.StartDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.EndDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.EndDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.AssistantsCount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Course.AssistantsCount)
+            </dd>
+
+        </dl>
+    </div>
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Username
+            </th>
+        </tr>
+        @foreach (var user in Model.Assistants)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(user.FullName, "Show", "Users", new { username = user.Username, area = " " }, null)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => user.Username)
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="form-horizontal">
+        @using (Html.BeginForm("Assistants", "Courses", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", id = "User" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Course.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#User").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Users/AutoCompleteUser",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data,
+                                function (item) {
+                                    return { label: item, value: item };
+                                }));
+
+                        }
+                    });
+                }
+            });
+        })
+    </script>
+}

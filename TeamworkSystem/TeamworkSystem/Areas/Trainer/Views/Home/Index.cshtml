@@ -1,0 +1,48 @@
+﻿@using TeamworkSystem.Models.ViewModels.Trainer.Home
+@model TrainerPanelViewModel
+@{
+    ViewBag.Title = "Trainer Panel";
+}
+
+<div class="container-fluid">
+    <h2>Trainer Panel</h2>
+    <div class="row">
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <a href="@Url.Action("Index","Courses",new{area = "Trainer"})">
+                    <div class="circle-tile-heading blue">
+                        <i class="fa fa-graduation-cap fa-fw fa-3x"></i>
+                    </div>
+                </a>
+                <div class="circle-tile-content blue">
+                    <div class="circle-tile-description text-faded">
+                        Course
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.CoursesCount)
+                        <span id="sparklineB"></span>
+                    </div>
+                    <a href="@Url.Action("Index","Courses",new{area = "Trainer"})" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="circle-tile">
+                <a href="@Url.Action("Index","Projects",new{area = "Trainer"})">
+                    <div class="circle-tile-heading orange">
+                        <i class="fa fa-file fa-fw fa-3x"></i>
+                    </div>
+                </a>
+                <div class="circle-tile-content orange">
+                    <div class="circle-tile-description text-faded">
+                        Projects
+                    </div>
+                    <div class="circle-tile-number text-faded">
+                        @Html.DisplayFor(m => m.ProjectsCount)
+                    </div>
+                    <a href="@Url.Action("Index","Projects",new{area = "Trainer"})" class="circle-tile-footer">More Info <i class="fa fa-chevron-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

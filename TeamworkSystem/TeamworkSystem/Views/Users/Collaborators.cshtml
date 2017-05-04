@@ -2,12 +2,12 @@
 @using TeamworkSystem.Models.ViewModels.Users
 @model AllUsersCollaboratorsViewModel
 @{
-    ViewBag.Title = this.Model.User.Username + " - Collaborators";
+    ViewBag.Title = this.Model.Username + " - Collaborators";
 }
 
-<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-    @Html.Partial("_UserInfo", Model.User)
-</div>
+
+@Html.Action("GetUserInfo", new { username = Model.Username })
+
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
     <div class="panel panel-primary">
@@ -23,7 +23,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="mini-stat-type-6 bg-success">
                         @Html.Image(@Url.Content(user.ProfilePhoto), "profile-avatar img-circle img-bordered-success  center-block", "Profile Picture")
-                        @Html.ActionLink(user.FullName, "Profile", "Users", new {username = user.Username}, new {@class = "small-box-footer"})
+                        @Html.ActionLink(user.FullName, "Show", "Users", new { username = user.Username }, new { @class = "small-box-footer" })
                     </div>
                 </div>
             }

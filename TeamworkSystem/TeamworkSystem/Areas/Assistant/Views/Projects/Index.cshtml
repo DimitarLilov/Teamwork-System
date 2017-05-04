@@ -1,0 +1,59 @@
+﻿@using TeamworkSystem.Extensions
+@model TeamworkSystem.Models.ViewModels.Assistant.Projects.AssistantAllProjectsViewModel
+
+@{
+    ViewBag.Title = "Project";
+}
+
+<div class="container-fluid">
+    <h2>Project</h2>
+
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                Public
+            </th>
+        </tr>
+
+        @foreach (var project in Model.Projects)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id, area = "" }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => project.TeamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => project.PublishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => project.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => project.IsPublic)
+                </td>             
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Projects"))
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Back to Assistant Panel", "Index", "Home")
+    </div>
+</div>

@@ -1,79 +1,62 @@
-﻿@using TeamworkSystem.Models.ViewModels.Teams
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Teams.Board
 @model TeamTasksViewModel
 @{
-    ViewBag.Title = "Tasks";
+    ViewBag.Title = "Team Tasks";
 }
+<div>
+    @Html.Action("BoardInfo", new { id = Model.TeamId })
 
-<div class="container-fluid">
-    @Html.Partial("_DashboardInfo",Model.TeamInfo)
-    <br>
-    <div class="row container-fluid">
-        <div class="col-md-2 col-xs-6">
-            <a href="#" class="tile tile-danger"><span class="fa fa-tasks"></span></a>
-        </div>
-        <div class="col-md-2 col-xs-6">
-            <a href="#" class="tile tile-success"><span class="fa fa-envelope"></span></a>
-        </div>
-        <div class="col-md-2 col-xs-6">
-            <a href="#" class="tile tile-info">
-                @Html.DisplayFor(model => DateTime.Now.Day)<p>@DateTime.Now.ToString("MMMM")</p>
-                <div class="informer dir-tr">
-                    <span class="fa fa-calendar"></span>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-2 col-xs-6">
-            <a href="#" class="tile tile-success"><span class="fa fa-group"></span></a>
-        </div>
-        <div class="col-md-2 col-xs-6">
-            <a href="@Url.Action("Projects", "Teams", new { id = Model.TeamInfo.Id })" class="tile tile-info">@Html.DisplayFor(project => project.TeamInfo.ProjectsCount)<p>Projects</p></a>
-        </div>
-        <div class="col-md-2 col-xs-6">
-            <a href="#" class="tile tile-success "><span class="fa fa-cog"></span></a>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="pull-left">
-                    <h3 class="panel-title">Team Board</h3>
-                </div>
-                <div class="pull-right">
-                    <a href="@Url.Action("AddTask","Teams",new{id = Model.TeamInfo.Id})" class="btn btn-sm btn-warning"><i class="fa fa-plus"></i></a>
 
+    @using (Html.BeginForm("Complete", "Teams", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h3 class="panel-title">Team Board</h3>
+                    </div>
+                    <div class="pull-right">
+                        <a href="@Url.Action("AddTask","Teams",new{id = Model.TeamId})" class="btn btn-sm btn-warning"><i class="fa fa-plus"></i></a>
+                        @Html.HiddenFor(m => m.TeamId)
+                        <span><input type="submit" value="Complete" class="btn btn-success" /></span>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="panel-body">
-                @foreach (var task in Model.Tasks)
+                <div class="panel-body form-group">
+                    @foreach (var task in Model.Tasks)
                 {
-                    <div class="col-md-4">
-                        <div class="team-board-list panel primary">
-                            <div class="panel-heading">
-                                <div class="pull-left">
-                                    <h3 class="panel-title text-uppercase">
-                                        <i class="fa fa-calendar"></i> @task.StartDate - @task.EndDate
-                                    </h3>
+                        <div class="col-md-4">
+                            <div class="team-board-list panel primary">
+                                <div class="panel-heading">
+                                    <div class="pull-left">
+                                        <h3 class="panel-title text-uppercase">
+                                            <i class="fa fa-calendar"></i> @Html.DisplayFor(model => task.StartDate) - @Html.DisplayFor(model => task.EndDate)
+                                            <input type="checkbox" name="tasksId" value="@Html.DisplayFor(model => task.Id)">
+                                        </h3>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="panel-body">
-                                <p class="team-board-message text-capitalize">@task.Content</p>
-                                <p class="team-board-author text-muted text-capitalize">@task.Author</p>
-                            </div>
-                            <div class="panel-footer">
-                                @foreach (var member in task.Members)
-                                {
-                                    <a href="@Url.Action("Profile","Users",new { username = member.Username })"><img src="@member.ProfilePhoto" alt="Profile Picture" class="img-circle"></a>
-                                }
-
+                                <div class="panel-body">
+                                    <p class="team-board-message text-capitalize">@Html.DisplayFor(model => task.Content)</p>
+                                    <br/>
+                                    <p class="team-board-author text-muted text-capitalize">@Html.DisplayFor(model => task.Author)</p>
+                                </div>
+                                <br />
+                                <div class="panel-footer">
+                                    @foreach (var member in task.Members)
+                                    {
+                                        <a href="@Url.Action("Show", "Users", new {username = member.Username})">@Html.Image(member.ProfilePhoto, "user-avatar img-circle", "Profile Picture")</a>
+                                    }
+                                </div>
                             </div>
                         </div>
-                  
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    }
 
+</div>

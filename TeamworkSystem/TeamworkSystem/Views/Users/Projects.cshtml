@@ -2,11 +2,10 @@
 @using TeamworkSystem.Models.ViewModels.Users
 @model AllUsersProjectsViewModel
 @{
-    ViewBag.Title = this.Model.User.Username + " - Projects";
+    ViewBag.Title = this.Model.Username + " - Projects";
 }
-<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-    @Html.Partial("_UserInfo", Model.User)
-</div>
+
+@Html.Action("GetUserInfo", new { username = Model.Username })
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
     <div class="panel panel-primary">
@@ -18,21 +17,21 @@
         </div>
         <div class="panel-body">
             @foreach (var project in Model.Projects)
-            {
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="project-item">
-                        @Html.Image(Url.Content(project.PhotoPath), "project-img img-responsive", "Project")
-                        <div class="project-details">
-                            <h4 class="project-title">@Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id }, null)</h4>
-                            <ul class="project-meta">
-                                <li>Team: @Html.ActionLink(project.TeamName, "Show", "Teams", new { id = project.TeamId }, null)</li>
-                            </ul>
-                            <br>
-                        </div>
+        {
+            <div class="col-md-3 col-sm-6 col-xs-6">
+                <div class="project-item">
+                    @Html.Image(Url.Content(project.PhotoPath), "project-img img-responsive", "Project")
+                    <div class="project-details">
+                        <h4 class="project-title">@Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id }, null)</h4>
+                        <ul class="project-meta">
+                            <li>Team: @Html.ActionLink(project.TeamName, "Show", "Teams", new { id = project.TeamId }, null)</li>
+                        </ul>
+                        <br>
                     </div>
                 </div>
+            </div>
             }
         </div>
     </div>
-   @Html.Pages(Model.Pager, Url.Action("Projects", "Users"))
+    @Html.Pages(Model.Pager, Url.Action("Projects", "Users"))
 </div>

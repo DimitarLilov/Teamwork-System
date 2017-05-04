@@ -1,0 +1,84 @@
+﻿@using TeamworkSystem.Extensions
+@model TeamworkSystem.Models.ViewModels.Admin.Projects.AdminAllProjectsViewModel
+
+@{
+    ViewBag.Title = "Projects";
+}
+<div class="container-fluid">
+    <h2>Projects</h2>
+
+
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Name
+            </th>
+
+            <th>
+                Course
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Active
+            </th>
+            <th>
+                Public
+            </th>
+            <th>
+                Vote
+            </th>
+            <th>
+                Grade
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Projects)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Show", "Projects", new { id = item.Id, area = "" }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Team)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPublic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "fa fa-trash btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Projects"))
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Back to Admin Panel", "Index", "Home")
+    </div>
+</div>

@@ -13,7 +13,7 @@
     <div class="cbp-l-member-info">
         <div class="cbp-l-member-name">@Html.DisplayFor(model => model.Name) <i class="fa fa-check-circle text-success"></i></div>
         <ul class="project-meta">
-            <li>Treiner: @Html.ActionLink(Model.TrainerFullName, "Profile", "Users", new { username = Model.TrainerUsername }, null)</li>
+            <li>Treiner: @Html.ActionLink(Model.TrainerFullName, "Show", "Users", new { username = Model.TrainerUsername }, null)</li>
             <li><i class="fa fa-calendar"> Start Date </i> @Html.DisplayFor(model => model.StartDate)</li>
             <li><i class="fa fa-calendar"> End Date </i> @Html.DisplayFor(model => model.EndDate)</li>
             

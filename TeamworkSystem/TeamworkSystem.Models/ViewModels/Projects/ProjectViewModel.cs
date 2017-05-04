@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using TeamworkSystem.Models.ViewModels.Courses;
-
-namespace TeamworkSystem.Models.ViewModels.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Projects
 {
     public class ProjectViewModel
     {

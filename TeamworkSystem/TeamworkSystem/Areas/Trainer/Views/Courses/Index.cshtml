@@ -1,0 +1,65 @@
+﻿@using TeamworkSystem.Extensions
+@model TeamworkSystem.Models.ViewModels.Trainer.Courses.TrainerAllCourseViewModel
+
+@{
+    ViewBag.Title = "Courses";
+}
+<div class="container-fluid">
+    <h2>Courses</h2>
+
+
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Max Grade
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Assistants
+            </th>
+            <th>
+                Edit
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", "Courses", new { id = item.Id, area = "Trainer" }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxGrade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssistantsCount)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil btn btn-warning" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Courses"))
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Back to Trainer Panel", "Index", "Home")
+    </div>
+</div>

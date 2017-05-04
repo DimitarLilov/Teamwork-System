@@ -30,6 +30,7 @@ namespace TeamworkSystem.Data.Contracts
 
         IDbSet<TeamTask> TeamTasks { get; }
         IDbSet<Comment> Comments { get; }
+        IDbSet<Album> Albums { get; }
 
 
         DbContext DbContext { get; }

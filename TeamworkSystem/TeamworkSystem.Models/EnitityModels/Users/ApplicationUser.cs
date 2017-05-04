@@ -34,7 +34,7 @@ namespace TeamworkSystem.Models.EnitityModels.Users
 
         public virtual Gender Gender { get; set; }
 
-        public DateTime? BirthDay { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public virtual ICollection<Skill> Skills { get; set; }
 

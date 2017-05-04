@@ -2,12 +2,12 @@
 @using TeamworkSystem.Models.ViewModels.Users
 @model AllUsersTeamsViewModel
 @{
-    ViewBag.Title = this.Model.User.Username + " - Teams";
+    ViewBag.Title = this.Model.Username + " - Teams";
 }
 
-<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-    @Html.Partial("_UserInfo", Model.User)
-</div>
+
+@Html.Action("GetUserInfo", new { username = Model.Username })
+
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
     <div class="panel panel-primary">
@@ -39,7 +39,7 @@
                 </div>
             }
         </div>
-       
+
     </div>
     @Html.Pages(Model.Pager, Url.Action("Teams", "Users"))
 </div>

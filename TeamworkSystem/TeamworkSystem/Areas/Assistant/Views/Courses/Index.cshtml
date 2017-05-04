@@ -1,0 +1,53 @@
+﻿@using TeamworkSystem.Extensions
+@model TeamworkSystem.Models.ViewModels.Assistant.Courses.AssistantAllCoursesViewModel
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<div class="container-fluid">
+    <h2>Courses</h2>
+
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Max Grade
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", "Courses", new { id = item.Id, area = "Assistant" }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxGrade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Courses"))
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Back to Assistant Panel", "Index", "Home")
+    </div>
+</div>

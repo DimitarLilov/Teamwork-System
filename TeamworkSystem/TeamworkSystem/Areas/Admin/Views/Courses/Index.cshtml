@@ -1,0 +1,65 @@
+﻿@using TeamworkSystem.Extensions
+@model TeamworkSystem.Models.ViewModels.Admin.Courses.AdminAllCoursesViewModel
+
+@{
+    ViewBag.Title = "Courses";
+}
+<div class="container-fluid">
+    <h2>Courses</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", new { area = "Admin" }, new { @class = "btn btn-success" })
+    </p>
+    <table class="table table-striped custab">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Trainer
+            </th>
+            <th>
+                Max Grade
+            </th>
+            <th>Edit</th>
+        </tr>
+
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Show", "Courses", new { id = item.Id, area = "" }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.ActionLink(item.TrainerFullName, "Show", "Users", new { username = item.TrainerUsername, area = "" }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxGrade)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "fa fa-pencil btn btn-warning" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @Html.Pages(Model.Pager, Url.Action("Index", "Courses"))
+    </div>
+    <br/>
+    <div>
+        @Html.ActionLink("Back to Admin Panel", "Index", "Home")
+    </div>
+</div>

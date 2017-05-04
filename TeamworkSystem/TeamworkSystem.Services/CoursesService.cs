@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models.EnitityModels;
@@ -19,7 +20,7 @@ namespace TeamworkSystem.Services
 
             CourseInfoViewModel vm = Mapper.Map<Course, CourseInfoViewModel>(course);
 
-            IEnumerable<Project> projects = course.Projects;
+            IEnumerable<Project> projects = course.Projects.Where(p => p.IsPublic);
 
             vm.Projects = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
@@ -33,6 +34,15 @@ namespace TeamworkSystem.Services
             vm.Courses = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
 
             return vm;
+        }
+
+        public bool ContainsCourse(int id)
+        {
+            if (this.data.Courses.FindByPredicate(c => c.Id == id) != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

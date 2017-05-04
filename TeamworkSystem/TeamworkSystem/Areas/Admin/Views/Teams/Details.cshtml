@@ -1,0 +1,67 @@
+﻿@model TeamworkSystem.Models.ViewModels.Admin.Teams.AdminTeamDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container-fluid">
+    <h2>Details</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Team.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Team.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Team.MembersCount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Team.MembersCount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Team.ProjectsCount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Team.ProjectsCount)
+            </dd>
+        </dl>
+
+        <table class=" text-center table table-striped custab">
+            <tr>
+                <th class="text-center">
+                    Members
+                </th>
+            </tr>
+
+            @foreach (var member in Model.Members)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(member.FullName, "Show", "Users", new { username = member.Username, area = "" }, null)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

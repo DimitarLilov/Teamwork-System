@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using AutoMapper;
 using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models.BindingModels.Courses;
@@ -10,6 +8,7 @@ using TeamworkSystem.Models.BindingModels.Projects;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.ViewModels.Courses;
 using TeamworkSystem.Models.ViewModels.Projects;
+using TeamworkSystem.Utillities.Constants;
 
 namespace TeamworkSystem.Services
 {
@@ -32,7 +31,7 @@ namespace TeamworkSystem.Services
         {
             AllProjectsViewModel vm = new AllProjectsViewModel();
 
-            IEnumerable<Project> projects = this.data.Projects.GetAll();
+            IEnumerable<Project> projects = this.data.Projects.GetAll().Where(p => p.IsPublic);
 
             vm.Projects = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectViewModel>>(projects);
 
@@ -99,6 +98,7 @@ namespace TeamworkSystem.Services
             
             project.Grade += averagePoints;
             project.Grade /= (assisstentsCount + trainerCount);
+            this.data.SaveChanges();
         }
 
 
@@ -164,6 +164,106 @@ namespace TeamworkSystem.Services
         {
             IEnumerable<Comment> comments = this.data.Projects.FindByPredicate(p => p.Id == id).Comments;
             return Mapper.Map<IEnumerable<Comment>, IEnumerable<CommentViewModel>>(comments);
+        }
+
+        public bool ContainsProject(int id)
+        {
+            if (this.data.Projects.FindByPredicate(p => p.Id == id) != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ContainsUser(int id, string username)
+        {
+            var members = this.data.Projects.GetById(id).Team.Members.Select(m => m.IdentityUser.UserName);
+            if (members.Contains(username))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public EditProjectViewModel GetEditProject(int id)
+        {
+            Project project = this.data.Projects.GetById(id);
+            return Mapper.Map<Project, EditProjectViewModel>(project);
+        }
+
+        public void EditProject(int id, EditProjectBindingModel binding)
+        {
+            Project project = this.data.Projects.GetById(id);
+            project.Description = binding.Description;
+            project.Repository = binding.Repository;
+            project.LiveDemo = binding.LiveDemo;
+            project.IsPublic = binding.IsPublic;
+
+            this.data.SaveChanges();
+        }
+
+        public decimal GetGrade(int id)
+        {
+            return this.data.Projects.GetById(id).Grade;
+        }
+
+        public bool ProjectIsPublic(int id)
+        {
+            if (this.data.Projects.GetById(id).IsPublic)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void AddImage(string pic, int id)
+        {
+            var path = PathConstants.ProjectPath + pic;
+            Photo photo = new Photo()
+            {
+                UrlPthoto = path
+            };
+
+            this.data.Photos.Insert(photo);
+            this.data.Projects.GetById(id).ProjectPicture = photo;
+            this.data.SaveChanges();
+        }
+
+        public void AddImageInGallery(string pic, int id)
+        {
+            var project = this.data.Projects.GetById(id);
+
+            var path = PathConstants.ProjectGalleryPath + pic;
+            Photo photo = new Photo()
+            {
+                UrlPthoto = path
+            };
+            Album album = new Album()
+            {
+                Name = project.Name
+            };
+            album.Photos.Add(photo);
+            project.Photos = album;
+            this.data.Photos.Insert(photo);
+            this.data.Albums.Insert(album);
+            this.data.SaveChanges();
+        }
+
+        public bool ContainsProjectGalery(int id)
+        {
+            var project = this.data.Projects.GetById(id);
+            if (project.Photos !=null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public IEnumerable<ProjectGalleryViewModel> GetGalery(int id)
+        {
+            var album =  this.data.Projects.GetById(id).Photos.Photos.Take(4);
+
+            return Mapper.Map<IEnumerable<Photo>, IEnumerable<ProjectGalleryViewModel>>(album);
         }
     }
 }

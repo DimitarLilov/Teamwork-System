@@ -5,7 +5,9 @@
     <div class="project-item">
         @Html.Image(Url.Content(Model.ProjectPhoto), "project-img img-responsive", "Project")
         <div class="project-details">
-            <h4 class="project-title">@Html.ActionLink(Model.Name, "Show", "Projects",new {id = Model.Id},null) </h4>
+            <h4 class="project-title">
+                @Html.ActionLink(Model.Name, "Show", "Projects", new {id = Model.Id}, null)
+            </h4>
         </div>
     </div>
 </div>

@@ -55,6 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="AdminServices\AdminCoursesService.cs" />
+    <Compile Include="AdminServices\AdminHomeService.cs" />
+    <Compile Include="AdminServices\AdminProjectsService.cs" />
+    <Compile Include="AdminServices\AdminTeamsService.cs" />
+    <Compile Include="AdminServices\AdminUsersService.cs" />
+    <Compile Include="AssistantServices\AssistantCoursesService.cs" />
+    <Compile Include="AssistantServices\AssistantHomeService.cs" />
+    <Compile Include="AssistantServices\AssistantProjectsService.cs" />
     <Compile Include="Contracts\IAccountService.cs" />
     <Compile Include="CoursesService.cs" />
     <Compile Include="HomeService.cs" />
@@ -62,6 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="TeamsService.cs" />
+    <Compile Include="TrainerServices\TrainerCoursesService.cs" />
+    <Compile Include="TrainerServices\TrainerHomeService.cs" />
+    <Compile Include="TrainerServices\TrainerProjectsService.cs" />
     <Compile Include="UsersService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +83,10 @@
     <ProjectReference Include="..\TeamworkSystem.Models\TeamworkSystem.Models.csproj">
       <Project>{23F77D73-B34D-4FF8-863A-3C18BEA05343}</Project>
       <Name>TeamworkSystem.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamworkSystem.Utillities\TeamworkSystem.Utillities.csproj">
+      <Project>{7F6E7F13-BD4A-45D2-AC3F-DF7DE6882CBE}</Project>
+      <Name>TeamworkSystem.Utillities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

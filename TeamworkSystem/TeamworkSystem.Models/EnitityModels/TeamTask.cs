@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using TeamworkSystem.Models.EnitityModels.Users;
 
 namespace TeamworkSystem.Models.EnitityModels
@@ -18,9 +17,11 @@ namespace TeamworkSystem.Models.EnitityModels
 
         public string Content { get; set; }
 
-        public DateTime StartDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? EndDate { get; set; }
 
         public bool IsComplet { get; set; }
 

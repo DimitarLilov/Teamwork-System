@@ -1,0 +1,142 @@
+﻿@model TeamworkSystem.Models.ViewModels.Trainer.Projects.TrainerProjectDetailsViewModel
+@{
+    ViewBag.Title = "Course";
+}
+<div class="container-fluid">
+    <h2>Course</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.CourseName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.CourseName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.TeamName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.TeamName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.PublishDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.PublishDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.IsActive)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.IsActive)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.IsPublic)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.IsPublic)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.Vote)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.Vote)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.Grade)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.Grade)
+            </dd>
+
+        </dl>
+        <div>
+            Trainer
+            <table class="table table-striped custab">
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Points
+                    </th>
+                </tr>
+
+                @foreach (var trainer in Model.TrainerCriteria)
+            {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(trainer.Name, "Show", "Users", new { username = trainer.Username, area = "" }, null)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => trainer.CriteriaName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => trainer.Value)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div> Assistants
+            <table class="table table-striped custab">
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Points
+                    </th>
+                </tr>
+
+                @foreach (var assistant in Model.AsistentsCriteria)
+            {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(assistant.Name, "Show", "Users", new { username = assistant.Username, area = "" }, null)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => assistant.CriteriaName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => assistant.Value)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Project.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

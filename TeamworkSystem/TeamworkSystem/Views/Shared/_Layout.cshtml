@@ -24,6 +24,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
                     <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                    @Html.Action("AdminPanel", "Home")
+                    @Html.Action("AssistantPanel", "Home")
+                    @Html.Action("TrainerPanel", "Home")
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

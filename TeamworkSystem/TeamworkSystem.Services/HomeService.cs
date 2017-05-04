@@ -1,4 +1,6 @@
-﻿using TeamworkSystem.Data.Contracts;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TeamworkSystem.Data.Contracts;
 
 namespace TeamworkSystem.Services
 {

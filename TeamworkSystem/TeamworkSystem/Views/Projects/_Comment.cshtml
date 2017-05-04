@@ -17,19 +17,17 @@
                     {
                         @Html.ValidationMessageFor(model => comment.Content)
                         <li class="media">
-                            <a class="pull-left" href="@Url.Action("Profile", "Users", new {username = comment.Username})">
-                                @Html.Image(comment.UserPhoto, "media-object img-circle", "profile")
+                            <a class="pull-left" href="@Url.Action("Show", "Users", new {username = comment.Username})">
+                                @Html.Image(comment.UserPhoto, "avatar img-circle", "profile")
                             </a>
                             <div class="media-body">
                                 <div class="well well-lg">
-                                    <h4 class="media-heading text-uppercase">@comment.FullName </h4>
+                                    <h4 class="media-heading text-uppercase">@Html.DisplayFor(model => comment.FullName)</h4>
                                     <ul class="media-date text-uppercase reviews list-inline">
-                                        <li class="dd">@comment.PostedDate.Day</li>
-                                        <li class="mm">@comment.PostedDate.Month</li>
-                                        <li class="aaaa">@comment.PostedDate.Year</li>
+                                        <li>@Html.DisplayFor(model => comment.PostedDate)</li>
                                     </ul>
                                     <p class="media-comment">
-                                        @comment.Content
+                                        @Html.DisplayFor(model => comment.Content)
                                     </p>
                                 </div>
                             </div>

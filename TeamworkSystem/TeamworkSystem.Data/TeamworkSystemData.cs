@@ -48,5 +48,7 @@ namespace TeamworkSystem.Data
         {
             return this.context.SaveChanges();
         }
+
+        public IRepository<Album> Albums => new Repository<Album>(this.context);
     }
 }

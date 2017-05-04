@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using TeamworkSystem.Models.EnitityModels.Users;
 
 namespace TeamworkSystem.Models.ViewModels.Projects
 {

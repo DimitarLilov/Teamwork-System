@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using TeamworkSystem.Models.ViewModels.Courses;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TeamworkSystem.Models.ViewModels.Projects
 {
@@ -14,6 +14,9 @@ namespace TeamworkSystem.Models.ViewModels.Projects
         public int TeamId { get; set; }
 
         public string TeamName { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:MMMM/dd/yyyy}")]
+        public DateTime PublishDate { get; set; }
 
         public string Description { get; set; }
 

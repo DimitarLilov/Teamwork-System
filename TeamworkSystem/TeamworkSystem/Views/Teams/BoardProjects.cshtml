@@ -1,0 +1,42 @@
+﻿@using TeamworkSystem.Extensions
+@using TeamworkSystem.Models.ViewModels.Teams.Board
+@model BoardProjectsViewModel
+
+@{
+    ViewBag.Title = "Team Projects";
+}
+
+
+@Html.Action("BoardInfo", new { id = Model.TeamId })
+
+<div class="col-md-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h3 class="panel-title">Projects</h3>
+            </div>
+            <div class="pull-right">
+                <a href="@Url.Action("CreateProject","Teams", new {id = Model.TeamId})" class="btn btn-sm btn-warning"><i class="fa fa-plus"></i></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            @foreach (var project in Model.Projects)
+            {
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="project-item">
+                        @Html.Image(Url.Content(project.ProjectPhoto), "project-img img-responsive", "Project")
+                        <div class="project-details">
+                            <h4 class="project-title">
+                                @Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id }, null)
+                                @Html.Action("Status","Projects",new {id = project.Id})
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

@@ -32,6 +32,7 @@ namespace TeamworkSystem.Data.Contracts
         IRepository<ApplicationUser> User { get; }
 
         IRepository<Comment> Comments { get; }
+        IRepository<Album> Albums { get; }
 
         ITeamworkSystemContext Context { get; }
 

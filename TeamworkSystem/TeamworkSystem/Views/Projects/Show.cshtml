@@ -11,25 +11,33 @@
         @Html.Image(Model.ProjectPicture, "img-responsive", "Project")
     </div>
     <div class="cbp-l-member-info">
-        <div class="cbp-l-member-name">@Html.DisplayFor(model => model.Name) <i class="fa fa-check-circle text-success"></i></div>
+        <div class="cbp-l-member-name">
+            @Html.DisplayFor(model => model.Name)
+            @Html.Action("ProjectButton", new { id = Model.Id })
+            <i class="fa fa-check-circle text-success"></i>
+        </div>
         <ul class="project-meta">
             <li>Team: @Html.ActionLink(Model.TeamName, "Show", "Teams", new { id = Model.TeamId }, null)</li>
-            <li><i class="fa fa-calendar"></i> Jun 15, 2014</li>
+            <li><i class="fa fa-calendar"></i> @Html.DisplayFor(model => model.PublishDate)</li>
             <li>
-                <i class="fa fa-code"></i><a href="@Model.Repository" target="_blank"> Repository</a>
+                @Html.Action("Grade", new { id = Model.Id })
             </li>
             <li>
-                <i class="fa fa-link"></i><a href="@Model.LiveDemo" target="_blank"> Live Demo</a>
+                <i class="fa fa-code"></i><a href="@Html.DisplayFor(model => model.Repository)" target="_blank"> Repository</a>
             </li>
             <li>
-                <i class="fa fa-comment"></i><a href="#comment">@Model.CommentsCount Comments</a>
+                <i class="fa fa-link"></i><a href="@Html.DisplayFor(model => model.LiveDemo)" target="_blank"> Live Demo</a>
             </li>
+            <li>
+                <i class="fa fa-comment"></i><a href="#comment">@Html.DisplayFor(model => model.CommentsCount) Comments</a>
+            </li>
+
         </ul>
         <br>
         <div class="cbp-l-member-desc">
             @Html.DisplayFor(model => model.Description)
         </div>
-
+        <br />
     </div>
 
     <div class="clearfix"></div>
@@ -45,15 +53,13 @@
             <div class="panel-body">
                 <div class="row">
 
-                    <div class="col-sm-6 col-md-3">
-                        <a href="img/project.png" class="thumbnail">
-                            <img src="img/project.png" alt="Generic placeholder thumbnail">
-                        </a>
-                    </div>
+                   @Html.Action("Photos", "Projects", new { id = Model.Id })
                 </div>
             </div>
         </div>
     </div>
-    @Html.Action("Points","Projects",new { id = Model.Id})
+    
+
+    @Html.Action("Points", "Projects", new { id = Model.Id })
     @Html.Action("Comment", "Projects", new { id = Model.Id })
 </div>

@@ -4,8 +4,7 @@ namespace TeamworkSystem.Models.ViewModels.Teams
 {
     public class AddMembersViewModel
     {
-        [Display(Name = "Team")]
-        public TeamInfoViewModel Team { get; set; }
+        public int TeamId { get; set; }
 
         [Required]
         [Display(Name = "Username")]
