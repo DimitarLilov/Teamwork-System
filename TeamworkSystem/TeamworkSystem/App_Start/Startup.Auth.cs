@@ -54,9 +54,9 @@ namespace TeamworkSystem
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "129394854274283",
+               appSecret: "3281b5fc5fe2d3611ff8bf5bb479d949");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

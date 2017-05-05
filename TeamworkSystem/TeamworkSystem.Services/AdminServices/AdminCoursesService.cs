@@ -9,11 +9,14 @@ using TeamworkSystem.Models.BindingModels.Admin.Courses;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.ViewModels.Admin.Courses;
+using TeamworkSystem.Services.Contracts.Admin;
 using TeamworkSystem.Utillities.Constants;
 
 namespace TeamworkSystem.Services.AdminServices
 {
-    public class AdminCoursesService:Service
+
+
+    public class AdminCoursesService:Service, IAdminCoursesService
     {
         public AdminCoursesService(ITeamworkSystemData data) : base(data)
         {

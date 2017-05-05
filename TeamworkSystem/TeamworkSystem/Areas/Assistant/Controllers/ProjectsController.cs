@@ -1,25 +1,20 @@
 ﻿using System.Web.Mvc;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.ViewModels.Assistant.Projects;
-using TeamworkSystem.Services.AssistantServices;
+using TeamworkSystem.Services.Contracts.Assistans;
 
 namespace TeamworkSystem.Areas.Assistant.Controllers
 {
-    [Authorize(Roles = "Assistant")]
+    [CustomAuthorize(Roles = "Assistant")]
     [RouteArea("Assistant")]
     [RoutePrefix("Projects")]
     public class ProjectsController : Controller
     {
-        private AssistantProjectsService service;
-        public ProjectsController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IAssistantProjectsService service;
 
-        }
-
-        public ProjectsController(TeamworkSystemData data)
+        public ProjectsController(IAssistantProjectsService service)
         {
-            this.service = new AssistantProjectsService(data);
+            this.service = service;
         }
 
         // GET: Assistant/Projects

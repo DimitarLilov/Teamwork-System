@@ -6,7 +6,6 @@ namespace TeamworkSystem.Models.ViewModels.Teams
     {
         public int TeamId { get; set; }
 
-        [Required]
         [Display(Name = "Username")]
         public string Username { get; set; }
 

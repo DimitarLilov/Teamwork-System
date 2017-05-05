@@ -1,28 +1,23 @@
 ﻿using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.BindingModels.Admin.Courses;
 using TeamworkSystem.Models.ViewModels.Admin.Courses;
-using TeamworkSystem.Services.AdminServices;
+using TeamworkSystem.Services.Contracts.Admin;
 
 namespace TeamworkSystem.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Courses")]
     public class CoursesController : Controller
     {
-        private AdminCoursesService service;
-        public CoursesController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IAdminCoursesService service;
 
-        }
-
-        public CoursesController(TeamworkSystemData data)
+        public CoursesController(IAdminCoursesService service)
         {
-            this.service = new AdminCoursesService(data);
+            this.service = service;
         }
 
         // GET: Admin/Courses
@@ -45,6 +40,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
 
         // POST: Admin/Courses/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("Create")]
         public ActionResult Create(AdminCreateCourseBindingModel binding)
         {
@@ -69,6 +65,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
 
         // POST: Admin/Courses/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Edit")]
         public ActionResult Edit(int id, AdminEditCourseBindingModel binding)
         {
@@ -84,6 +81,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/UploadCoursePicture")]
         public ActionResult FileUpload(int id,HttpPostedFileBase file)
         {

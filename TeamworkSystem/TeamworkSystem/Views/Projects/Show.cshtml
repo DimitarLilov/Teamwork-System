@@ -14,7 +14,10 @@
         <div class="cbp-l-member-name">
             @Html.DisplayFor(model => model.Name)
             @Html.Action("ProjectButton", new { id = Model.Id })
-            <i class="fa fa-check-circle text-success"></i>
+            @if (Model.IsActive)
+            {
+                <i class="fa fa-check-circle text-success"></i>
+            }
         </div>
         <ul class="project-meta">
             <li>Team: @Html.ActionLink(Model.TeamName, "Show", "Teams", new { id = Model.TeamId }, null)</li>

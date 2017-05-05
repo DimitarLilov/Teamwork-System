@@ -10,48 +10,54 @@
         @Html.AntiForgeryToken()
         <div>
             <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Course.Name)
-                </dt>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.Name)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Course.Name)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Course.Name)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Course.MaxGrade)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.MaxGrade)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Course.MaxGrade)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Course.MaxGrade)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Course.StartDate)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.StartDate)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Course.StartDate)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Course.StartDate)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Course.EndDate)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.EndDate)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Course.EndDate)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Course.EndDate)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Course.AssistantsCount)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Course.AssistantsCount)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Course.AssistantsCount)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Course.AssistantsCount)
+            </dd>
+            <dd>
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action("Assistants","Courses", new { id = Model.Course.Id})" class="btn btn-primary">Assistant</a>
+                    <a href="@Url.Action("Criteria","Courses", new { id = Model.Course.Id})" class="btn btn-success">Criteria</a>
+                </div>
+            </dd>
+        </dl>
 
-            </dl>
             <table class="table table-striped custab">
                 <tr>
                     <th>
@@ -79,6 +85,7 @@
                         Active
                     </th>
                 </tr>
+                
 
                 @{
                     int count = 0;
@@ -87,7 +94,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id, area = " " }, null)
+                            @Html.ActionLink(project.Name, "Show", "Projects", new { id = project.Id, area = "" }, null)
                         </td>
                         <td>
                             @Html.DisplayFor(model => project.TeamName)
@@ -122,8 +129,13 @@
             <span><input type="submit" value="Active" class="btn btn-success" /></span>
         </div>
                             }
+
+
+
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Course.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
+    
+
 </div>

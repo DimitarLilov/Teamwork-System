@@ -9,11 +9,12 @@ using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.Enums;
 using TeamworkSystem.Models.ViewModels.Users;
+using TeamworkSystem.Services.Contracts;
 using TeamworkSystem.Utillities.Constants;
 
 namespace TeamworkSystem.Services
 {
-    public class UsersService : Service
+    public class UsersService : Service, IUsersService
     {
         public UsersService(ITeamworkSystemData data) : base(data)
         {
@@ -53,7 +54,7 @@ namespace TeamworkSystem.Services
 
         public AllUsersProjectsViewModel GetAllUsersProjects(string username)
         {
-            AllUsersProjectsViewModel viewModel = new AllUsersProjectsViewModel {Username = username};
+            AllUsersProjectsViewModel viewModel = new AllUsersProjectsViewModel { Username = username };
             ApplicationUser user = this.data.User.FindByPredicate(u => u.UserName == username);
 
             Student student = this.data.Students.FindByPredicate(s => s.IdenityUserId == user.Id);
@@ -65,7 +66,7 @@ namespace TeamworkSystem.Services
 
         public AllUsersTeamsViewModel GetAllUsersTeams(string username, int? page)
         {
-            AllUsersTeamsViewModel viewModel = new AllUsersTeamsViewModel{Username = username};
+            AllUsersTeamsViewModel viewModel = new AllUsersTeamsViewModel { Username = username };
 
             ApplicationUser user = this.data.User.FindByPredicate(u => u.UserName == username);
             Student student = this.data.Students.FindByPredicate(s => s.IdenityUserId == user.Id);
@@ -84,7 +85,7 @@ namespace TeamworkSystem.Services
 
         public AllUsersCollaboratorsViewModel GetAllUsersCollaborators(string username)
         {
-            AllUsersCollaboratorsViewModel viewModel = new AllUsersCollaboratorsViewModel {Username = username};
+            AllUsersCollaboratorsViewModel viewModel = new AllUsersCollaboratorsViewModel { Username = username };
             ApplicationUser user = this.data.User.FindByPredicate(u => u.UserName == username);
 
             Student student = this.data.Students.FindByPredicate(s => s.IdenityUserId == user.Id);
@@ -96,11 +97,7 @@ namespace TeamworkSystem.Services
 
         public bool ContainsUser(string username)
         {
-            if (this.data.User.FindByPredicate(u => u.UserName == username) != null)
-            {
-                return true;
-            }
-            return false;
+            return this.data.User.FindByPredicate(u => u.UserName == username) != null;
         }
 
         public UserInfoViewModel GetUserInfo(string username)
@@ -109,7 +106,7 @@ namespace TeamworkSystem.Services
             return Mapper.Map<ApplicationUser, UserInfoViewModel>(user);
         }
 
-        public void EditUser(string username,EditUserBindingModel binding)
+        public void EditUser(string username, EditUserBindingModel binding)
         {
             var user = data.User.FindByPredicate(u => u.UserName == username);
             user.FirstName = binding.FirstName;

@@ -1,6 +1,5 @@
 namespace TeamworkSystem.Data.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class init2 : DbMigration

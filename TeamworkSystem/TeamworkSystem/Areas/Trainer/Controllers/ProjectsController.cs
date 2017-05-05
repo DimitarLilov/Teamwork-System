@@ -1,26 +1,20 @@
 ﻿using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.ViewModels.Trainer.Projects;
-using TeamworkSystem.Services.TrainerServices;
+using TeamworkSystem.Services.Contracts.Trainers;
 
 namespace TeamworkSystem.Areas.Trainer.Controllers
 {
-    [Authorize(Roles = "Trainer")]
+    [CustomAuthorize(Roles = "Trainer")]
     [RouteArea("Trainer")]
     [RoutePrefix("Projects")]
     public class ProjectsController : Controller
     {
-        private TrainerProjectsService service;
-        public ProjectsController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private ITrainerProjectsService service;
 
-        }
-
-        public ProjectsController(TeamworkSystemData data)
+        public ProjectsController(ITrainerProjectsService servicea)
         {
-            this.service = new TrainerProjectsService(data);
+            this.service = servicea;
         }
         // GET: Trainer/Projects
         [Route]

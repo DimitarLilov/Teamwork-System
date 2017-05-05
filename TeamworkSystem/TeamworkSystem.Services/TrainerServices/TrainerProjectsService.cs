@@ -5,10 +5,12 @@ using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.ViewModels.Trainer.Projects;
+using TeamworkSystem.Services.Contracts.Trainers;
 
 namespace TeamworkSystem.Services.TrainerServices
 {
-    public class TrainerProjectsService : Service
+
+    public class TrainerProjectsService : Service, ITrainerProjectsService
     {
         public TrainerProjectsService(ITeamworkSystemData data) : base(data)
         {
@@ -56,11 +58,8 @@ namespace TeamworkSystem.Services.TrainerServices
             var trainer =
                 this.data.Trainers.FindByPredicate(t => t.IdentityUser.UserName == username)
                     .LeadingCourses.SelectMany(c => c.Projects);
-            if (trainer.Contains(project))
-            {
-                return true;
-            }
-            return false;
+
+            return trainer.Contains(project);
         }
     }
 }

@@ -1,28 +1,23 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using TeamworkSystem.Data;
-using TeamworkSystem.Services;
+using TeamworkSystem.Models.ViewModels.Home;
+using TeamworkSystem.Services.Contracts;
 
 namespace TeamworkSystem.Controllers
 {
     public class HomeController : Controller
     {
-        private HomeService service;
-        public HomeController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IHomeService service;
 
-        }
-
-        public HomeController(TeamworkSystemData data)
+        public HomeController(IHomeService service)
         {
-            this.service = new HomeService(data);
+            this.service = service;
         }
         [Route]
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<TopProjectsViewModel> vm = this.service.GetTopProjects();
+            return View(vm);
         }
 
         [Authorize]

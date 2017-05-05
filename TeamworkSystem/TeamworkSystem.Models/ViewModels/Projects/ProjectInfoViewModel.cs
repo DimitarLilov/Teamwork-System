@@ -26,5 +26,7 @@ namespace TeamworkSystem.Models.ViewModels.Projects
 
         public int CommentsCount { get; set; }
 
+        public bool IsActive { get; set; }
+
     }
 }

@@ -5,16 +5,17 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models;
-using TeamworkSystem.Models.BindingModels.Trainer;
 using TeamworkSystem.Models.BindingModels.Trainer.Courses;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.ViewModels.Trainer.Courses;
 using TeamworkSystem.Models.ViewModels.Trainer.Projects;
+using TeamworkSystem.Services.Contracts.Trainers;
 
 namespace TeamworkSystem.Services.TrainerServices
 {
-    public class TrainerCoursesService:Service
+
+    public class TrainerCoursesService:Service, ITrainerCoursesService
     {
         public TrainerCoursesService(ITeamworkSystemData data) : base(data)
         {
@@ -39,11 +40,7 @@ namespace TeamworkSystem.Services.TrainerServices
         public bool LeadingCourses(string username, int id)
         {
             var trainer = this.data.Trainers.FindByPredicate(t => t.IdentityUser.UserName == username);
-            if (trainer.LeadingCourses.FirstOrDefault(c => c.Id == id) != null)
-            {
-                return true;
-            }
-            return false;
+            return trainer.LeadingCourses.FirstOrDefault(c => c.Id == id) != null;
         }
 
         public TrainerCourseDetailsViewModel GetCourseDetails(int id)
@@ -118,11 +115,7 @@ namespace TeamworkSystem.Services.TrainerServices
         public bool ContainsUser(string username)
         {
             var user = this.data.User.FindByPredicate(u => u.UserName == username);
-            if (user != null)
-            {
-                return true;
-            }
-            return false;
+            return user != null;
         }
 
         public TrainerCourseCriteriaViewModel GetCourseCriteria(int id)

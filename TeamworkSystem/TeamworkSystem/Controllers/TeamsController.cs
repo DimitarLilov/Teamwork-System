@@ -1,28 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using TeamworkSystem.Data;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.BindingModels.Teams;
 using TeamworkSystem.Models.ViewModels.Teams;
 using TeamworkSystem.Models.ViewModels.Teams.Board;
-using TeamworkSystem.Services;
+using TeamworkSystem.Services.Contracts;
 
 namespace TeamworkSystem.Controllers
 {
     [RoutePrefix("Teams")]
     public class TeamsController : Controller
     {
-        private TeamsService service;
-        public TeamsController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private ITeamsService service;
 
-        }
-
-        public TeamsController(TeamworkSystemData data)
+        public TeamsController(ITeamsService service)
         {
-            this.service = new TeamsService(data);
+            this.service = service;
         }
 
         //GET : /Teams/Create
@@ -37,6 +31,7 @@ namespace TeamworkSystem.Controllers
 
         //Post : /Teams/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize]
         [Route("Create")]
         public ActionResult Create(CreateTeamBindingModel binding)
@@ -89,6 +84,7 @@ namespace TeamworkSystem.Controllers
 
         //POST : /Teams/Id/Edit
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Edit")]
         public ActionResult Edit(int id,EditTeamBindingModel binding)
         {
@@ -264,6 +260,7 @@ namespace TeamworkSystem.Controllers
 
         //POST : /Teams/Id/Add/Member
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize]
         [Route("{id:int}/Add/Member")]
         public ActionResult AddMember(int id,AddMemberBindingModel binding)
@@ -312,6 +309,7 @@ namespace TeamworkSystem.Controllers
 
         //POST: /Teams/Id/Add/Project
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize]
         [Route("{id:int}/Add/Project")]
         public ActionResult CreateProject(int id,AddProjectBindingModel binding)
@@ -361,6 +359,7 @@ namespace TeamworkSystem.Controllers
 
         //POST : /Teams/Id/Add/Task
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize]
         [Route("{id:int}/Add/Task")]
         public ActionResult AddTask(int id, AddTaskBindingModel binding)
@@ -384,6 +383,7 @@ namespace TeamworkSystem.Controllers
 
         //POST : /Teams/Id/Tasks/Complete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize]
         [Route("{id:int}/Tasks/Complete")]
         public ActionResult Complete(int id, CompleteTasksBindingModel binding)

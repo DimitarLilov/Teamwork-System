@@ -5,10 +5,12 @@ using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.ViewModels.Assistant.Projects;
+using TeamworkSystem.Services.Contracts.Assistans;
 
 namespace TeamworkSystem.Services.AssistantServices
 {
-    public class AssistantProjectsService : Service
+
+    public class AssistantProjectsService : Service, IAssistantProjectsService
     {
         public AssistantProjectsService(ITeamworkSystemData data) : base(data)
         {

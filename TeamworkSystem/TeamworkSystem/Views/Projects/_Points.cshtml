@@ -11,6 +11,7 @@
 
         @using (Html.BeginForm("Points", "Projects", FormMethod.Post))
         {
+            @Html.AntiForgeryToken()
             <table class="col-xs-3 col-sm-6 col-md-3 table table-bordered table-hover">
                 <thead>
                     <tr>

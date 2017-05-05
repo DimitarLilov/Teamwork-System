@@ -6,10 +6,12 @@ using TeamworkSystem.Models;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.ViewModels.Assistant.Courses;
 using TeamworkSystem.Models.ViewModels.Assistant.Projects;
+using TeamworkSystem.Services.Contracts.Assistans;
 
 namespace TeamworkSystem.Services.AssistantServices
 {
-    public class AssistantCoursesService : Service
+   
+    public class AssistantCoursesService : Service, IAssistantCoursesService
     {
         public AssistantCoursesService(ITeamworkSystemData data) : base(data)
         {
@@ -34,11 +36,8 @@ namespace TeamworkSystem.Services.AssistantServices
         public bool AssistingCourse(int id, string username)
         {
             var assistant = this.data.Assistents.FindByPredicate(a => a.IdentityUser.UserName == username);
-            if (assistant.AssistingCourses.FirstOrDefault(c => c.Id == id) != null)
-            {
-                return true;
-            }
-            return false;
+
+            return assistant.AssistingCourses.FirstOrDefault(c => c.Id == id) != null;
         }
 
 

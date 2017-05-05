@@ -6,10 +6,13 @@ using TeamworkSystem.Models;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.ViewModels.Admin.Teams;
+using TeamworkSystem.Services.Contracts.Admin;
 
 namespace TeamworkSystem.Services.AdminServices
 {
-    public class AdminTeamsService : Service
+
+
+    public class AdminTeamsService : Service, IAdminTeamsService
     {
         public AdminTeamsService(ITeamworkSystemData data) : base(data)
         {

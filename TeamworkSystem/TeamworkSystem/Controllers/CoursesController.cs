@@ -1,25 +1,19 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using TeamworkSystem.Data;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.ViewModels.Courses;
-using TeamworkSystem.Services;
+using TeamworkSystem.Services.Contracts;
 
 namespace TeamworkSystem.Controllers
 {
     [RoutePrefix("Courses")]
     public class CoursesController : Controller
     {
-        private CoursesService service;
-        public CoursesController()
-            :this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private ICoursesService service;
 
-        }
-
-        public CoursesController(TeamworkSystemData data)
+        public CoursesController(ICoursesService service)
         {
-            this.service = new CoursesService(data);
+            this.service = service;
         }
         // GET: Course
         [Route]

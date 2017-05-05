@@ -18,11 +18,9 @@ namespace TeamworkSystem.Models.ViewModels.Users
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Url]
         [Display(Name = "Web Site")]
         public string WebSite { get; set; }
 
-        [Url]
         [Display(Name = "SoftUni Profile")]
         public string SoftuniProfile { get; set; }
 
@@ -38,36 +36,28 @@ namespace TeamworkSystem.Models.ViewModels.Users
 
         public Gender Gender { get; set; }
 
-        [DataType(DataType.Date), Required]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
 
-        [Url]
         [Display(Name = "Facebook")]
         public string Facebook { get; set; }
 
-        [Url]
         [Display(Name = "Twitter")]
         public string Twitter { get; set; }
 
-        [Url]
         [Display(Name = "Google Plus")]
         public string GooglePlus { get; set; }
         
-        [Url]
         [Display(Name = "LinkedIn")]
         public string LinkedIn { get; set; }
 
-        [Url]
         [Display(Name = "GitHub")]
         public string GitHub { get; set; }
 
-        [Url]
         [Display(Name = "Stack Overflow")]
         public string StackOverflow { get; set; }
 
-        [Url]
         [Display(Name = "Instagram")]
         public string Instagram { get; set; }
 

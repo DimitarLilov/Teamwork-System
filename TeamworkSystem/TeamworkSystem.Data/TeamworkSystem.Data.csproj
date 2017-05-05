@@ -70,7 +70,50 @@
     <Compile Include="Migrations\201705040021076_init2.Designer.cs">
       <DependentUpon>201705040021076_init2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705041417399_points.cs" />
+    <Compile Include="Migrations\201705041417399_points.Designer.cs">
+      <DependentUpon>201705041417399_points.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705042336336_fake.cs" />
+    <Compile Include="Migrations\201705042336336_fake.Designer.cs">
+      <DependentUpon>201705042336336_fake.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Moks\DbSet\FakeMessageDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeCourseDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeCriteriaDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeTeamDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeTeamTaskDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeSkillDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeProjectPointDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeProjectDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakePointDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakePhotoDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeCommentDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeAlbumDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeStudentDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeAssistantDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeApplicationUserDbSet.cs" />
+    <Compile Include="Moks\DbSet\FakeTrainerDbSet.cs" />
+    <Compile Include="Moks\FakeDbSet.cs" />
+    <Compile Include="Moks\FakeTeamworkSystemContext.cs" />
+    <Compile Include="Moks\FakeTeamworkSystemData.cs" />
+    <Compile Include="Moks\Repositories\FakeMessageRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeAlbumRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeApplicationUserRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeAssistantRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeCommentRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeCourseRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeCriteriaRepository.cs" />
+    <Compile Include="Moks\Repositories\FakePhotoRepository.cs" />
+    <Compile Include="Moks\Repositories\FakePointRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeProjectPointRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeProjectRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeSkillRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeStudentRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeTeamRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeTeamTaskRepository.cs" />
+    <Compile Include="Moks\Repositories\FakeTrainerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="TeamworkSystemContext.cs" />
@@ -100,6 +143,13 @@
     <EmbeddedResource Include="Migrations\201705040021076_init2.resx">
       <DependentUpon>201705040021076_init2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041417399_points.resx">
+      <DependentUpon>201705041417399_points.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705042336336_fake.resx">
+      <DependentUpon>201705042336336_fake.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

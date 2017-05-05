@@ -10,11 +10,14 @@ using TeamworkSystem.Models.ViewModels.Courses;
 using TeamworkSystem.Models.ViewModels.Projects;
 using TeamworkSystem.Models.ViewModels.Teams;
 using TeamworkSystem.Models.ViewModels.Teams.Board;
+using TeamworkSystem.Services.Contracts;
 using TeamworkSystem.Utillities.Constants;
 
 namespace TeamworkSystem.Services
 {
-    public class TeamsService : Service
+   
+
+    public class TeamsService : Service, ITeamsService
     {
         public TeamsService(ITeamworkSystemData data) : base(data)
         {
@@ -127,11 +130,7 @@ namespace TeamworkSystem.Services
 
         public bool ContainsUser(AddMemberBindingModel binding)
         {
-            if (this.data.User.FindByPredicate(u => u.UserName == binding.Username) != null)
-            {
-                return true;
-            }
-            return false;
+            return this.data.User.FindByPredicate(u => u.UserName == binding.Username) != null;
         }
 
         public AddTaskViewModel GetTeamInfoForTask(int id)
@@ -216,11 +215,8 @@ namespace TeamworkSystem.Services
 
         public bool ContainsTeam(int id)
         {
-            if (this.data.Teams.FindByPredicate(t => t.Id == id) != null)
-            {
-                return true;
-            }
-            return false;
+            return this.data.Teams.FindByPredicate(t => t.Id == id) != null;
+
         }
 
         public BoardInfoViewModel GetBoardInfo(int id)

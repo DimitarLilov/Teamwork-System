@@ -1,25 +1,20 @@
 ﻿using System.Web.Mvc;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.ViewModels.Assistant.Home;
-using TeamworkSystem.Services.AssistantServices;
+using TeamworkSystem.Services.Contracts.Assistans;
 
 namespace TeamworkSystem.Areas.Assistant.Controllers
 {
-    [Authorize(Roles = "Assistant")]
+    [CustomAuthorize(Roles = "Assistant")]
     [RouteArea("Assistant")]
     [RoutePrefix("Home")]
     public class HomeController : Controller
     {
-        private AssistantHomeService service;
-        public HomeController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IAssistantHomeService service;
 
-        }
-
-        public HomeController(TeamworkSystemData data)
+        public HomeController(IAssistantHomeService service)
         {
-            this.service = new AssistantHomeService(data);
+            this.service = service;
         }
         // GET: Assistant/Home
         [Route]

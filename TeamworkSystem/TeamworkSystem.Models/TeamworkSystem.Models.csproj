@@ -96,6 +96,7 @@
     <Compile Include="BindingModels\Trainer\Courses\TrainerCourseEditBindingModel.cs" />
     <Compile Include="BindingModels\Trainer\Courses\TrainerCriteriaBindingModel.cs" />
     <Compile Include="ViewModels\Assistant\Projects\AssistantAllProjectsViewModel.cs" />
+    <Compile Include="ViewModels\Home\TopProjectsViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectGalleryViewModel.cs" />
     <Compile Include="ViewModels\Trainer\Courses\TrainerCourseCriteriaViewModel.cs" />
     <Compile Include="BindingModels\Trainer\Courses\TrainerProjectActiveBindingModel.cs" />

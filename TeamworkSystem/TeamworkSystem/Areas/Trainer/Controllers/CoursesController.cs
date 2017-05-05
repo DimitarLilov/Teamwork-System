@@ -1,31 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using TeamworkSystem.Data;
-using TeamworkSystem.Models.BindingModels.Trainer;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.BindingModels.Trainer.Courses;
 using TeamworkSystem.Models.ViewModels.Trainer.Courses;
-using TeamworkSystem.Services.TrainerServices;
+using TeamworkSystem.Services.Contracts.Trainers;
 
 namespace TeamworkSystem.Areas.Trainer.Controllers
 {
-    [Authorize(Roles = "Trainer")]
+    [CustomAuthorize(Roles = "Trainer")]
     [RouteArea("Trainer")]
     [RoutePrefix("Courses")]
     public class CoursesController : Controller
     {
-        private TrainerCoursesService service;
-        public CoursesController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private ITrainerCoursesService service;
 
-        }
-
-        public CoursesController(TeamworkSystemData data)
+        public CoursesController(ITrainerCoursesService service)
         {
-            this.service = new TrainerCoursesService(data);
+            this.service = service;
         }
 
         // GET: Trainer/Courses
@@ -51,6 +42,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}")]
         public ActionResult Details(int id, IEnumerable<TrainerProjectActiveBindingModel> binding)
         {
@@ -86,6 +78,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
 
         // POST: Trainer/Courses/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Edit")]
         public ActionResult Edit(int id, TrainerCourseEditBindingModel binding)
         {
@@ -114,6 +107,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
 
         // POST: Trainer/Courses/5/Assistants
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Assistants")]
         public ActionResult Assistants(int id, TrainerAddAssistantBindingModel binding)
         {
@@ -148,6 +142,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
 
         // POST: Trainer/Courses/5/Criteria
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Criteria")]
         public ActionResult Criteria(int id, TrainerCriteriaBindingModel binding)
         {

@@ -10,10 +10,7 @@ namespace TeamworkSystem.Attributes
             var roles = this.Roles.Split(',');
             if (filterContext.HttpContext.Request.IsAuthenticated && !roles.Any(filterContext.HttpContext.User.IsInRole))
             {
-                filterContext.Result = new ViewResult
-                {
-                    ViewName = "~/Views/Home/Index.cshtml"
-                };
+               filterContext.Result = new RedirectResult("/");
             }
             else
             {

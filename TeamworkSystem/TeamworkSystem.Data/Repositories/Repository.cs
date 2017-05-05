@@ -8,7 +8,7 @@ namespace TeamworkSystem.Data.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected IDbSet<T> EntityTable;
+        protected virtual IDbSet<T> EntityTable { get; set; }
 
         public Repository(ITeamworkSystemContext context)
         {

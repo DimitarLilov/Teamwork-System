@@ -2,42 +2,42 @@
 @{
     ViewBag.Title = "Register";
 }
+<div class="container-fluid">
+    <h2>@ViewBag.Title.</h2>
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group input-group-sm">
-        @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control datepicker", placeholder = "Enter Birth date here..." })
-            @Html.ValidationMessageFor(m => m.BirthDate,"",new { @class = "text-danger" })
+        <div class="form-group input-group-sm">
+            @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control datepicker", placeholder = "Enter Birth date here..." })
+                @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
@@ -64,16 +64,17 @@
                 <input type="submit" class="btn btn-default" value="Register" />
             </div>
         </div>
-}
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
 
-    <script type="text/javascript">
-        $('.datepicker').datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'MM/dd/yy' 
-        });
-    </script>
-}
+        <script type="text/javascript">
+            $('.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'MM/dd/yy'
+            });
+        </script>
+    }
+</div>

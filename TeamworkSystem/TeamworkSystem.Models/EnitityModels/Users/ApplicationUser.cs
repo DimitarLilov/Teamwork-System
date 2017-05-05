@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -15,8 +16,10 @@ namespace TeamworkSystem.Models.EnitityModels.Users
         {
             this.Skills = new HashSet<Skill>();
         }
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
         [NotMapped]
@@ -34,6 +37,7 @@ namespace TeamworkSystem.Models.EnitityModels.Users
 
         public virtual Gender Gender { get; set; }
 
+        [Required]
         public DateTime BirthDate { get; set; }
 
         public virtual ICollection<Skill> Skills { get; set; }

@@ -2,10 +2,12 @@
 using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.ViewModels.Assistant.Home;
+using TeamworkSystem.Services.Contracts.Assistans;
 
 namespace TeamworkSystem.Services.AssistantServices
 {
-    public class AssistantHomeService:Service
+
+    public class AssistantHomeService:Service, IAssistantHomeService
     {
         public AssistantHomeService(ITeamworkSystemData data) : base(data)
         {

@@ -1,25 +1,20 @@
 ﻿using System.Web.Mvc;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.ViewModels.Admin.Home;
-using TeamworkSystem.Services.AdminServices;
+using TeamworkSystem.Services.Contracts.Admin;
 
 namespace TeamworkSystem.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Home")]
     public class HomeController : Controller
     {
-        private AdminHomeService service;
-        public HomeController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IAdminHomeService service;
 
-        }
-
-        public HomeController(TeamworkSystemData data)
+        public HomeController(IAdminHomeService service)
         {
-            this.service = new AdminHomeService(data);
+            this.service = service;
         }
 
         [Route()]

@@ -3,29 +3,23 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TeamworkSystem.Data;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.BindingModels.Courses;
 using TeamworkSystem.Models.BindingModels.Projects;
 using TeamworkSystem.Models.ViewModels.Courses;
 using TeamworkSystem.Models.ViewModels.Projects;
-using TeamworkSystem.Services;
+using TeamworkSystem.Services.Contracts;
 
 namespace TeamworkSystem.Controllers
 {
     [RoutePrefix("Projects")]
     public class ProjectsController : Controller
     {
-        private ProjectsService service;
-        public ProjectsController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IProjectsService service;
 
-        }
-
-        public ProjectsController(TeamworkSystemData data)
+        public ProjectsController(IProjectsService service)
         {
-            this.service = new ProjectsService(data);
+            this.service = service;
         }
 
         // GET: Projects
@@ -33,7 +27,7 @@ namespace TeamworkSystem.Controllers
         [Route]
         public ActionResult Index(int? page)
         {
-            AllProjectsViewModel vm = this.service.GetAllProjects();
+            AllProjectsViewModel vm = this.service.GetAllPublicProjects();
 
             var projects = vm.Projects;
             var pageSize = 30;
@@ -84,7 +78,8 @@ namespace TeamworkSystem.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [Authorize]
         [Route("{id:int}/Edit")]
         public ActionResult Edit(int id,EditProjectBindingModel binding)
         {
@@ -122,8 +117,11 @@ namespace TeamworkSystem.Controllers
             string userName = this.User.Identity.Name;
             IEnumerable<string> assistents = this.service.GetAssistentsNames(id);
             string trainer = this.service.GetTreinerName(id);
-
-            if (!this.service.IsActiveProject(id) || (!assistents.Contains(userName) && !trainer.Contains(userName)) || this.service.IsAssess(userName, id) )
+            //            if (!this.service.ContainsCriteria(id))
+            //            {
+            //                return null;
+            //            }
+            if (!this.service.IsActiveProject(id) || (!assistents.Contains(userName) && !trainer.Contains(userName)) || this.service.IsAssess(userName, id))
             {
                 return null;
             }
@@ -135,6 +133,7 @@ namespace TeamworkSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Points")]
         public ActionResult Points(int id, IList<CriteriaBindingModel> binding)
         {
@@ -229,6 +228,7 @@ namespace TeamworkSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("Comment")]
         public ActionResult Comment(int id, CommentBindingModel binding)
         {
@@ -243,6 +243,7 @@ namespace TeamworkSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/UploadPicture")]
         public ActionResult FileUpload(int id,HttpPostedFileBase file)
         {
@@ -261,6 +262,7 @@ namespace TeamworkSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Gallery")]
         public ActionResult Gallery(int id, HttpPostedFileBase file)
         {

@@ -1,25 +1,20 @@
 ﻿using System.Web.Mvc;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.ViewModels.Admin.Users;
-using TeamworkSystem.Services.AdminServices;
+using TeamworkSystem.Services.Contracts.Admin;
 
 namespace TeamworkSystem.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Users")]
     public class UsersController : Controller
     {
-        private AdminUsersService service;
-        public UsersController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IAdminUsersService service;
 
-        }
-
-        public UsersController(TeamworkSystemData data)
+        public UsersController(IAdminUsersService service)
         {
-            this.service = new AdminUsersService(data);
+            this.service = service;
         }
 
         // GET: Admin/Users

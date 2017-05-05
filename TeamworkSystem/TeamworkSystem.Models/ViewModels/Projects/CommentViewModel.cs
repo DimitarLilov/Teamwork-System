@@ -5,7 +5,6 @@ namespace TeamworkSystem.Models.ViewModels.Projects
 {
     public class CommentViewModel
     {
-        [Required]
         public string Content { get; set; }
 
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}")]

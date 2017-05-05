@@ -5,10 +5,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using TeamworkSystem.Data;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.ViewModels.Account;
-using TeamworkSystem.Services;
+using TeamworkSystem.Services.Contracts;
 
 namespace TeamworkSystem.Controllers
 {
@@ -17,19 +16,16 @@ namespace TeamworkSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private AccountService service;
-        public AccountController(): this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
-        }
+        private IAccountService service;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, TeamworkSystemData data) : this(new TeamworkSystemData(new TeamworkSystemContext()))
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-        public AccountController(TeamworkSystemData data)
+        public AccountController(IAccountService service)
         {
-            this.service = new AccountService(data);
+            this.service = service;
         }
 
         public ApplicationSignInManager SignInManager
@@ -376,11 +372,13 @@ namespace TeamworkSystem.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, LastName = model.LastName, BirthDate = model.BirthDate, FirstName = model.FirstName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    this.service.SetProfileImage(user.Id);
+                    this.UserManager.AddToRole(user.Id, "Student");
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

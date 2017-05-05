@@ -1,27 +1,22 @@
 ﻿using System.Web.Mvc;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.BindingModels.Admin.Projects;
 using TeamworkSystem.Models.ViewModels.Admin.Projects;
-using TeamworkSystem.Services.AdminServices;
+using TeamworkSystem.Services.Contracts.Admin;
 
 namespace TeamworkSystem.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Projects")]
     public class ProjectsController : Controller
     {
-        private AdminProjectsService service;
-        public ProjectsController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
+        private IAdminProjectsService service;
+        public ProjectsController(IAdminProjectsService service)
         {
-
+            this.service = service;
         }
 
-        public ProjectsController(TeamworkSystemData data)
-        {
-            this.service = new AdminProjectsService(data);
-        }
         // GET: Admin/Projects
         [Route]
         public ActionResult Index(int? page)
@@ -38,6 +33,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("{id:int}/Delete")]
         public ActionResult Delete(int id,AdminDeleteProjectBindingModel binding)
         {

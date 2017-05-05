@@ -1,25 +1,21 @@
 ﻿using System.Web.Mvc;
-using TeamworkSystem.Data;
+using TeamworkSystem.Attributes;
 using TeamworkSystem.Models.ViewModels.Trainer.Home;
-using TeamworkSystem.Services.TrainerServices;
+using TeamworkSystem.Services.Contracts.Trainers;
 
 namespace TeamworkSystem.Areas.Trainer.Controllers
 {
-    [Authorize(Roles = "Trainer")]
+    [CustomAuthorize(Roles = "Trainer")]
     [RouteArea("Trainer")]
     [RoutePrefix("Home")]
     public class HomeController : Controller
     {
-        private TrainerHomeService service;
-        public HomeController()
-            : this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private ITrainerHomeService service;
 
-        }
 
-        public HomeController(TeamworkSystemData data)
+        public HomeController(ITrainerHomeService service)
         {
-            this.service = new TrainerHomeService(data);
+            this.service = service;
         }
 
         [Route]

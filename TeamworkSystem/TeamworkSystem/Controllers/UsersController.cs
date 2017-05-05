@@ -4,27 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
-using TeamworkSystem.Data;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.BindingModels.Users;
 using TeamworkSystem.Models.ViewModels.Users;
-using TeamworkSystem.Services;
+using TeamworkSystem.Services.Contracts;
 
 namespace TeamworkSystem.Controllers
 {
     [RoutePrefix("Users")]
     public class UsersController : Controller
     {
-        private UsersService service;
-        public UsersController()
-            :this(new TeamworkSystemData(new TeamworkSystemContext()))
-        {
+        private IUsersService service;
 
-        }
-
-        public UsersController(TeamworkSystemData data) 
+        public UsersController(IUsersService service) 
         {
-            this.service = new UsersService(data);
+            this.service = service;
         }
 
         [HttpGet]
@@ -67,6 +61,7 @@ namespace TeamworkSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("Edit")]
         [Authorize]
         public ActionResult Edit(EditUserBindingModel binding)
@@ -159,6 +154,7 @@ namespace TeamworkSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("UploadProfilePicture")]
         public ActionResult FileUpload(HttpPostedFileBase file)
         {

@@ -5,10 +5,13 @@ using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.EnitityModels;
 using TeamworkSystem.Models.ViewModels.Admin.Projects;
+using TeamworkSystem.Services.Contracts.Admin;
 
 namespace TeamworkSystem.Services.AdminServices
 {
-    public class AdminProjectsService : Service
+    
+
+    public class AdminProjectsService : Service, IAdminProjectsService
     {
         public AdminProjectsService(ITeamworkSystemData data) : base(data)
         {

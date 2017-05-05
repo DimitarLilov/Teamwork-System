@@ -5,10 +5,12 @@ using TeamworkSystem.Data.Contracts;
 using TeamworkSystem.Models;
 using TeamworkSystem.Models.EnitityModels.Users;
 using TeamworkSystem.Models.ViewModels.Admin.Users;
+using TeamworkSystem.Services.Contracts.Admin;
 
 namespace TeamworkSystem.Services.AdminServices
 {
-    public class AdminUsersService : Service
+   
+    public class AdminUsersService : Service, IAdminUsersService
     {
         public AdminUsersService(ITeamworkSystemData data) : base(data)
         {
