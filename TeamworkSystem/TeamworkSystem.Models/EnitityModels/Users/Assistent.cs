@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TeamworkSystem.Models.EnitityModels.Users
+﻿namespace TeamworkSystem.Models.EnitityModels.Users
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Assistent
     {
         public Assistent()
@@ -21,6 +21,5 @@ namespace TeamworkSystem.Models.EnitityModels.Users
         public virtual ICollection<Course> AssistingCourses { get; set; }
 
         public virtual ICollection<ProjectPoint> ProjectPoints { get; set; }
-
     }
 }

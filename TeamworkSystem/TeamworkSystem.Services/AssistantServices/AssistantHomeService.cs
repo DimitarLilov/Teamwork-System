@@ -1,13 +1,13 @@
-﻿using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.ViewModels.Assistant.Home;
-using TeamworkSystem.Services.Contracts.Assistans;
-
-namespace TeamworkSystem.Services.AssistantServices
+﻿namespace TeamworkSystem.Services.AssistantServices
 {
+    using AutoMapper;
 
-    public class AssistantHomeService:Service, IAssistantHomeService
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.ViewModels.Assistant.Home;
+    using TeamworkSystem.Services.Contracts.Assistans;
+
+    public class AssistantHomeService : Service, IAssistantHomeService
     {
         public AssistantHomeService(ITeamworkSystemData data) : base(data)
         {
@@ -19,6 +19,5 @@ namespace TeamworkSystem.Services.AssistantServices
 
             return Mapper.Map<Assistent, AssistantPanelViewModel>(assistant);
         }
-
     }
 }

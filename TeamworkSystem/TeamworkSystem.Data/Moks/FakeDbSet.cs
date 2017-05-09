@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-
-namespace TeamworkSystem.Data.Moks
+﻿namespace TeamworkSystem.Data.Moks
 {
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+
     public class FakeDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T> where T : class
     {
         protected HashSet<T> Set;
+
         protected IQueryable Query;
 
         public FakeDbSet()

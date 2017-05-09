@@ -1,9 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using TeamworkSystem.Models.Enums;
-
-namespace TeamworkSystem.Models.ViewModels.Users
+﻿namespace TeamworkSystem.Models.ViewModels.Users
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using TeamworkSystem.Models.Enums;
+
     public class EditUserViewModel
     {
         public string Username { get; set; }

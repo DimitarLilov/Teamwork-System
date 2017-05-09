@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-
-namespace TeamworkSystem.Attributes
+﻿namespace TeamworkSystem.Attributes
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
     public class CustomAuthorizeAttribute : AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)

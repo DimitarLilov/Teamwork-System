@@ -1,8 +1,9 @@
-﻿using System.Linq;
-using TeamworkSystem.Models.EnitityModels;
-
-namespace TeamworkSystem.Data.Moks.DbSet
+﻿namespace TeamworkSystem.Data.Moks.DbSet
 {
+    using System.Linq;
+
+    using TeamworkSystem.Models.EnitityModels;
+
     public class FakeCriteriaDbSet : FakeDbSet<Criteria>
     {
         public override Criteria Find(params object[] keyValues)

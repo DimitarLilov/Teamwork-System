@@ -1,6 +1,4 @@
-﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TeamworkSystem.Controllers;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TeamworkSystem.Tests.Controllers
 {

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Teams.Board
+﻿namespace TeamworkSystem.Models.ViewModels.Teams.Board
 {
+    using System.Collections.Generic;
+
     public class TeamTasksViewModel
     {
         public int TeamId { get; set; }

@@ -1,7 +1,7 @@
-﻿using TeamworkSystem.Models.ViewModels.Trainer.Home;
-
-namespace TeamworkSystem.Services.Contracts.Trainers
+﻿namespace TeamworkSystem.Services.Contracts.Trainers
 {
+    using TeamworkSystem.Models.ViewModels.Trainer.Home;
+
     public interface ITrainerHomeService
     {
         TrainerPanelViewModel GetTrainerInfo(string username);

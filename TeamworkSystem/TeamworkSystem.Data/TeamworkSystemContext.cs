@@ -1,23 +1,18 @@
-using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Data.Moks;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-
 namespace TeamworkSystem.Data
 {
+    using System.Data.Entity;
+
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class TeamworkSystemContext : IdentityDbContext<ApplicationUser>, ITeamworkSystemContext
     {
         public TeamworkSystemContext()
             : base("TeamworkSystemContext", throwIfV1Schema: false)
         {
-            
-        }
-
-        public static TeamworkSystemContext Create()
-        {
-            return new TeamworkSystemContext();
         }
 
         public IDbSet<Project> Projects { get; set; }
@@ -50,6 +45,11 @@ namespace TeamworkSystem.Data
 
         public DbContext DbContext => this;
 
+        public static TeamworkSystemContext Create()
+        {
+            return new TeamworkSystemContext();
+        }
+
         public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();
@@ -57,10 +57,15 @@ namespace TeamworkSystem.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().HasMany<TeamTask>(s => s.Tasks).WithMany(t => t.Members).Map(cs => { cs.MapLeftKey("StudentId"); cs.MapRightKey("TaskId"); cs.ToTable("StudentTask"); });
+            modelBuilder.Entity<Student>()
+                .HasMany(s => s.Tasks).WithMany(t => t.Members)
+                .Map(cs =>
+                    {
+                        cs.MapLeftKey("StudentId");
+                        cs.MapRightKey("TaskId");
+                        cs.ToTable("StudentTask");
+                    });
             base.OnModelCreating(modelBuilder);
         }
-
-
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Assistant.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Assistant.Projects
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class AssistantProjectViewModel
     {
         public int Id { get; set; }
@@ -17,6 +17,5 @@ namespace TeamworkSystem.Models.ViewModels.Assistant.Projects
         public DateTime PublishDate { get; set; }
 
         public bool IsPublic { get; set; }
-
     }
 }

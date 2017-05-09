@@ -9,6 +9,5 @@
         public string CriteriaName { get; set; }
 
         public string Value { get; set; }
-
     }
 }

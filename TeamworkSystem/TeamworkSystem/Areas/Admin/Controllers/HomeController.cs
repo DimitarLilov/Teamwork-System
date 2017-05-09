@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.ViewModels.Admin.Home;
-using TeamworkSystem.Services.Contracts.Admin;
-
-namespace TeamworkSystem.Areas.Admin.Controllers
+﻿namespace TeamworkSystem.Areas.Admin.Controllers
 {
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.ViewModels.Admin.Home;
+    using TeamworkSystem.Services.Contracts.Admin;
+
     [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Home")]
@@ -17,13 +18,14 @@ namespace TeamworkSystem.Areas.Admin.Controllers
             this.service = service;
         }
 
-        [Route()]
         // GET: Admin/Home
+        [Route]
         public ActionResult Index()
         {
             AdminPanelViewModel vm = this.service.GetAdminPanel();
-            return View(vm);
+            return this.View(vm);
         }
+
         [Authorize]
         [ChildActionOnly]
         [Route("GetImage")]
@@ -38,10 +40,11 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         [Route("AdminPanel")]
         public ActionResult AdminPanel()
         {
-            if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            if (this.Request.IsAuthenticated && this.User.IsInRole("Admin"))
             {
                 return this.PartialView("_AdminPanel");
             }
+
             return null;
         }
     }

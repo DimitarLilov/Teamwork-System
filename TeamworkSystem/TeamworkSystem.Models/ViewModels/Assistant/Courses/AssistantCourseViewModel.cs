@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Assistant.Courses
+﻿namespace TeamworkSystem.Models.ViewModels.Assistant.Courses
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class AssistantCourseViewModel
     {
         public int Id { get; set; }
@@ -19,6 +19,5 @@ namespace TeamworkSystem.Models.ViewModels.Assistant.Courses
         [Display(Name = "End Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
-
     }
 }

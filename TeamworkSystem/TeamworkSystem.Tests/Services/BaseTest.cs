@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Data.Moks;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Tests.Services
+﻿namespace TeamworkSystem.Tests.Services
 {
+    using System;
+    using System.Collections.Generic;
+
+    using TeamworkSystem.Data.Moks;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public abstract class BaseTest
     {
         protected FakeTeamworkSystemContext DbContext;
@@ -15,14 +15,13 @@ namespace TeamworkSystem.Tests.Services
         protected BaseTest()
         {
             this.DbContext = new FakeTeamworkSystemContext();
-            this.Data = new FakeTeamworkSystemData(DbContext);
+            this.Data = new FakeTeamworkSystemData(this.DbContext);
             this.SeedData();
             MapperConfig.ConfigureAutomapper();
         }
 
         protected void SeedData()
         {
-
             // Seed students
             this.Data.Students.Insert(new Student()
             {
@@ -64,14 +63,14 @@ namespace TeamworkSystem.Tests.Services
                 IdenityUserId = "asdfassasascslkjda32423",
             });
 
-            //Seed Trainer
+            // Seed Trainer
             this.Data.Trainers.Insert(new Trainer()
             {
                 Id = 1,
                 IdenityUserId = "asfq3rnbrkh2eh23rjh32",
             });
-            //criteria
 
+            // Seed criteria
             this.Data.Criteria.Insert(new Criteria()
             {
                 Id = 1,
@@ -82,6 +81,7 @@ namespace TeamworkSystem.Tests.Services
                 Id = 2,
                 Name = "test"
             });
+
             // Seed courses
             this.Data.Courses.Insert(new Course()
             {
@@ -106,8 +106,7 @@ namespace TeamworkSystem.Tests.Services
                 Description = "Rabotnici",
                 Id = 1,
                 Members = members,
-
-            });
+                                       });
 
             this.Data.Projects.Insert(new Project()
             {

@@ -1,10 +1,10 @@
-﻿using System.Data.Entity;
-using TeamworkSystem.Data.Moks;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Data.Contracts
+﻿namespace TeamworkSystem.Data.Contracts
 {
+    using System.Data.Entity;
+
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public interface ITeamworkSystemContext
     {
         IDbSet<Project> Projects { get; }
@@ -30,13 +30,15 @@ namespace TeamworkSystem.Data.Contracts
         IDbSet<Team> Teams { get; }
 
         IDbSet<TeamTask> TeamTasks { get; }
-        IDbSet<Comment> Comments { get; }
-        IDbSet<Album> Albums { get; }
 
+        IDbSet<Comment> Comments { get; }
+
+        IDbSet<Album> Albums { get; }
 
         DbContext DbContext { get; }
 
         int SaveChanges();
+
         IDbSet<T> Set<T>()
            where T : class;
     }

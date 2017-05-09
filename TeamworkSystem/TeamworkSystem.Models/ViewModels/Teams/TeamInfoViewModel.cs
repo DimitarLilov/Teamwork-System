@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Teams
+﻿namespace TeamworkSystem.Models.ViewModels.Teams
 {
+    using System.Collections.Generic;
+
     public class TeamInfoViewModel
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

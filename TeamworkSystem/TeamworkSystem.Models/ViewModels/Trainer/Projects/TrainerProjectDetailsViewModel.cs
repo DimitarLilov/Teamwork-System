@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Trainer.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Trainer.Projects
 {
+    using System.Collections.Generic;
+
     public class TrainerProjectDetailsViewModel
     {
         public TrainerProjectViewModel Project { get; set; }
@@ -9,6 +9,5 @@ namespace TeamworkSystem.Models.ViewModels.Trainer.Projects
         public IEnumerable<TrainerProjectAssistentsCriteriaViewModel> AsistentsCriteria { get; set; }
 
         public IEnumerable<TrainerProjectCriteriaViewModel> TrainerCriteria { get; set; }
-
     }
 }

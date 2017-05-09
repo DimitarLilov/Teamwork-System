@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TeamworkSystem.Models.ViewModels.Home;
-using TeamworkSystem.Services;
-
-namespace TeamworkSystem.Tests.Services
+﻿namespace TeamworkSystem.Tests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using TeamworkSystem.Models.ViewModels.Home;
+    using TeamworkSystem.Services;
+
     [TestClass]
     public class TestHomeService : BaseTest
     {

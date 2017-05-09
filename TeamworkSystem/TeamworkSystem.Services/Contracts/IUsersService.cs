@@ -10,7 +10,7 @@ namespace TeamworkSystem.Services.Contracts
 
         EditUserViewModel GetEditUser(string username);
 
-        AllUsersProjectsViewModel GetAllUsersProjects(string username);
+        AllUsersProjectsViewModel GetAllUsersPublicProjects(string username);
 
         AllUsersTeamsViewModel GetAllUsersTeams(string username, int? page);
 

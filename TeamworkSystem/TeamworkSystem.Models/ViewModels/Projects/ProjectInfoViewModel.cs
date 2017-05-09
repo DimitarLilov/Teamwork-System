@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Projects
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class ProjectInfoViewModel
     {
         public int Id { get; set; }
@@ -27,6 +27,5 @@ namespace TeamworkSystem.Models.ViewModels.Projects
         public int CommentsCount { get; set; }
 
         public bool IsActive { get; set; }
-
     }
 }

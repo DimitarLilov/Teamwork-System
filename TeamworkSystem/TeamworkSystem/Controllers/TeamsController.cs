@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.BindingModels.Teams;
-using TeamworkSystem.Models.ViewModels.Teams;
-using TeamworkSystem.Models.ViewModels.Teams.Board;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Controllers
+﻿namespace TeamworkSystem.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.BindingModels.Teams;
+    using TeamworkSystem.Models.ViewModels.Teams;
+    using TeamworkSystem.Models.ViewModels.Teams.Board;
+    using TeamworkSystem.Services.Contracts;
+
     [RoutePrefix("Teams")]
     public class TeamsController : Controller
     {
@@ -18,8 +19,8 @@ namespace TeamworkSystem.Controllers
         {
             this.service = service;
         }
-
-        //GET : /Teams/Create
+         
+        // GET : /Teams/Create
         [HttpGet]
         [Authorize]
         [Route("Create")]
@@ -29,7 +30,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //Post : /Teams/Create
+        // Post : /Teams/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -37,18 +38,18 @@ namespace TeamworkSystem.Controllers
         public ActionResult Create(CreateTeamBindingModel binding)
         {
             var username = this.User.Identity.Name;
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 int id = this.service.CreateTeam(binding, username);
 
-                return this.RedirectToAction("AddMember", "Teams", new { id = id });
+                return this.RedirectToAction("AddMember", "Teams", new { id });
             }
+
             CreateTeamViewModel vm = new CreateTeamViewModel();
             return this.View(vm);
-
         }
 
-        //GET: /Teams/Id
+        // GET: /Teams/Id
         [HttpGet]
         [Route("{id:int}")]
         public ActionResult Show(int id)
@@ -57,11 +58,12 @@ namespace TeamworkSystem.Controllers
             {
                 return this.HttpNotFound();
             }
+
             TeamViewModel vm = this.service.GetTeam(id);
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Edit
+        // GET : /Teams/Id/Edit
         [HttpGet]
         [Route("{id:int}/Edit")]
         public ActionResult Edit(int id)
@@ -70,11 +72,12 @@ namespace TeamworkSystem.Controllers
             {
                 return this.HttpNotFound();
             }
+
             var username = this.User.Identity.Name;
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(username))
             {
-                return RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             EditTeamViewModel vm = this.service.GetEditTeam(id);
@@ -82,26 +85,27 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //POST : /Teams/Id/Edit
+        // POST : /Teams/Id/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{id:int}/Edit")]
-        public ActionResult Edit(int id,EditTeamBindingModel binding)
+        public ActionResult Edit(int id, EditTeamBindingModel binding)
         {
             if (!this.service.ContainsTeam(id))
             {
                 return this.HttpNotFound();
             }
+
             var username = this.User.Identity.Name;
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(username))
             {
-                return RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                this.service.EditTeam(binding,id);
+                this.service.EditTeam(binding, id);
             }
 
             EditTeamViewModel vm = this.service.GetEditTeam(id);
@@ -109,7 +113,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Projects
+        // GET : /Teams/Id/Projects
         [HttpGet]
         [Route("{id:int}/Projects")]
         public ActionResult Projects(int id, int? page)
@@ -131,7 +135,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Courses
+        // GET : /Teams/Id/Courses
         [HttpGet]
         [Route("{id:int}/Courses")]
         public ActionResult Courses(int id, int? page)
@@ -153,7 +157,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Board
+        // GET : /Teams/Id/Board
         [HttpGet]
         [Authorize]
         [Route("{id:int}/Board")]
@@ -168,14 +172,14 @@ namespace TeamworkSystem.Controllers
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(username))
             {
-                return RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             BoardViewModel vm = this.service.GetTeamBoard(id, username);
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Board/Projects
+        // GET : /Teams/Id/Board/Projects
         [HttpGet]
         [Authorize]
         [Route("{id:int}/Board/Projects")]
@@ -189,14 +193,14 @@ namespace TeamworkSystem.Controllers
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(this.User.Identity.Name))
             {
-                return RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             BoardProjectsViewModel vm = this.service.GetTeamBoardProjects(id);
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Board/Tasks
+        // GET : /Teams/Id/Board/Tasks
         [HttpGet]
         [Authorize]
         [Route("{id:int}/Board/Tasks")]
@@ -210,13 +214,14 @@ namespace TeamworkSystem.Controllers
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(this.User.Identity.Name))
             {
-                return this.RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             TeamTasksViewModel vm = this.service.GetTeamTasks(id);
             return this.View(vm);
         }
-        //GET : /Teams/Id/Board/Members
+
+        // GET : /Teams/Id/Board/Members
         [HttpGet]
         [Authorize]
         [Route("{id:int}/Board/Member")]
@@ -230,14 +235,14 @@ namespace TeamworkSystem.Controllers
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(this.User.Identity.Name))
             {
-                return this.RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             MembersViewModel vm = this.service.GetAllMembers(id);
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Add/Member
+        // GET : /Teams/Id/Add/Member
         [HttpGet]
         [Authorize]
         [Route("{id:int}/Add/Member")]
@@ -251,19 +256,19 @@ namespace TeamworkSystem.Controllers
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(this.User.Identity.Name))
             {
-                return this.RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             AddMembersViewModel vm = new AddMembersViewModel { TeamId = id };
             return this.View(vm);
         }
 
-        //POST : /Teams/Id/Add/Member
+        // POST : /Teams/Id/Add/Member
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
         [Route("{id:int}/Add/Member")]
-        public ActionResult AddMember(int id,AddMemberBindingModel binding)
+        public ActionResult AddMember(int id, AddMemberBindingModel binding)
         {
             if (!this.service.ContainsTeam(id))
             {
@@ -271,9 +276,8 @@ namespace TeamworkSystem.Controllers
             }
 
             var user = this.service.ContainsUser(binding);
-            if (ModelState.IsValid && user)
-            {
-                
+            if (this.ModelState.IsValid && user)
+            {             
                 this.service.AddMember(id, binding);
             }
 
@@ -281,7 +285,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //GET : /Teams/Id/Add/Project
+        // GET : /Teams/Id/Add/Project
         [HttpGet]
         [Authorize]
         [Route("{id:int}/Add/Project")]
@@ -295,7 +299,7 @@ namespace TeamworkSystem.Controllers
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(this.User.Identity.Name))
             {
-                return this.RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             AddProjectViewModel vm = new AddProjectViewModel
@@ -307,22 +311,22 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //POST: /Teams/Id/Add/Project
+        // POST: /Teams/Id/Add/Project
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
         [Route("{id:int}/Add/Project")]
-        public ActionResult CreateProject(int id,AddProjectBindingModel binding)
+        public ActionResult CreateProject(int id, AddProjectBindingModel binding)
         {
             if (!this.service.ContainsTeam(id))
             {
                 return this.HttpNotFound();
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.CreateProject(id, binding);
-                return this.RedirectToAction("BoardProjects", new {id = id});
+                return this.RedirectToAction("BoardProjects", new { id });
             }
 
             AddProjectViewModel vm = new AddProjectViewModel
@@ -334,8 +338,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-
-        //GET: /Teams/Id/Add/Task
+        // GET: /Teams/Id/Add/Task
         [HttpGet]
         [Authorize]
         [Route("{id:int}/Add/Task")]
@@ -349,7 +352,7 @@ namespace TeamworkSystem.Controllers
             IEnumerable<string> members = this.service.GetMembersName(id);
             if (!members.Contains(this.User.Identity.Name))
             {
-                return this.RedirectToAction("Show", "Teams", new { id = id });
+                return this.RedirectToAction("Show", "Teams", new { id });
             }
 
             AddTaskViewModel vm = this.service.GetTeamInfoForTask(id);
@@ -357,7 +360,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //POST : /Teams/Id/Add/Task
+        // POST : /Teams/Id/Add/Task
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -370,10 +373,10 @@ namespace TeamworkSystem.Controllers
             }
 
             var currentUser = this.User.Identity.Name;
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.AddTask(id, binding, currentUser);
-                return this.RedirectToAction("Tasks", "Teams", new {id = id});
+                return this.RedirectToAction("Tasks", "Teams", new { id });
             }
 
             AddTaskViewModel vm = this.service.GetTeamInfoForTask(id);
@@ -381,7 +384,7 @@ namespace TeamworkSystem.Controllers
             return this.View(vm);
         }
 
-        //POST : /Teams/Id/Tasks/Complete
+        // POST : /Teams/Id/Tasks/Complete
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -393,13 +396,12 @@ namespace TeamworkSystem.Controllers
                 return this.HttpNotFound();
             }
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.CompleteTasks(binding);
             }
 
-            return this.RedirectToAction("Tasks", new {id = id});
-
+            return this.RedirectToAction("Tasks", new { id });
         }
 
         [Authorize]
@@ -429,7 +431,7 @@ namespace TeamworkSystem.Controllers
 
             var username = usernames.Where(u => u.StartsWith(prefix.ToLower()));
 
-            return Json(username, JsonRequestBehavior.AllowGet);
+            return this.Json(username, JsonRequestBehavior.AllowGet);
         }
 
         [ChildActionOnly]
@@ -444,6 +446,5 @@ namespace TeamworkSystem.Controllers
 
             return null;
         }
-
     }
 }

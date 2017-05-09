@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-
-namespace TeamworkSystem.Data.Contracts
+﻿namespace TeamworkSystem.Data.Contracts
 {
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+
     public interface IRepository<T>
     {
         void Insert(T entity);

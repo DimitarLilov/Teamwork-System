@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using TeamworkSystem.Models.BindingModels.Trainer.Courses;
-using TeamworkSystem.Models.ViewModels.Trainer.Courses;
-
-namespace TeamworkSystem.Services.Contracts.Trainers
+﻿namespace TeamworkSystem.Services.Contracts.Trainers
 {
+    using System.Collections.Generic;
+
+    using TeamworkSystem.Models.BindingModels.Trainer.Courses;
+    using TeamworkSystem.Models.ViewModels.Trainer.Courses;
+
     public interface ITrainerCoursesService
     {
         TrainerAllCourseViewModel GetTrainerCourses(int? page, string username);
+
         bool LeadingCourses(string username, int id);
 
         TrainerCourseDetailsViewModel GetCourseDetails(int id);
@@ -27,5 +29,4 @@ namespace TeamworkSystem.Services.Contracts.Trainers
 
         void AddCriteria(int id, TrainerCriteriaBindingModel binding);
     }
-
 }

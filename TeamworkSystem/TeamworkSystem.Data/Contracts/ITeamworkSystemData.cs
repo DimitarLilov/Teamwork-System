@@ -1,8 +1,8 @@
-﻿using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Data.Contracts
+﻿namespace TeamworkSystem.Data.Contracts
 {
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public interface ITeamworkSystemData
     {
         IRepository<Project> Projects { get; }
@@ -32,6 +32,7 @@ namespace TeamworkSystem.Data.Contracts
         IRepository<ApplicationUser> User { get; }
 
         IRepository<Comment> Comments { get; }
+
         IRepository<Album> Albums { get; }
 
         ITeamworkSystemContext Context { get; }

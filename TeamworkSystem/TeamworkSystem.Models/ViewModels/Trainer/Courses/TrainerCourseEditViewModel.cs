@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Trainer.Courses
+﻿namespace TeamworkSystem.Models.ViewModels.Trainer.Courses
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class TrainerCourseEditViewModel
     {
         public int Id { get; set; }
@@ -12,6 +12,5 @@ namespace TeamworkSystem.Models.ViewModels.Trainer.Courses
 
         [Display(Name = "Max Grade")]
         public decimal MaxGrade { get; set; }
-
     }
 }

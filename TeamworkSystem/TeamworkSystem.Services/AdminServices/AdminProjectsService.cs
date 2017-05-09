@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.ViewModels.Admin.Projects;
-using TeamworkSystem.Services.Contracts.Admin;
-
-namespace TeamworkSystem.Services.AdminServices
+﻿namespace TeamworkSystem.Services.AdminServices
 {
-    
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.ViewModels.Admin.Projects;
+    using TeamworkSystem.Services.Contracts.Admin;
 
     public class AdminProjectsService : Service, IAdminProjectsService
     {
@@ -21,8 +21,12 @@ namespace TeamworkSystem.Services.AdminServices
         {
             IEnumerable<Project> projects = this.data.Projects.GetAll();
 
-            AdminAllProjectsViewModel vm = new AdminAllProjectsViewModel();
-            vm.Projects = Mapper.Map<IEnumerable<Project>, IEnumerable<AdminProjectViewModel>>(projects);
+            AdminAllProjectsViewModel vm =
+                new AdminAllProjectsViewModel
+                {
+                    Projects = Mapper
+                            .Map<IEnumerable<Project>, IEnumerable<AdminProjectViewModel>>(projects)
+                };
 
             var projectsPage = vm.Projects;
             var pager = new Pager(projectsPage.Count(), page);

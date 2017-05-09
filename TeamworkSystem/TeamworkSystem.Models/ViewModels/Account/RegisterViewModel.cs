@@ -1,8 +1,8 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-
 namespace TeamworkSystem.Models.ViewModels.Account
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class RegisterViewModel
     {
         [Required]
@@ -37,7 +37,5 @@ namespace TeamworkSystem.Models.ViewModels.Account
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-
     }
 }

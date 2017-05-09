@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.ViewModels.Trainer.Projects;
-using TeamworkSystem.Services.Contracts.Trainers;
-
-namespace TeamworkSystem.Services.TrainerServices
+﻿namespace TeamworkSystem.Services.TrainerServices
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.ViewModels.Trainer.Projects;
+    using TeamworkSystem.Services.Contracts.Trainers;
 
     public class TrainerProjectsService : Service, ITrainerProjectsService
     {
@@ -22,8 +23,12 @@ namespace TeamworkSystem.Services.TrainerServices
                 this.data.Trainers.FindByPredicate(a => a.IdentityUser.UserName == username)
                     .LeadingCourses.SelectMany(c => c.Projects);
 
-            TrainerAllProjectsViewModel vm = new TrainerAllProjectsViewModel();
-            vm.Projects = Mapper.Map<IEnumerable<Project>, IEnumerable<TrainerProjectViewModel>>(projects);
+            TrainerAllProjectsViewModel vm =
+                new TrainerAllProjectsViewModel
+                {
+                    Projects = Mapper
+                            .Map<IEnumerable<Project>, IEnumerable<TrainerProjectViewModel>>(projects)
+                };
 
             var projectsPage = vm.Projects;
             var pager = new Pager(projectsPage.Count(), page);
@@ -34,20 +39,26 @@ namespace TeamworkSystem.Services.TrainerServices
             return vm;
         }
 
-        public TrainerProjectDetailsViewModel GetProjectDetails(string username ,int id)
+        public TrainerProjectDetailsViewModel GetProjectDetails(string username, int id)
         {
-
             var project = this.data.Projects.GetById(id);
             var trainerCriteria =
                 this.data.ProjectCriteria.GetAll().Where(p => p.ProjectId == id).Where(p => p.PointTrainer.IdentityUser.UserName == username);
             var assistentsCriteria =
                 this.data.ProjectCriteria.GetAll().Where(p => p.ProjectId == id).Where(p => p.PointTrainer.IdentityUser.UserName != username);
 
-            TrainerProjectDetailsViewModel vm = new TrainerProjectDetailsViewModel();
-            vm.Project = Mapper.Map<Project, TrainerProjectViewModel>(project);
-            vm.AsistentsCriteria =
-                Mapper.Map<IEnumerable<ProjectPoint>, IEnumerable<TrainerProjectAssistentsCriteriaViewModel>>(assistentsCriteria);
-            vm.TrainerCriteria = Mapper.Map<IEnumerable<ProjectPoint>, IEnumerable<TrainerProjectCriteriaViewModel>>(trainerCriteria);
+            TrainerProjectDetailsViewModel vm =
+                new TrainerProjectDetailsViewModel
+                {
+                    Project = Mapper.Map<Project, TrainerProjectViewModel>(project),
+                    AsistentsCriteria =
+                            Mapper
+                                .Map<IEnumerable<ProjectPoint>, IEnumerable<TrainerProjectAssistentsCriteriaViewModel>>(
+                                assistentsCriteria),
+                    TrainerCriteria = Mapper
+                            .Map<IEnumerable<ProjectPoint>, IEnumerable<TrainerProjectCriteriaViewModel>>(
+                                trainerCriteria)
+                };
 
             return vm;
         }

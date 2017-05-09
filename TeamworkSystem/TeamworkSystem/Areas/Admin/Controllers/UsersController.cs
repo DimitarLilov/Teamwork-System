@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.ViewModels.Admin.Users;
-using TeamworkSystem.Services.Contracts.Admin;
-
-namespace TeamworkSystem.Areas.Admin.Controllers
+﻿namespace TeamworkSystem.Areas.Admin.Controllers
 {
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.ViewModels.Admin.Users;
+    using TeamworkSystem.Services.Contracts.Admin;
+
     [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Users")]
@@ -23,8 +24,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         {
             AdminAllUsersViewModel vm = this.service.GetAllUsers(page);
 
-            return View(vm);
+            return this.View(vm);
         }
-
     }
 }

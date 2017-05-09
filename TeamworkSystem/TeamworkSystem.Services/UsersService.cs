@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.BindingModels.Users;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.Enums;
-using TeamworkSystem.Models.ViewModels.Users;
-using TeamworkSystem.Services.Contracts;
-using TeamworkSystem.Utillities.Constants;
-
-namespace TeamworkSystem.Services
+﻿namespace TeamworkSystem.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.BindingModels.Users;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.Enums;
+    using TeamworkSystem.Models.ViewModels.Users;
+    using TeamworkSystem.Services.Contracts;
+    using TeamworkSystem.Utillities.Constants;
+
     public class UsersService : Service, IUsersService
     {
         public UsersService(ITeamworkSystemData data) : base(data)
         {
-
         }
 
         public ProfileViewModel GetUserProfile(string username)
@@ -37,10 +38,8 @@ namespace TeamworkSystem.Services
             IEnumerable<Student> colaboration =
                 student.Teams.SelectMany(t => t.Members.Where(m => m.IdenityUserId != user.Id)).Distinct().Take(4);
 
-
             viewModel.Collaborators =
                 Mapper.Map<IEnumerable<Student>, IEnumerable<CollaborationUserViewModel>>(colaboration);
-
 
             return viewModel;
         }
@@ -52,7 +51,7 @@ namespace TeamworkSystem.Services
             return vm;
         }
 
-        public AllUsersProjectsViewModel GetAllUsersProjects(string username)
+        public AllUsersProjectsViewModel GetAllUsersPublicProjects(string username)
         {
             AllUsersProjectsViewModel viewModel = new AllUsersProjectsViewModel { Username = username };
             ApplicationUser user = this.data.User.FindByPredicate(u => u.UserName == username);
@@ -108,7 +107,7 @@ namespace TeamworkSystem.Services
 
         public void EditUser(string username, EditUserBindingModel binding)
         {
-            var user = data.User.FindByPredicate(u => u.UserName == username);
+            var user = this.data.User.FindByPredicate(u => u.UserName == username);
             user.FirstName = binding.FirstName;
             user.LastName = binding.LastName;
             user.WebSite = binding.WebSite;

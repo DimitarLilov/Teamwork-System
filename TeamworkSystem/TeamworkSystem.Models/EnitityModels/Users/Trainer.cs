@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TeamworkSystem.Models.EnitityModels.Users
+﻿namespace TeamworkSystem.Models.EnitityModels.Users
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Trainer
     {
         public Trainer()

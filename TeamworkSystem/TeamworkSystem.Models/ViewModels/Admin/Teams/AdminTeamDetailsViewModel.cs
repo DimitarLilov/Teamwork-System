@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Admin.Teams
+﻿namespace TeamworkSystem.Models.ViewModels.Admin.Teams
 {
+    using System.Collections.Generic;
+
     public class AdminTeamDetailsViewModel
     {
         public AdminTeamViewModel Team { get; set; }

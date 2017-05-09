@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.ViewModels.Home;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Services
+﻿namespace TeamworkSystem.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.ViewModels.Home;
+    using TeamworkSystem.Services.Contracts;
 
     public class HomeService : Service, IHomeService
     {
         public HomeService(ITeamworkSystemData data) : base(data)
         {
         }
-
 
         public string GetUserPhoto(string identityName)
         {

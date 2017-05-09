@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.BindingModels.Admin.Courses
+﻿namespace TeamworkSystem.Models.BindingModels.Admin.Courses
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class AdminEditCourseBindingModel
     {
         public string Description { get; set; }

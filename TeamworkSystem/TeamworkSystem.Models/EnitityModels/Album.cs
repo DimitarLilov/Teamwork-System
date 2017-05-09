@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System.Collections.Generic;
+
     public class Album
     {
         public Album()
         {
             this.Photos = new HashSet<Photo>();
         }
+
         public int Id { get; set; }
 
         public string Name { get; set; }

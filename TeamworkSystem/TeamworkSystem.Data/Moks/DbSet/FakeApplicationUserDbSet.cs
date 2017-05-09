@@ -1,8 +1,9 @@
-﻿using System.Linq;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Data.Moks.DbSet
+﻿namespace TeamworkSystem.Data.Moks.DbSet
 {
+    using System.Linq;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class FakeApplicationUserDbSet : FakeDbSet<ApplicationUser>
     {
         public override ApplicationUser Find(params object[] keyValues)

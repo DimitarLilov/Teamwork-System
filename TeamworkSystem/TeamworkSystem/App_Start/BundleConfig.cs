@@ -1,7 +1,7 @@
-﻿using System.Web.Optimization;
-
-namespace TeamworkSystem
+﻿namespace TeamworkSystem
 {
+    using System.Web.Optimization;
+
     public class BundleConfig
     {
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862

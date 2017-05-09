@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Teams
+﻿namespace TeamworkSystem.Models.ViewModels.Teams
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class AddTaskViewModel
     {
         public int TeamId { get; set; }

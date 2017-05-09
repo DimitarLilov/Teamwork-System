@@ -1,11 +1,12 @@
-﻿using System.Data.Entity;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Data.Moks.DbSet;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Data.Moks
+﻿namespace TeamworkSystem.Data.Moks
 {
+    using System.Data.Entity;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Data.Moks.DbSet;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class FakeTeamworkSystemContext : DbContext, ITeamworkSystemContext
     {
         public FakeTeamworkSystemContext()
@@ -22,7 +23,7 @@ namespace TeamworkSystem.Data.Moks
             this.Skills = new FakeSkillDbSet();
             this.Teams = new FakeTeamDbSet();
             this.TeamTasks = new FakeTeamTaskDbSet();
-            this.Comments= new FakeCommentDbSet();
+            this.Comments = new FakeCommentDbSet();
             this.Albums = new FakeAlbumDbSet();
         }
 
@@ -54,17 +55,16 @@ namespace TeamworkSystem.Data.Moks
 
         public IDbSet<Album> Albums { get; set; }
 
+        public DbContext DbContext => new FakeTeamworkSystemContext();
 
         public new IDbSet<T> Set<T>() where T : class
         {
             return new FakeDbSet<T>();
         }
 
-        public int SaveChanges()
+        public override int SaveChanges()
         {
             return 0;
         }
-
-        public DbContext DbContext => new FakeTeamworkSystemContext();
     }
 }

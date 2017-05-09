@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Trainer.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Trainer.Projects
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class TrainerProjectViewModel
     {
         public int Id { get; set; }

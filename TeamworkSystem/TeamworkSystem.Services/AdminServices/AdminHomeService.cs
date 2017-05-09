@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models.ViewModels.Admin.Home;
-using TeamworkSystem.Services.Contracts.Admin;
-
-namespace TeamworkSystem.Services.AdminServices
+﻿namespace TeamworkSystem.Services.AdminServices
 {
-    
+    using System.Linq;
 
-    public class AdminHomeService :Service, IAdminHomeService
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models.ViewModels.Admin.Home;
+    using TeamworkSystem.Services.Contracts.Admin;
+
+    public class AdminHomeService : Service, IAdminHomeService
     {
         public AdminHomeService(ITeamworkSystemData data) : base(data)
         {
@@ -32,5 +31,4 @@ namespace TeamworkSystem.Services.AdminServices
             return vm;
         }
     }
-
 }

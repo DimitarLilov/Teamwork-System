@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.BindingModels.Teams
+﻿namespace TeamworkSystem.Models.BindingModels.Teams
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class AddTaskBindingModel
     {
         public string Author { get; set; }

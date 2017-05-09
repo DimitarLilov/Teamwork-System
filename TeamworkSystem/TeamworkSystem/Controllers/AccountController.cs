@@ -1,16 +1,19 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.ViewModels.Account;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Controllers
+﻿namespace TeamworkSystem.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.ViewModels.Account;
+    using TeamworkSystem.Services.Contracts;
+    using TeamworkSystem.Services.Identity;
+
     [Authorize]
     public class AccountController : Controller
     {

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System;
+    using System.Collections.Generic;
+
     public class Project
     {
         public Project()
@@ -10,6 +10,7 @@ namespace TeamworkSystem.Models.EnitityModels
             this.Points = new HashSet<ProjectPoint>();
             this.Comments = new HashSet<Comment>();
         }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -41,6 +42,5 @@ namespace TeamworkSystem.Models.EnitityModels
         public virtual ICollection<ProjectPoint> Points { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
-
     }
 }

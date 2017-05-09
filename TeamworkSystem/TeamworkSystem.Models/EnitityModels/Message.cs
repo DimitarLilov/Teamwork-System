@@ -1,8 +1,9 @@
-﻿using System;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class Message
     {
         public int Id { get; set; }
@@ -12,6 +13,5 @@ namespace TeamworkSystem.Models.EnitityModels
         public string Content { get; set; }
 
         public DateTime DateCreated { get; set; }
-
     }
 }

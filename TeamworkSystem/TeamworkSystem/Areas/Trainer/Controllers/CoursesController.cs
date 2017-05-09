@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.BindingModels.Trainer.Courses;
-using TeamworkSystem.Models.ViewModels.Trainer.Courses;
-using TeamworkSystem.Services.Contracts.Trainers;
-
-namespace TeamworkSystem.Areas.Trainer.Controllers
+﻿namespace TeamworkSystem.Areas.Trainer.Controllers
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.BindingModels.Trainer.Courses;
+    using TeamworkSystem.Models.ViewModels.Trainer.Courses;
+    using TeamworkSystem.Services.Contracts.Trainers;
+
     [CustomAuthorize(Roles = "Trainer")]
     [RouteArea("Trainer")]
     [RoutePrefix("Courses")]
@@ -25,7 +26,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
         {
             var username = this.User.Identity.Name;
             TrainerAllCourseViewModel vm = this.service.GetTrainerCourses(page, username);
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Trainer/Courses/Details/5
@@ -37,8 +38,9 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
             {
                 return this.RedirectToAction("Index", "Courses");
             }
+
             TrainerCourseDetailsViewModel vm = this.service.GetCourseDetails(id);
-            return View(vm);
+            return this.View(vm);
         }
 
         [HttpPost]
@@ -46,10 +48,10 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
         [Route("{id:int}")]
         public ActionResult Details(int id, IEnumerable<TrainerProjectActiveBindingModel> binding)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.ActivateProject(binding);
-                return this.RedirectToAction("Details", new { id = id });
+                return this.RedirectToAction("Details", new { id });
             }
 
             var username = this.User.Identity.Name;
@@ -59,7 +61,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
             }
 
             TrainerCourseDetailsViewModel vm = this.service.GetCourseDetails(id);
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Trainer/Courses/Edit/5
@@ -73,7 +75,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
             }
 
             TrainerCourseEditViewModel vm = this.service.GetEditCourse(id);
-            return View(vm);
+            return this.View(vm);
         }
 
         // POST: Trainer/Courses/Edit/5
@@ -82,13 +84,14 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
         [Route("{id:int}/Edit")]
         public ActionResult Edit(int id, TrainerCourseEditBindingModel binding)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.EditCourse(id, binding);
-                return this.RedirectToAction("Edit", "Courses", new { id = id });
+                return this.RedirectToAction("Edit", "Courses", new { id });
             }
+
             TrainerCourseEditViewModel vm = this.service.GetEditCourse(id);
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Trainer/Courses/5/Assistants
@@ -102,7 +105,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
             }
 
             TrainerCourseAssistantsViewModel vm = this.service.GetCourseAssistents(id);
-            return View(vm);
+            return this.View(vm);
         }
 
         // POST: Trainer/Courses/5/Assistants
@@ -113,17 +116,17 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
         {
             if (!this.service.ContainsUser(binding.Username))
             {
-
-                return this.RedirectToAction("Assistants", "Courses", new { id = id });
+                return this.RedirectToAction("Assistants", "Courses", new { id });
             }
-            if (ModelState.IsValid)
+
+            if (this.ModelState.IsValid)
             {
                 this.service.AddAssistant(id, binding);
-                return this.RedirectToAction("Assistants", "Courses", new { id = id });
+                return this.RedirectToAction("Assistants", "Courses", new { id });
             }
 
             TrainerCourseAssistantsViewModel vm = this.service.GetCourseAssistents(id);
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Trainer/Courses/5/Criteria
@@ -137,7 +140,7 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
             }
 
             TrainerCourseCriteriaViewModel vm = this.service.GetCourseCriteria(id);
-            return View(vm);
+            return this.View(vm);
         }
 
         // POST: Trainer/Courses/5/Criteria
@@ -146,14 +149,14 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
         [Route("{id:int}/Criteria")]
         public ActionResult Criteria(int id, TrainerCriteriaBindingModel binding)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.AddCriteria(id, binding);
-                return this.RedirectToAction("Criteria", "Courses", new { id = id });
+                return this.RedirectToAction("Criteria", "Courses", new { id });
             }
 
-            TrainerCourseAssistantsViewModel vm = this.service.GetCourseAssistents(id);
-            return View(vm);
+            TrainerCourseCriteriaViewModel vm = this.service.GetCourseCriteria(id);
+            return this.View(vm);
         }
     }
 }

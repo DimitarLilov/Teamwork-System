@@ -7,6 +7,5 @@
         public string FullName { get; set; }
 
         public string ProfilePhoto { get; set; }
-
     }
 }

@@ -1,14 +1,18 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Owin;
-using TeamworkSystem.Data;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem
+﻿namespace TeamworkSystem
 {
+    using System;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin;
+    using Microsoft.Owin.Security.Cookies;
+
+    using Owin;
+
+    using TeamworkSystem.Data;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Services.Identity;
+
     public partial class Startup
     {
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864

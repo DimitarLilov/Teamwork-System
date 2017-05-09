@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.BindingModels.Admin.Courses;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.ViewModels.Admin.Courses;
-using TeamworkSystem.Services.Contracts.Admin;
-using TeamworkSystem.Utillities.Constants;
-
-namespace TeamworkSystem.Services.AdminServices
+﻿namespace TeamworkSystem.Services.AdminServices
 {
+    using System.Collections.Generic;
+    using System.Linq;
 
+    using AutoMapper;
 
-    public class AdminCoursesService:Service, IAdminCoursesService
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.BindingModels.Admin.Courses;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.ViewModels.Admin.Courses;
+    using TeamworkSystem.Services.Contracts.Admin;
+    using TeamworkSystem.Utillities.Constants;
+
+    public class AdminCoursesService : Service, IAdminCoursesService
     {
         public AdminCoursesService(ITeamworkSystemData data) : base(data)
         {
@@ -49,20 +50,13 @@ namespace TeamworkSystem.Services.AdminServices
 
             this.CreateTreinerRole(user.Id);
 
-            Trainer trainer = new Trainer();
-            trainer.IdenityUserId = user.Id;
+            Trainer trainer = new Trainer { IdenityUserId = user.Id };
             this.data.Trainers.Insert(trainer);
 
             course.Trainer = trainer;
 
             this.data.Courses.Insert(course);
             this.data.SaveChanges();
-        }
-
-        private void CreateTreinerRole(string userId)
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.data.Context.DbContext));
-            userManager.AddToRole(userId, "Trainer");
         }
 
         public AdminEditCourseViewModel GetEditCourse(int id)
@@ -93,6 +87,12 @@ namespace TeamworkSystem.Services.AdminServices
             this.data.Photos.Insert(photo);
             this.data.Courses.GetById(id).CoursePhoto = photo;
             this.data.SaveChanges();
+        }
+
+        private void CreateTreinerRole(string userId)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.data.Context.DbContext));
+            userManager.AddToRole(userId, "Trainer");
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Teams
+﻿namespace TeamworkSystem.Models.ViewModels.Teams
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class AddMembersViewModel
     {
         public int TeamId { get; set; }

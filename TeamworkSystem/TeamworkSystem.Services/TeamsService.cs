@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models.BindingModels.Teams;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.ViewModels.Courses;
-using TeamworkSystem.Models.ViewModels.Projects;
-using TeamworkSystem.Models.ViewModels.Teams;
-using TeamworkSystem.Models.ViewModels.Teams.Board;
-using TeamworkSystem.Services.Contracts;
-using TeamworkSystem.Utillities.Constants;
-
-namespace TeamworkSystem.Services
+﻿namespace TeamworkSystem.Services
 {
-   
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models.BindingModels.Teams;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.ViewModels.Courses;
+    using TeamworkSystem.Models.ViewModels.Projects;
+    using TeamworkSystem.Models.ViewModels.Teams;
+    using TeamworkSystem.Models.ViewModels.Teams.Board;
+    using TeamworkSystem.Services.Contracts;
+    using TeamworkSystem.Utillities.Constants;
 
     public class TeamsService : Service, ITeamsService
     {
         public TeamsService(ITeamworkSystemData data) : base(data)
         {
-
         }
 
         public TeamViewModel GetTeam(int id)
@@ -38,7 +37,6 @@ namespace TeamworkSystem.Services
 
             return vm;
         }
-
 
         public IEnumerable<string> GetMembersName(int id)
         {
@@ -67,8 +65,7 @@ namespace TeamworkSystem.Services
         {
             AllTeamsCoursesViewModel viewModel = new AllTeamsCoursesViewModel { Id = id };
 
-
-            IEnumerable<Course> courses = data.Teams.GetById(id).Projects.Select(p => p.Course).Distinct();
+            IEnumerable<Course> courses = this.data.Teams.GetById(id).Projects.Select(p => p.Course).Distinct();
 
             viewModel.Courses = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
 
@@ -80,7 +77,7 @@ namespace TeamworkSystem.Services
             Team team = this.data.Teams.GetById(id);
             BoardViewModel vm = new BoardViewModel { TeamId = id };
 
-            var tasks = team.Tasks.Where(t => t.IsComplet == true);
+            var tasks = team.Tasks.Where(t => t.IsComplet);
 
             var myTasks =
                 this.data.Students.FindByPredicate(s => s.IdentityUser.UserName == username)
@@ -93,7 +90,7 @@ namespace TeamworkSystem.Services
 
         public TeamTasksViewModel GetTeamTasks(int id)
         {
-            TeamTasksViewModel vm = new TeamTasksViewModel {TeamId = id};
+            TeamTasksViewModel vm = new TeamTasksViewModel { TeamId = id };
             Team team = this.data.Teams.GetById(id);
 
             IEnumerable<TeamTask> tasks = team.Tasks.Where(t => t.IsComplet == false);
@@ -120,7 +117,6 @@ namespace TeamworkSystem.Services
             return team.Id;
         }
 
-
         public void AddMember(int id, AddMemberBindingModel binding)
         {
             Student member = this.data.Students.FindByPredicate(s => s.IdentityUser.UserName == binding.Username);
@@ -135,7 +131,7 @@ namespace TeamworkSystem.Services
 
         public AddTaskViewModel GetTeamInfoForTask(int id)
         {
-            AddTaskViewModel vm = new AddTaskViewModel {TeamId = id};
+            AddTaskViewModel vm = new AddTaskViewModel { TeamId = id };
 
             var members = this.data.Teams.GetById(id).Members;
             vm.Members =
@@ -146,19 +142,21 @@ namespace TeamworkSystem.Services
 
         public void AddTask(int id, AddTaskBindingModel binding, string username)
         {
-
             TeamTask task = new TeamTask
-            {
-                Content = binding.Content,
-                EndDate = binding.EndDate,
-                StartDate = binding.StartDate
-            };
-            task.Author = this.data.Students.FindByPredicate(s => s.IdentityUser.UserName == username);
+                                {
+                                    Content = binding.Content,
+                                    EndDate = binding.EndDate,
+                                    StartDate = binding.StartDate,
+                                    Author = this.data.Students.FindByPredicate(
+                                        s => s.IdentityUser.UserName == username)
+                                };
+
             foreach (var user in binding.Username)
             {
                 var member = this.data.Students.FindByPredicate(s => s.IdentityUser.UserName == user);
                 task.Members.Add(member);
             }
+
             this.data.TeamTasks.Insert(task);
             this.data.Teams.GetById(id).Tasks.Add(task);
             this.data.SaveChanges();
@@ -172,6 +170,7 @@ namespace TeamworkSystem.Services
                 task.EndDate = DateTime.Now;
                 task.IsComplet = true;
             }
+
             this.data.SaveChanges();
         }
 
@@ -216,7 +215,6 @@ namespace TeamworkSystem.Services
         public bool ContainsTeam(int id)
         {
             return this.data.Teams.FindByPredicate(t => t.Id == id) != null;
-
         }
 
         public BoardInfoViewModel GetBoardInfo(int id)
@@ -227,7 +225,7 @@ namespace TeamworkSystem.Services
 
         public MembersViewModel GetAllMembers(int id)
         {
-            MembersViewModel vm = new MembersViewModel {TeamId = id};
+            MembersViewModel vm = new MembersViewModel { TeamId = id };
             IEnumerable<Student> members = this.data.Teams.GetById(id).Members;
             vm.Members = Mapper.Map<IEnumerable<Student>, IEnumerable<BoardMemberViewModel>>(members);
             return vm;
@@ -242,7 +240,7 @@ namespace TeamworkSystem.Services
 
         public void EditTeam(EditTeamBindingModel binding, int id)
         {
-            var team =this.data.Teams.GetById(id);
+            var team = this.data.Teams.GetById(id);
             team.Description = binding.Description;
 
             this.data.SaveChanges();

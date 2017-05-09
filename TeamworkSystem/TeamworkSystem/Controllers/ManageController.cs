@@ -1,14 +1,17 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using TeamworkSystem.Models.ViewModels.Manage;
-
-namespace TeamworkSystem.Controllers
+﻿namespace TeamworkSystem.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using TeamworkSystem.Models.ViewModels.Manage;
+    using TeamworkSystem.Services.Identity;
+
     [Authorize]
     public class ManageController : Controller
     {

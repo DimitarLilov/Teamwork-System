@@ -1,19 +1,20 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
-using TeamworkSystem.Data.Contracts;
-
-namespace TeamworkSystem.Data.Repositories
+﻿namespace TeamworkSystem.Data.Repositories
 {
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Linq.Expressions;
+
+    using TeamworkSystem.Data.Contracts;
+
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected virtual IDbSet<T> EntityTable { get; set; }
-
         public Repository(ITeamworkSystemContext context)
         {
             this.EntityTable = context.Set<T>();
         }
+
+        protected virtual IDbSet<T> EntityTable { get; set; }
 
         public void Insert(T entity)
         {

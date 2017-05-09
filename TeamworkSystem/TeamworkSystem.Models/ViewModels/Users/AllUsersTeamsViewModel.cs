@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Users
+﻿namespace TeamworkSystem.Models.ViewModels.Users
 {
+    using System.Collections.Generic;
+
     public class AllUsersTeamsViewModel
     {
         public string Username { get; set; }

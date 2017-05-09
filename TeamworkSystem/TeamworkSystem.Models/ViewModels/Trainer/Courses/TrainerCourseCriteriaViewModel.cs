@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Trainer.Courses
+﻿namespace TeamworkSystem.Models.ViewModels.Trainer.Courses
 {
+    using System.Collections.Generic;
+
     public class TrainerCourseCriteriaViewModel
     {
         public TrainerCourseViewModel Course { get; set; }

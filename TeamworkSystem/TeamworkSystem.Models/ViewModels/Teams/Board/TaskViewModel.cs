@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Teams.Board
+﻿namespace TeamworkSystem.Models.ViewModels.Teams.Board
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class TaskViewModel
     {
         public int Id { get; set; }
+
         public string Author { get; set; }
 
         public string Content { get; set; }

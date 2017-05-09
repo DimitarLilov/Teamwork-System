@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class ProjectPoint
     {
         public int Id { get; set; }
@@ -22,6 +23,5 @@ namespace TeamworkSystem.Models.EnitityModels
         public virtual Assistent PointAssistent { get; set; }
 
         public virtual Trainer PointTrainer { get; set; }
-
     }
 }

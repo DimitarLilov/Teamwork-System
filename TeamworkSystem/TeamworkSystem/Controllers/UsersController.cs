@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.BindingModels.Users;
-using TeamworkSystem.Models.ViewModels.Users;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Controllers
+﻿namespace TeamworkSystem.Controllers
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.Ajax.Utilities;
+
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.BindingModels.Users;
+    using TeamworkSystem.Models.ViewModels.Users;
+    using TeamworkSystem.Services.Contracts;
+
     [RoutePrefix("Users")]
     public class UsersController : Controller
     {
@@ -32,8 +34,9 @@ namespace TeamworkSystem.Controllers
 
             if (username.IsNullOrWhiteSpace() || username == this.User.Identity.Name)
             {
-                return RedirectToAction("MyProfile", "Users");
+                return this.RedirectToAction("MyProfile", "Users");
             }
+
             ProfileViewModel vm = this.service.GetUserProfile(username);
             return this.View(vm);
         }
@@ -67,9 +70,9 @@ namespace TeamworkSystem.Controllers
         public ActionResult Edit(EditUserBindingModel binding)
         {
             string username = this.User.Identity.Name;
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                this.service.EditUser(username,binding);
+                this.service.EditUser(username, binding);
                 return this.RedirectToAction("MyProfile");
             }
 
@@ -87,8 +90,7 @@ namespace TeamworkSystem.Controllers
             }
 
             AllUsersTeamsViewModel vm = this.service.GetAllUsersTeams(username, page);
-
-           
+ 
             return this.View(vm);
         }
 
@@ -101,7 +103,7 @@ namespace TeamworkSystem.Controllers
                 return this.HttpNotFound();
             }
 
-            AllUsersProjectsViewModel vm = this.service.GetAllUsersProjects(username);
+            AllUsersProjectsViewModel vm = this.service.GetAllUsersPublicProjects(username);
 
             var projects = vm.Projects;
             var pager = new Pager(projects.Count(), page);
@@ -162,15 +164,14 @@ namespace TeamworkSystem.Controllers
             if (file != null)
             {
                 string pic = Path.GetFileName(file.FileName);
-                string path = Path.Combine(Server.MapPath("~/images/profile"), pic);
+                string path = Path.Combine(this.Server.MapPath("~/images/profile"), pic);
 
                 file.SaveAs(path);
-
 
                 this.service.AddImage(pic, username);
             }
 
-            return RedirectToAction("MyProfile", "Users");
+            return this.RedirectToAction("MyProfile", "Users");
         }
 
         [HttpPost]
@@ -181,7 +182,7 @@ namespace TeamworkSystem.Controllers
 
             var username = usernames.Where(u => u.StartsWith(prefix.ToLower()));
 
-            return Json(username, JsonRequestBehavior.AllowGet);
+            return this.Json(username, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.BindingModels.Users
+﻿namespace TeamworkSystem.Models.BindingModels.Users
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class EditUserBindingModel
     {
         [Required]

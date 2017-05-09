@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace TeamworkSystem.Tests.Services
+﻿namespace TeamworkSystem.Tests.Services
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class TeatUsersService
     {

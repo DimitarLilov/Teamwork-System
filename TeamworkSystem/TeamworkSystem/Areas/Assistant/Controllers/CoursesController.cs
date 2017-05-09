@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.ViewModels.Assistant.Courses;
-using TeamworkSystem.Services.Contracts.Assistans;
-
-namespace TeamworkSystem.Areas.Assistant.Controllers
+﻿namespace TeamworkSystem.Areas.Assistant.Controllers
 {
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.ViewModels.Assistant.Courses;
+    using TeamworkSystem.Services.Contracts.Assistans;
+
     [CustomAuthorize(Roles = "Assistant")]
     [RouteArea("Assistant")]
     [RoutePrefix("Courses")]
@@ -23,7 +24,7 @@ namespace TeamworkSystem.Areas.Assistant.Controllers
         {
             var username = this.User.Identity.Name;
             AssistantAllCoursesViewModel vm = this.service.GetAllCourses(page, username);
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Assistant/Courses/Details/5
@@ -35,9 +36,9 @@ namespace TeamworkSystem.Areas.Assistant.Controllers
             {
                 return this.RedirectToAction("Index", "Courses", new { area = "Assistant" });
             }
-            AssistantCourseDetailsViewModel vm = this.service.GetDetails(id);
-            return View(vm);
-        }
 
+            AssistantCourseDetailsViewModel vm = this.service.GetDetails(id);
+            return this.View(vm);
+        }
     }
 }

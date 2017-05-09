@@ -1,7 +1,7 @@
-﻿using TeamworkSystem.Models.ViewModels.Trainer.Projects;
-
-namespace TeamworkSystem.Services.Contracts.Trainers
+﻿namespace TeamworkSystem.Services.Contracts.Trainers
 {
+    using TeamworkSystem.Models.ViewModels.Trainer.Projects;
+
     public interface ITrainerProjectsService
     {
         TrainerAllProjectsViewModel GrtAllProjects(int? page, string username);

@@ -58,25 +58,9 @@
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\ITeamworkSystemContext.cs" />
     <Compile Include="Contracts\ITeamworkSystemData.cs" />
-    <Compile Include="Migrations\201705031631416_init.cs" />
-    <Compile Include="Migrations\201705031631416_init.Designer.cs">
-      <DependentUpon>201705031631416_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705032355172_init1.cs" />
-    <Compile Include="Migrations\201705032355172_init1.Designer.cs">
-      <DependentUpon>201705032355172_init1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705040021076_init2.cs" />
-    <Compile Include="Migrations\201705040021076_init2.Designer.cs">
-      <DependentUpon>201705040021076_init2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705041417399_points.cs" />
-    <Compile Include="Migrations\201705041417399_points.Designer.cs">
-      <DependentUpon>201705041417399_points.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705042336336_fake.cs" />
-    <Compile Include="Migrations\201705042336336_fake.Designer.cs">
-      <DependentUpon>201705042336336_fake.cs</DependentUpon>
+    <Compile Include="Migrations\201705081553212_init.cs" />
+    <Compile Include="Migrations\201705081553212_init.Designer.cs">
+      <DependentUpon>201705081553212_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Moks\DbSet\FakeMessageDbSet.cs" />
@@ -134,22 +118,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705031631416_init.resx">
-      <DependentUpon>201705031631416_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705032355172_init1.resx">
-      <DependentUpon>201705032355172_init1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705040021076_init2.resx">
-      <DependentUpon>201705040021076_init2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705041417399_points.resx">
-      <DependentUpon>201705041417399_points.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705042336336_fake.resx">
-      <DependentUpon>201705042336336_fake.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705081553212_init.resx">
+      <DependentUpon>201705081553212_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,10 @@
-﻿using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Data.Moks.DbSet;
-using TeamworkSystem.Data.Repositories;
-using TeamworkSystem.Models.EnitityModels;
-
-namespace TeamworkSystem.Data.Moks.Repositories
+﻿namespace TeamworkSystem.Data.Moks.Repositories
 {
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Data.Moks.DbSet;
+    using TeamworkSystem.Data.Repositories;
+    using TeamworkSystem.Models.EnitityModels;
+
     public class FakeCommentRepository : Repository<Comment>
     {
         public FakeCommentRepository(ITeamworkSystemContext context) : base(context)

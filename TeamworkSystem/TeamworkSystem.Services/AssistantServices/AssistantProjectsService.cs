@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.ViewModels.Assistant.Projects;
-using TeamworkSystem.Services.Contracts.Assistans;
-
-namespace TeamworkSystem.Services.AssistantServices
+﻿namespace TeamworkSystem.Services.AssistantServices
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.ViewModels.Assistant.Projects;
+    using TeamworkSystem.Services.Contracts.Assistans;
 
     public class AssistantProjectsService : Service, IAssistantProjectsService
     {
@@ -21,6 +22,7 @@ namespace TeamworkSystem.Services.AssistantServices
             var projects =
                 this.data.Assistents.FindByPredicate(a => a.IdentityUser.UserName == username)
                     .AssistingCourses.SelectMany(c => c.Projects.Where(p => p.IsActive));
+
             AssistantAllProjectsViewModel vm = new AssistantAllProjectsViewModel
             {
                 Projects = Mapper.Map<IEnumerable<Project>, IEnumerable<AssistantProjectViewModel>>(projects)

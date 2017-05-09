@@ -13,6 +13,5 @@
         public int TeamId { get; set; }
 
         public decimal Grade { get; set; }
-
     }
 }

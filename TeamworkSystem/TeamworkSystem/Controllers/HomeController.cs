@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using TeamworkSystem.Models.ViewModels.Home;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Controllers
+﻿namespace TeamworkSystem.Controllers
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Models.ViewModels.Home;
+    using TeamworkSystem.Services.Contracts;
+
     public class HomeController : Controller
     {
         private IHomeService service;
@@ -13,11 +14,12 @@ namespace TeamworkSystem.Controllers
         {
             this.service = service;
         }
+
         [Route]
         public ActionResult Index()
         {
             IEnumerable<TopProjectsViewModel> vm = this.service.GetTopProjects();
-            return View(vm);
+            return this.View(vm);
         }
 
         [Authorize]
@@ -34,10 +36,11 @@ namespace TeamworkSystem.Controllers
         [Route("AdminPanel")]
         public ActionResult AdminPanel()
         {
-            if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            if (this.Request.IsAuthenticated && this.User.IsInRole("Admin"))
             {
                 return this.PartialView("_AdminPanel");
             }
+
             return null;
         }
 
@@ -45,20 +48,23 @@ namespace TeamworkSystem.Controllers
         [Route("AssistantPanel")]
         public ActionResult AssistantPanel()
         {
-            if (Request.IsAuthenticated && User.IsInRole("Assistant"))
+            if (this.Request.IsAuthenticated && this.User.IsInRole("Assistant"))
             {
                 return this.PartialView("_AssistantPanel");
             }
+
             return null;
         }
+
         [ChildActionOnly]
         [Route("TrainerPanel")]
         public ActionResult TrainerPanel()
         {
-            if (Request.IsAuthenticated && User.IsInRole("Trainer"))
+            if (this.Request.IsAuthenticated && this.User.IsInRole("Trainer"))
             {
                 return this.PartialView("_TrainerPanel");
             }
+
             return null;
         }
     }

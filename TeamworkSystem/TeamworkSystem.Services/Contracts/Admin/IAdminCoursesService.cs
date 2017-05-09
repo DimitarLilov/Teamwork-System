@@ -1,8 +1,8 @@
-﻿using TeamworkSystem.Models.BindingModels.Admin.Courses;
-using TeamworkSystem.Models.ViewModels.Admin.Courses;
-
-namespace TeamworkSystem.Services.Contracts.Admin
+﻿namespace TeamworkSystem.Services.Contracts.Admin
 {
+    using TeamworkSystem.Models.BindingModels.Admin.Courses;
+    using TeamworkSystem.Models.ViewModels.Admin.Courses;
+
     public interface IAdminCoursesService
     {
         AdminAllCoursesViewModel GetAllCourse(int? page);

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.BindingModels.Teams
+﻿namespace TeamworkSystem.Models.BindingModels.Teams
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class AddMemberBindingModel
     {
         [Required]

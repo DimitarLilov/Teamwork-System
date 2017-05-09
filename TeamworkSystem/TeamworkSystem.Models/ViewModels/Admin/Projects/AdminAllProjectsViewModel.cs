@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Admin.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Admin.Projects
 {
+    using System.Collections.Generic;
+
     public class AdminAllProjectsViewModel
     {
         public IEnumerable<AdminProjectViewModel> Projects { get; set; }

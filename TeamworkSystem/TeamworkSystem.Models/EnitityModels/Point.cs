@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System.Collections.Generic;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class Point
     {
         public Point()
@@ -10,6 +11,7 @@ namespace TeamworkSystem.Models.EnitityModels
             this.Trainer = new HashSet<Trainer>();
             this.Assistents = new HashSet<Assistent>();
         }
+
         public int Id { get; set; }
 
         public virtual Criteria Criteria { get; set; }

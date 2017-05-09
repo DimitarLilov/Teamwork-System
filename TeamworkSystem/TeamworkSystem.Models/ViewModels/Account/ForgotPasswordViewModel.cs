@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace TeamworkSystem.Models.ViewModels.Account
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class ForgotPasswordViewModel
     {
         [Required]

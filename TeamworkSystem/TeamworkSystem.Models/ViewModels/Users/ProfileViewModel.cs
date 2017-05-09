@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Users
+﻿namespace TeamworkSystem.Models.ViewModels.Users
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class ProfileViewModel
     {
         public string Username { get; set; }
@@ -59,6 +59,5 @@ namespace TeamworkSystem.Models.ViewModels.Users
         public IEnumerable<TeamUserViewModel> Teams { get; set; }
 
         public IEnumerable<CollaborationUserViewModel> Collaborators { get; set; }
-
     }
 }

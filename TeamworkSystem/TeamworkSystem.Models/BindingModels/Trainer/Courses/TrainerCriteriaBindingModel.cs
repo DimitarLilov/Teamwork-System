@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.BindingModels.Trainer.Courses
+﻿namespace TeamworkSystem.Models.BindingModels.Trainer.Courses
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class TrainerCriteriaBindingModel
     {
         [Required]

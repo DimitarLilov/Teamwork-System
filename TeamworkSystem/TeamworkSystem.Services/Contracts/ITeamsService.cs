@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using TeamworkSystem.Models.BindingModels.Teams;
-using TeamworkSystem.Models.ViewModels.Projects;
-using TeamworkSystem.Models.ViewModels.Teams;
-using TeamworkSystem.Models.ViewModels.Teams.Board;
-
-namespace TeamworkSystem.Services.Contracts
+﻿namespace TeamworkSystem.Services.Contracts
 {
+    using System.Collections.Generic;
+
+    using TeamworkSystem.Models.BindingModels.Teams;
+    using TeamworkSystem.Models.ViewModels.Projects;
+    using TeamworkSystem.Models.ViewModels.Teams;
+    using TeamworkSystem.Models.ViewModels.Teams.Board;
+
     public interface ITeamsService
     {
         TeamViewModel GetTeam(int id);
@@ -51,6 +52,5 @@ namespace TeamworkSystem.Services.Contracts
         EditTeamViewModel GetEditTeam(int id);
 
         void EditTeam(EditTeamBindingModel binding, int id);
-
     }
 }

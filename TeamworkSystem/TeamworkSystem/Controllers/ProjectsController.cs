@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.BindingModels.Courses;
-using TeamworkSystem.Models.BindingModels.Projects;
-using TeamworkSystem.Models.ViewModels.Courses;
-using TeamworkSystem.Models.ViewModels.Projects;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Controllers
+﻿namespace TeamworkSystem.Controllers
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.BindingModels.Courses;
+    using TeamworkSystem.Models.BindingModels.Projects;
+    using TeamworkSystem.Models.ViewModels.Courses;
+    using TeamworkSystem.Models.ViewModels.Projects;
+    using TeamworkSystem.Services.Contracts;
+
     [RoutePrefix("Projects")]
     public class ProjectsController : Controller
     {
@@ -36,10 +37,8 @@ namespace TeamworkSystem.Controllers
             vm.Projects = projects.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
             vm.Pager = pager;
 
-            return View(vm);
+            return this.View(vm);
         }
-
-
 
         [HttpGet]
         [AllowAnonymous]
@@ -67,9 +66,9 @@ namespace TeamworkSystem.Controllers
                 return this.HttpNotFound();
             }
 
-            if (!this.service.ContainsUser(id,username))
+            if (!this.service.ContainsUser(id, username))
             {
-                return this.RedirectToAction("Show", "Projects",new {id = id});
+                return this.RedirectToAction("Show", "Projects", new { id });
             }
 
             EditProjectViewModel vm = this.service.GetEditProject(id);
@@ -81,7 +80,7 @@ namespace TeamworkSystem.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         [Route("{id:int}/Edit")]
-        public ActionResult Edit(int id,EditProjectBindingModel binding)
+        public ActionResult Edit(int id, EditProjectBindingModel binding)
         {
             var username = this.User.Identity.Name;
 
@@ -89,21 +88,23 @@ namespace TeamworkSystem.Controllers
             {
                 return this.HttpNotFound();
             }
+
             if (!this.service.ContainsUser(id, username))
             {
-                return this.RedirectToAction("Show", "Projects", new { id = id });
+                return this.RedirectToAction("Show", "Projects", new { id });
             }
-            if (ModelState.IsValid)
+
+            if (this.ModelState.IsValid)
             {
                 this.service.EditProject(id, binding);
 
-                return this.RedirectToAction("Show", "Projects", new { id = id });
+                return this.RedirectToAction("Show", "Projects", new { id });
             }
+
             EditProjectViewModel vm = this.service.GetEditProject(id);
 
             return this.View(vm);
         }
-
 
         [ChildActionOnly]
         [Route("{id:int}/Points")]
@@ -117,10 +118,11 @@ namespace TeamworkSystem.Controllers
             string userName = this.User.Identity.Name;
             IEnumerable<string> assistents = this.service.GetAssistentsNames(id);
             string trainer = this.service.GetTreinerName(id);
-            //            if (!this.service.ContainsCriteria(id))
-            //            {
-            //                return null;
-            //            }
+            if (!this.service.ContainsCriteria(id))
+            {
+                return null;
+            }
+
             if (!this.service.IsActiveProject(id) || (!assistents.Contains(userName) && !trainer.Contains(userName)) || this.service.IsAssess(userName, id))
             {
                 return null;
@@ -129,7 +131,6 @@ namespace TeamworkSystem.Controllers
             IEnumerable<CriteriaViewModel> vm = this.service.GetProjectCriteria(id).ToList();
 
             return this.PartialView("_Points", vm);
-
         }
 
         [HttpPost]
@@ -143,10 +144,10 @@ namespace TeamworkSystem.Controllers
             }
 
             string userName = this.User.Identity.Name;
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.GradeProject(userName, id, binding);
-                return this.RedirectToAction("Show", new { id = id });
+                return this.RedirectToAction("Show", new { id });
             }
 
             IEnumerable<string> assistents = this.service.GetAssistentsNames(id);
@@ -161,14 +162,13 @@ namespace TeamworkSystem.Controllers
             return this.PartialView("_Points", vm);
         }
 
-
         [HttpGet]
         [ChildActionOnly]
         [Route("ProjectButton")]
         public ActionResult ProjectButton(int id)
         {
             var username = this.User.Identity.Name;
-            if (this.service.ContainsUser(id,username))
+            if (this.service.ContainsUser(id, username))
             {
                 return this.PartialView("_ProjectButton", id);
             }
@@ -182,7 +182,7 @@ namespace TeamworkSystem.Controllers
         public ActionResult Grade(int id)
         {
             var username = this.User.Identity.Name;
-            if (this.service.ContainsUser(id,username))
+            if (this.service.ContainsUser(id, username))
             {
                 var grade = this.service.GetGrade(id);
                 return this.PartialView("_Grade", grade);
@@ -214,6 +214,7 @@ namespace TeamworkSystem.Controllers
             {
                 return this.PartialView("_Public");
             }
+
             return this.PartialView("_Private");
         }
 
@@ -233,32 +234,30 @@ namespace TeamworkSystem.Controllers
         public ActionResult Comment(int id, CommentBindingModel binding)
         {
             string userName = this.User.Identity.Name;
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.AddComment(id, binding, userName);
-
             }
 
-            return this.RedirectToAction("Show", new { id = id });
+            return this.RedirectToAction("Show", new { id });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{id:int}/UploadPicture")]
-        public ActionResult FileUpload(int id,HttpPostedFileBase file)
+        public ActionResult FileUpload(int id, HttpPostedFileBase file)
         {
             if (file != null)
             {
                 string pic = Path.GetFileName(file.FileName);
-                string path = Path.Combine(Server.MapPath("~/images/projects"), pic);
+                string path = Path.Combine(this.Server.MapPath("~/images/projects"), pic);
 
                 file.SaveAs(path);
-
 
                 this.service.AddImage(pic, id);
             }
 
-            return RedirectToAction("Show", "Projects", new{id = id});
+            return this.RedirectToAction("Show", "Projects", new { id });
         }
 
         [HttpPost]
@@ -269,15 +268,14 @@ namespace TeamworkSystem.Controllers
             if (file != null)
             {
                 string pic = Path.GetFileName(file.FileName);
-                string path = Path.Combine(Server.MapPath("~/images/projects/gallery"), pic);
+                string path = Path.Combine(this.Server.MapPath("~/images/projects/gallery"), pic);
 
                 file.SaveAs(path);
-
 
                 this.service.AddImageInGallery(pic, id);
             }
 
-            return RedirectToAction("Show", "Projects", new { id = id });
+            return this.RedirectToAction("Show", "Projects", new { id });
         }
     }
 }

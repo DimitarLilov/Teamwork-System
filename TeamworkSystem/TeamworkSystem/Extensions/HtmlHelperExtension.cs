@@ -1,13 +1,12 @@
-﻿using System.Text;
-using System.Web.Mvc;
-using TeamworkSystem.Models;
-
-namespace TeamworkSystem.Extensions
+﻿namespace TeamworkSystem.Extensions
 {
+    using System.Text;
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Models;
 
     public static class HtmlHelperExtension
     {
-
         public static MvcHtmlString SocialMediaButton(this HtmlHelper helper, string url, string icon)
         {
             TagBuilder builder = new TagBuilder("a");
@@ -16,6 +15,7 @@ namespace TeamworkSystem.Extensions
             {
                 builder.MergeAttribute("target", "_blank");
             }
+
             builder.MergeAttribute("href", url);
 
             return new MvcHtmlString(builder.ToString(TagRenderMode.Normal));
@@ -30,7 +30,6 @@ namespace TeamworkSystem.Extensions
 
             return new MvcHtmlString(builder.ToString(TagRenderMode.SelfClosing));
         }
-
 
         public static MvcHtmlString Pages(this HtmlHelper helper, Pager pager, string url)
         {
@@ -47,7 +46,6 @@ namespace TeamworkSystem.Extensions
                     builder.Append("<li class=\"prev\"><a href=\"");
                     builder.Append(url + $"?page={pager.CurrentPage - 1}");
                     builder.Append("\" title=\"Previous\">Previous</a></li>");
-
                 }
                
                 for (var page = pager.StartPage; page <= pager.EndPage; page++)
@@ -57,10 +55,10 @@ namespace TeamworkSystem.Extensions
                     {
                         active = "active";
                     }
+
                     builder.Append($"<li class=\"{active}\"><a href=\"");
                     builder.Append(url + $"?page={page}");
                     builder.Append($"\">{page}</a></li>");
-
                 }
 
                 if (pager.CurrentPage < pager.TotalPages)
@@ -72,12 +70,10 @@ namespace TeamworkSystem.Extensions
                     builder.Append("<li class=\"prev\"><a href=\"");
                     builder.Append(url + $"?page={pager.TotalPages}");
                     builder.Append("\" title=\"Last\">Last</a></li>");
-
                 }
-                
             }
+
             return new MvcHtmlString(builder.ToString());
         }
-
     }
 }

@@ -1,11 +1,11 @@
-﻿using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.ViewModels.Trainer.Home;
-using TeamworkSystem.Services.Contracts.Trainers;
-
-namespace TeamworkSystem.Services.TrainerServices
+﻿namespace TeamworkSystem.Services.TrainerServices
 {
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.ViewModels.Trainer.Home;
+    using TeamworkSystem.Services.Contracts.Trainers;
 
     public class TrainerHomeService : Service, ITrainerHomeService
     {

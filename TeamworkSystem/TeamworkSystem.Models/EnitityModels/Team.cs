@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System.Collections.Generic;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class Team
     {
-
         public Team()
         {
             this.Projects = new HashSet<Project>();

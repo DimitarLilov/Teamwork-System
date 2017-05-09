@@ -1,10 +1,10 @@
-﻿using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Data.Repositories;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Data
+﻿namespace TeamworkSystem.Data
 {
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Data.Repositories;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class TeamworkSystemData : ITeamworkSystemData
     {
         private readonly ITeamworkSystemContext context;
@@ -42,13 +42,13 @@ namespace TeamworkSystem.Data
 
         public IRepository<Comment> Comments => new Repository<Comment>(this.context);
 
+        public IRepository<Album> Albums => new Repository<Album>(this.context);
+
         public ITeamworkSystemContext Context => this.context;
 
         public int SaveChanges()
         {
             return this.context.SaveChanges();
         }
-
-        public IRepository<Album> Albums => new Repository<Album>(this.context);
     }
 }

@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.ViewModels.Courses;
-using TeamworkSystem.Models.ViewModels.Projects;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Services
+﻿namespace TeamworkSystem.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
 
+    using AutoMapper;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.ViewModels.Courses;
+    using TeamworkSystem.Models.ViewModels.Projects;
+    using TeamworkSystem.Services.Contracts;
 
     public class CoursesService : Service, ICoursesService
     {
@@ -22,7 +22,6 @@ namespace TeamworkSystem.Services
             Course course = this.data.Courses.FindByPredicate(c => c.Id == id);
 
             CourseInfoViewModel vm = Mapper.Map<Course, CourseInfoViewModel>(course);
-
 
             IEnumerable<Project> projects = course.Projects.Where(p => p.IsPublic);
 

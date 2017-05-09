@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class TeamTask
     {
         public TeamTask()
         {
             this.Members = new HashSet<Student>();
         }
+
         public int Id { get; set; }
 
         public virtual Student Author { get; set; }

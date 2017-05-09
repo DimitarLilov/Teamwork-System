@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.ViewModels.Trainer.Projects;
-using TeamworkSystem.Services.Contracts.Trainers;
-
-namespace TeamworkSystem.Areas.Trainer.Controllers
+﻿namespace TeamworkSystem.Areas.Trainer.Controllers
 {
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.ViewModels.Trainer.Projects;
+    using TeamworkSystem.Services.Contracts.Trainers;
+
     [CustomAuthorize(Roles = "Trainer")]
     [RouteArea("Trainer")]
     [RoutePrefix("Projects")]
@@ -16,13 +17,14 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
         {
             this.service = servicea;
         }
+
         // GET: Trainer/Projects
         [Route]
         public ActionResult Index(int? page)
         {
             var username = this.User.Identity.Name;
-            TrainerAllProjectsViewModel vm = this.service.GrtAllProjects(page,username);
-            return View(vm);
+            TrainerAllProjectsViewModel vm = this.service.GrtAllProjects(page, username);
+            return this.View(vm);
         }
 
         // GET: Trainer/Projects/Details/5
@@ -34,9 +36,9 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
             {
                 return this.RedirectToAction("Index", "Projects");
             }
-            TrainerProjectDetailsViewModel vm = this.service.GetProjectDetails(username,id);
-            return View(vm);
-        }
 
+            TrainerProjectDetailsViewModel vm = this.service.GetProjectDetails(username, id);
+            return this.View(vm);
+        }
     }
 }

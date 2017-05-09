@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.ViewModels.Admin.Courses;
-using TeamworkSystem.Models.ViewModels.Courses;
-using TeamworkSystem.Models.ViewModels.Projects;
-using TeamworkSystem.Services;
-
-namespace TeamworkSystem.Tests.Services
+﻿namespace TeamworkSystem.Tests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.ViewModels.Courses;
+    using TeamworkSystem.Models.ViewModels.Projects;
+    using TeamworkSystem.Services;
+
     [TestClass]
     public class TestCoursesService : BaseTest
     {
@@ -51,6 +50,5 @@ namespace TeamworkSystem.Tests.Services
             // Assert
             Assert.AreEqual(vms.Courses.Count(), serviceGetAllResult.Courses.Count());
         }
-
     }
 }

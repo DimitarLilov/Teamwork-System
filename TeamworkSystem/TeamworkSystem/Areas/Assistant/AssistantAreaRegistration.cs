@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace TeamworkSystem.Areas.Assistant
+﻿namespace TeamworkSystem.Areas.Assistant
 {
+    using System.Web.Mvc;
+
     public class AssistantAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
@@ -14,11 +14,6 @@ namespace TeamworkSystem.Areas.Assistant
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-//            context.MapRoute(
-//                "Assistant_default",
-//                "Assistant/{controller}/{action}/{id}",
-//                new { action = "Index", id = UrlParameter.Optional }
-//            );
         }
     }
 }

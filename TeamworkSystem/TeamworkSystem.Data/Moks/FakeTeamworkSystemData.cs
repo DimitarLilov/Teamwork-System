@@ -1,12 +1,11 @@
-﻿using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Data.Moks.Repositories;
-using TeamworkSystem.Data.Repositories;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Data.Moks
+﻿namespace TeamworkSystem.Data.Moks
 {
-    public class FakeTeamworkSystemData:ITeamworkSystemData
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Data.Moks.Repositories;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+
+    public class FakeTeamworkSystemData : ITeamworkSystemData
     {
         private readonly ITeamworkSystemContext context;
 
@@ -33,7 +32,7 @@ namespace TeamworkSystem.Data.Moks
 
         public IRepository<ProjectPoint> ProjectCriteria => new FakeProjectPointRepository(this.context);
 
-        public IRepository<Skill> Skills => new FakeSkillRepository(context);
+        public IRepository<Skill> Skills => new FakeSkillRepository(this.context);
 
         public IRepository<Team> Teams => new FakeTeamRepository(this.context);
 
@@ -43,13 +42,13 @@ namespace TeamworkSystem.Data.Moks
 
         public IRepository<Comment> Comments => new FakeCommentRepository(this.context);
 
+        public IRepository<Album> Albums => new FakeAlbumRepository(this.context);
+
         public ITeamworkSystemContext Context => this.context;
 
         public int SaveChanges()
         {
             return this.context.SaveChanges();
         }
-
-        public IRepository<Album> Albums => new FakeAlbumRepository(this.context);
     }
 }

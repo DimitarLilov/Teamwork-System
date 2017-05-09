@@ -1,8 +1,9 @@
-﻿using System.Linq;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Data.Moks.DbSet
+﻿namespace TeamworkSystem.Data.Moks.DbSet
 {
+    using System.Linq;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class FakeAssistantDbSet : FakeDbSet<Assistent>
     {
         public override Assistent Find(params object[] keyValues)

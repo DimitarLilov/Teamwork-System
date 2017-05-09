@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.ViewModels.Trainer.Home;
-using TeamworkSystem.Services.Contracts.Trainers;
-
-namespace TeamworkSystem.Areas.Trainer.Controllers
+﻿namespace TeamworkSystem.Areas.Trainer.Controllers
 {
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.ViewModels.Trainer.Home;
+    using TeamworkSystem.Services.Contracts.Trainers;
+
     [CustomAuthorize(Roles = "Trainer")]
     [RouteArea("Trainer")]
     [RoutePrefix("Home")]
@@ -12,20 +13,18 @@ namespace TeamworkSystem.Areas.Trainer.Controllers
     {
         private ITrainerHomeService service;
 
-
         public HomeController(ITrainerHomeService service)
         {
             this.service = service;
         }
 
-        [Route]
         // GET: Trainer/Home
+        [Route]
         public ActionResult Index()
         {
             var username = this.User.Identity.Name;
             TrainerPanelViewModel vm = this.service.GetTrainerInfo(username);
-            return View(vm);
+            return this.View(vm);
         }
-
     }
 }

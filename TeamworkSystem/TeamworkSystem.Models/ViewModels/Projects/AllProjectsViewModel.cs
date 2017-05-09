@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TeamworkSystem.Models.ViewModels.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Projects
 {
+    using System.Collections.Generic;
+
     public class AllProjectsViewModel
     {
         public IEnumerable<ProjectViewModel> Projects { get; set; }

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using TeamworkSystem.Models.ViewModels.Projects;
-
-namespace TeamworkSystem.Models.ViewModels.Courses
+﻿namespace TeamworkSystem.Models.ViewModels.Courses
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using TeamworkSystem.Models.ViewModels.Projects;
+
     public class CourseInfoViewModel
     {
         public int Id { get; set; }

@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.ViewModels.Admin.Teams;
-using TeamworkSystem.Services.Contracts.Admin;
-
-namespace TeamworkSystem.Areas.Admin.Controllers
+﻿namespace TeamworkSystem.Areas.Admin.Controllers
 {
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.ViewModels.Admin.Teams;
+    using TeamworkSystem.Services.Contracts.Admin;
+
     [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Teams")]
@@ -17,12 +18,12 @@ namespace TeamworkSystem.Areas.Admin.Controllers
             this.service = service;
         }
 
-        [Route]
         // GET: Admin/Teams
+        [Route]
         public ActionResult Index(int? page)
         {
             AdminAllTeamsViewModel vm = this.service.GetAllTeams(page);
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Admin/Teams/Details/5
@@ -30,8 +31,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         public ActionResult Details(int id)
         {
             AdminTeamDetailsViewModel vm = this.service.GetTeamDetails(id);
-            return View(vm);
+            return this.View(vm);
         }
-
     }
 }

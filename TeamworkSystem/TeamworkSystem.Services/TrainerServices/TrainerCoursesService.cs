@@ -1,21 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using TeamworkSystem.Data.Contracts;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.BindingModels.Trainer.Courses;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.ViewModels.Trainer.Courses;
-using TeamworkSystem.Models.ViewModels.Trainer.Projects;
-using TeamworkSystem.Services.Contracts.Trainers;
-
-namespace TeamworkSystem.Services.TrainerServices
+﻿namespace TeamworkSystem.Services.TrainerServices
 {
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public class TrainerCoursesService:Service, ITrainerCoursesService
+    using AutoMapper;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using TeamworkSystem.Data.Contracts;
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.BindingModels.Trainer.Courses;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.ViewModels.Trainer.Courses;
+    using TeamworkSystem.Models.ViewModels.Trainer.Projects;
+    using TeamworkSystem.Services.Contracts.Trainers;
+
+    public class TrainerCoursesService : Service, ITrainerCoursesService
     {
         public TrainerCoursesService(ITeamworkSystemData data) : base(data)
         {
@@ -25,11 +27,16 @@ namespace TeamworkSystem.Services.TrainerServices
         {
             var courses = this.data.Trainers.FindByPredicate(t => t.IdentityUser.UserName == username).LeadingCourses;
 
-            TrainerAllCourseViewModel vm = new TrainerAllCourseViewModel();
-            vm.Courses = Mapper.Map<IEnumerable<Course>, IEnumerable<TrainerCourseViewModel>>(courses);
+            TrainerAllCourseViewModel vm =
+                new TrainerAllCourseViewModel
+                {
+                    Courses = Mapper
+                            .Map<IEnumerable<Course>, IEnumerable<TrainerCourseViewModel>>(
+                                courses)
+                };
 
             var coursesPage = vm.Courses;
-            var pager = new Pager(courses.Count(), page);
+            var pager = new Pager(courses.Count, page);
 
             vm.Courses = coursesPage.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
             vm.Pager = pager;
@@ -60,6 +67,7 @@ namespace TeamworkSystem.Services.TrainerServices
             {
                 this.data.Projects.FindByPredicate(p => p.Id == model.ProjectId).IsActive = model.IsActive;
             }
+
             this.data.SaveChanges();
         }
 
@@ -83,7 +91,7 @@ namespace TeamworkSystem.Services.TrainerServices
             TrainerCourseAssistantsViewModel vm = new TrainerCourseAssistantsViewModel
             {
                 Course = Mapper.Map<Course, TrainerCourseViewModel>(course),
-                Assistants = Mapper.Map<IEnumerable<Assistent>,IEnumerable<TrainerCourseAssistantViewModel>>(course.Assistents)
+                Assistants = Mapper.Map<IEnumerable<Assistent>, IEnumerable<TrainerCourseAssistantViewModel>>(course.Assistents)
             };
             return vm;
         }
@@ -94,22 +102,14 @@ namespace TeamworkSystem.Services.TrainerServices
 
             var user = this.data.User.FindByPredicate(u => u.UserName == binding.Username);
 
-
             this.CreateTreinerRole(user.Id);
 
-            Assistent assistant = new Assistent();
-            assistant.IdenityUserId = user.Id;
+            Assistent assistant = new Assistent { IdenityUserId = user.Id };
             this.data.Assistents.Insert(assistant);
 
             course.Assistents.Add(assistant);
 
             this.data.SaveChanges();
-        }
-
-        private void CreateTreinerRole(string userId)
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.data.Context.DbContext));
-            userManager.AddToRole(userId, "Assistant");
         }
 
         public bool ContainsUser(string username)
@@ -142,6 +142,12 @@ namespace TeamworkSystem.Services.TrainerServices
             course.Criteria.Add(criteria);
 
             this.data.SaveChanges();
+        }
+
+        private void CreateTreinerRole(string userId)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.data.Context.DbContext));
+            userManager.AddToRole(userId, "Assistant");
         }
     }
 }

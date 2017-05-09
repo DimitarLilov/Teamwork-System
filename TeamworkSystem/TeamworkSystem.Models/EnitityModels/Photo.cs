@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System.Collections.Generic;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class Photo
     {
         public Photo()
@@ -12,6 +13,7 @@ namespace TeamworkSystem.Models.EnitityModels
             this.UserPhotos = new HashSet<ApplicationUser>();
             this.Albums = new HashSet<Album>();
         }
+
         public int Id { get; set; }
 
         public string UrlPthoto { get; set; }

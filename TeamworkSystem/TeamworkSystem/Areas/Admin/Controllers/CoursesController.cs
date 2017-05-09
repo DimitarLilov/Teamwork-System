@@ -1,13 +1,14 @@
-﻿using System.IO;
-using System.Web;
-using System.Web.Mvc;
-using TeamworkSystem.Attributes;
-using TeamworkSystem.Models.BindingModels.Admin.Courses;
-using TeamworkSystem.Models.ViewModels.Admin.Courses;
-using TeamworkSystem.Services.Contracts.Admin;
-
-namespace TeamworkSystem.Areas.Admin.Controllers
+﻿namespace TeamworkSystem.Areas.Admin.Controllers
 {
+    using System.IO;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Attributes;
+    using TeamworkSystem.Models.BindingModels.Admin.Courses;
+    using TeamworkSystem.Models.ViewModels.Admin.Courses;
+    using TeamworkSystem.Services.Contracts.Admin;
+
     [CustomAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Courses")]
@@ -26,8 +27,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         {
             AdminAllCoursesViewModel vm = this.service.GetAllCourse(page);
 
-
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Admin/Courses/Create
@@ -35,7 +35,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         public ActionResult Create()
         {
             AdminCreateCourseViewModel vm = new AdminCreateCourseViewModel();
-            return View(vm);
+            return this.View(vm);
         }
 
         // POST: Admin/Courses/Create
@@ -44,14 +44,15 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         [Route("Create")]
         public ActionResult Create(AdminCreateCourseBindingModel binding)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.CreateCourse(binding);
 
-                return RedirectToAction("Index", "Courses", new {area = "Admin"});
+                return this.RedirectToAction("Index", "Courses", new { area = "Admin" });
             }
+
             AdminCreateCourseViewModel vm = new AdminCreateCourseViewModel();
-            return View(vm);
+            return this.View(vm);
         }
 
         // GET: Admin/Courses/Edit/5
@@ -60,7 +61,7 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         {
             AdminEditCourseViewModel vm = this.service.GetEditCourse(id);
 
-            return View(vm);
+            return this.View(vm);
         }
 
         // POST: Admin/Courses/Edit/5
@@ -69,35 +70,31 @@ namespace TeamworkSystem.Areas.Admin.Controllers
         [Route("{id:int}/Edit")]
         public ActionResult Edit(int id, AdminEditCourseBindingModel binding)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 this.service.EditCourse(id, binding);
-//                this.RedirectToAction("Show", "Courses");
             }
 
             AdminEditCourseViewModel vm = this.service.GetEditCourse(id);
-            return View(vm);
+            return this.View(vm);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("{id:int}/UploadCoursePicture")]
-        public ActionResult FileUpload(int id,HttpPostedFileBase file)
+        public ActionResult FileUpload(int id, HttpPostedFileBase file)
         {
-            var username = this.User.Identity.Name;
             if (file != null)
             {
                 string pic = Path.GetFileName(file.FileName);
-                string path = Path.Combine(Server.MapPath("~/images/profile"), pic);
+                string path = Path.Combine(this.Server.MapPath("~/images/profile"), pic);
 
                 file.SaveAs(path);
-
 
                 this.service.AddImage(pic, id);
             }
 
-            return RedirectToAction("Index", "Courses");
+            return this.RedirectToAction("Index", "Courses");
         }
     }
 }

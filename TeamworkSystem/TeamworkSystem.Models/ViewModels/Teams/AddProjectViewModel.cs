@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using TeamworkSystem.Models.ViewModels.Projects;
-
-namespace TeamworkSystem.Models.ViewModels.Teams
+﻿namespace TeamworkSystem.Models.ViewModels.Teams
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using TeamworkSystem.Models.ViewModels.Projects;
+
     public class AddProjectViewModel
     {
         public int TeamId { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

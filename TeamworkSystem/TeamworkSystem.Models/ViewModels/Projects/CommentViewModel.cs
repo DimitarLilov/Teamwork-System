@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Projects
+﻿namespace TeamworkSystem.Models.ViewModels.Projects
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class CommentViewModel
     {
         public string Content { get; set; }

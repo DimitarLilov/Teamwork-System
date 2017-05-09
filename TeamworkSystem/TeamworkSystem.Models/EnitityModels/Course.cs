@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using TeamworkSystem.Models.EnitityModels.Users;
-
-namespace TeamworkSystem.Models.EnitityModels
+﻿namespace TeamworkSystem.Models.EnitityModels
 {
+    using System;
+    using System.Collections.Generic;
+
+    using TeamworkSystem.Models.EnitityModels.Users;
+
     public class Course
     {
         public Course()
@@ -12,6 +13,7 @@ namespace TeamworkSystem.Models.EnitityModels
             this.Projects = new HashSet<Project>();
             this.Criteria = new HashSet<Criteria>();
         }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -33,6 +35,5 @@ namespace TeamworkSystem.Models.EnitityModels
         public virtual ICollection<Project> Projects { get; set; }
 
         public virtual ICollection<Criteria> Criteria { get; set; }
-
     }
 }

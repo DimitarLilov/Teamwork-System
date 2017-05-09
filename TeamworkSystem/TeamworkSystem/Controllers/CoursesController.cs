@@ -1,11 +1,12 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using TeamworkSystem.Models;
-using TeamworkSystem.Models.ViewModels.Courses;
-using TeamworkSystem.Services.Contracts;
-
-namespace TeamworkSystem.Controllers
+﻿namespace TeamworkSystem.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using TeamworkSystem.Models;
+    using TeamworkSystem.Models.ViewModels.Courses;
+    using TeamworkSystem.Services.Contracts;
+
     [RoutePrefix("Courses")]
     public class CoursesController : Controller
     {
@@ -15,6 +16,7 @@ namespace TeamworkSystem.Controllers
         {
             this.service = service;
         }
+
         // GET: Course
         [Route]
         public ActionResult Index(int? page)
@@ -28,7 +30,7 @@ namespace TeamworkSystem.Controllers
             vm.Courses = courses.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
             vm.Pager = pager;
 
-            return View(vm);
+            return this.View(vm);
         }
 
         [HttpGet]

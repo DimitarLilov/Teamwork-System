@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Teams.Board
+﻿namespace TeamworkSystem.Models.ViewModels.Teams.Board
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class BoardViewModel
     {
         public int TeamId { get; set; }

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.BindingModels.Projects
+﻿namespace TeamworkSystem.Models.BindingModels.Projects
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class EditProjectBindingModel
     {
         public string Description { get; set; }

@@ -1,18 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TeamworkSystem.Models.BindingModels.Teams;
-using TeamworkSystem.Models.EnitityModels;
-using TeamworkSystem.Models.EnitityModels.Users;
-using TeamworkSystem.Models.ViewModels.Courses;
-using TeamworkSystem.Models.ViewModels.Projects;
-using TeamworkSystem.Models.ViewModels.Teams;
-using TeamworkSystem.Models.ViewModels.Teams.Board;
-using TeamworkSystem.Services;
-
-namespace TeamworkSystem.Tests.Services
+﻿namespace TeamworkSystem.Tests.Services
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using TeamworkSystem.Models.BindingModels.Teams;
+    using TeamworkSystem.Models.EnitityModels;
+    using TeamworkSystem.Models.EnitityModels.Users;
+    using TeamworkSystem.Models.ViewModels.Courses;
+    using TeamworkSystem.Models.ViewModels.Projects;
+    using TeamworkSystem.Models.ViewModels.Teams;
+    using TeamworkSystem.Models.ViewModels.Teams.Board;
+    using TeamworkSystem.Services;
+
     [TestClass]
     public class TestTeamsService : BaseTest
     {
@@ -38,24 +41,26 @@ namespace TeamworkSystem.Tests.Services
             IEnumerable<Course> courses = team.Projects.Select(p => p.Course).Take(4).Distinct();
             vm.Courses = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
 
-
             // Act
             TeamViewModel serviceGetResult = this.teamsService.GetTeam(1);
 
             // Assert
             Assert.AreEqual(vm.Projects.Count(), serviceGetResult.Projects.Count());
         }
+
         [TestMethod]
         public void Test_GetMembersName_Should_Return_MembersName()
         {
             // Arrange
             var vm = this.Data.Teams.GetById(1).Members.Select(m => m.IdentityUser.UserName);
+
             // Act
             IEnumerable<string> serviceGetResult = this.teamsService.GetMembersName(1);
 
             // Assert
             Assert.AreEqual(vm.Count(), serviceGetResult.Count());
         }
+
         [TestMethod]
         public void Test_AllTeamsProjects_Should_Return_AllTeamsProjectsViewModel()
         {
@@ -79,6 +84,7 @@ namespace TeamworkSystem.Tests.Services
             // Arrange
             Team team = this.Data.Teams.GetById(1);
             TeamInfoViewModel vm = Mapper.Map<Team, TeamInfoViewModel>(team);
+
             // Act
             TeamInfoViewModel serviceGetResult = this.teamsService.GetTeamInfo(1);
 
@@ -92,10 +98,10 @@ namespace TeamworkSystem.Tests.Services
             // Arrange
             AllTeamsCoursesViewModel vm = new AllTeamsCoursesViewModel { Id = 1 };
 
-
-            IEnumerable<Course> courses = Data.Teams.GetById(1).Projects.Select(p => p.Course).Distinct();
+            IEnumerable<Course> courses = this.Data.Teams.GetById(1).Projects.Select(p => p.Course).Distinct();
 
             vm.Courses = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
+
             // Act
             AllTeamsCoursesViewModel serviceGetResult = this.teamsService.GetAllTaemsCourses(1);
 
@@ -113,6 +119,7 @@ namespace TeamworkSystem.Tests.Services
             IEnumerable<TeamTask> tasks = team.Tasks.Where(t => t.IsComplet == false);
 
             vm.Tasks = Mapper.Map<IEnumerable<TeamTask>, IEnumerable<TaskViewModel>>(tasks);
+
             // Act
             TeamTasksViewModel serviceGetResult = this.teamsService.GetTeamTasks(1);
 
@@ -129,12 +136,14 @@ namespace TeamworkSystem.Tests.Services
                 Name = "Ceca",
                 Description = "Golqm team"
             };
+
             // Act
             var id = this.teamsService.CreateTeam(bm, "Mici");
 
             // Assert
             Assert.AreEqual(bm.Name, this.Data.Teams.GetById(id).Name);
         }
+
         [TestMethod]
         public void Test_AddMemberInTeam_Should_Create_TeamMember()
         {
@@ -143,12 +152,14 @@ namespace TeamworkSystem.Tests.Services
             {
                 Username = "Duci"
             };
+
             // Act
-             this.teamsService.AddMember(1,bm);
+             this.teamsService.AddMember(1, bm);
 
             // Assert
             Assert.AreEqual(bm.Username, this.Data.Teams.GetById(1).Members.Select(t => t.IdentityUser.UserName));
         }
+
         [TestMethod]
         public void Test_TeamCreateProject_Should_Create_Project()
         {
@@ -162,23 +173,27 @@ namespace TeamworkSystem.Tests.Services
                 LiveDemo = "nqma",
                 Repository = "pak nqma"
             };
+
             // Act
-             this.teamsService.CreateProject(1,bm);
+             this.teamsService.CreateProject(1, bm);
 
             // Assert
             Assert.AreEqual(bm.Name, this.Data.Teams.GetById(1).Projects.Select(p => p.Name));
         }
+
         [TestMethod]
         public void Test_GetBoardInfo_Should_Return_BoardInfoViewModel()
         {
             // Arrange
            var vm = Mapper.Map<Team, BoardInfoViewModel>(this.Data.Teams.GetById(1));
+
             // Act
-            BoardInfoViewModel serviceGetResult = teamsService.GetBoardInfo(1);
+            BoardInfoViewModel serviceGetResult = this.teamsService.GetBoardInfo(1);
 
             // Assert
             Assert.AreEqual(vm.Name, serviceGetResult.Name);
         }
+
         [TestMethod]
         public void Test_GetAllMembers_Should_Return_MembersViewModel()
         {
@@ -186,12 +201,14 @@ namespace TeamworkSystem.Tests.Services
             MembersViewModel vm = new MembersViewModel { TeamId = 1 };
             IEnumerable<Student> members = this.Data.Teams.GetById(1).Members;
             vm.Members = Mapper.Map<IEnumerable<Student>, IEnumerable<BoardMemberViewModel>>(members);
+
             // Act
-            MembersViewModel serviceGetResult = teamsService.GetAllMembers(1);
+            MembersViewModel serviceGetResult = this.teamsService.GetAllMembers(1);
 
             // Assert
             Assert.AreEqual(vm.Members.Count(), serviceGetResult.Members.Count());
         }
+
         [TestMethod]
         public void Test_EditTeam_Should_Edit_Teaml()
         {
@@ -200,8 +217,9 @@ namespace TeamworkSystem.Tests.Services
             {
                 Description = "nqma nqma "
             };
+
             // Act
-            this.teamsService.EditTeam(bm,1);
+            this.teamsService.EditTeam(bm, 1);
 
             // Assert
             Assert.AreEqual(bm.Description, this.Data.Teams.GetById(1).Description);

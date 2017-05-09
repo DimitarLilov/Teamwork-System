@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamworkSystem.Models.ViewModels.Admin.Courses
+﻿namespace TeamworkSystem.Models.ViewModels.Admin.Courses
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class AdminCourseViewModel
     {
         public int Id { get; set; }
@@ -24,6 +24,5 @@ namespace TeamworkSystem.Models.ViewModels.Admin.Courses
         public string TrainerFullName { get; set; }
 
         public string TrainerUsername { get; set; }
-
     }
 }
